@@ -44,7 +44,7 @@
       }
       function openLiveHTTPHeaders() {
         var usetab = getBoolPref("tab", false);
-        if (!gInPrintPreviewMode && usetab) {
+        if (usetab) {
           // Open LiveHTTPHeaders in a new tab
           gBrowser.selectedTab = gBrowser.addTab('chrome://livehttpheaders/content/LiveHTTPHeaders.xul');
           setTimeout("gURLBar.focus();", 0);

@@ -74,6 +74,8 @@ function HeaderInfoLive()
   this.usestyle= this.getIntPref(this.lpref, "style", 0); // Use style sheet
   this.mode    = this.getIntPref(this.lpref, "mode", 1);    // Post capture mode
   this.usetab  = this.getBoolPref(this.lpref, "tab", false); // Tab mode
+  this.usefilter  = this.getBoolPref(this.lpref, "filter", false); // Filter mode
+  this.filterRegexp  = this.getCharPref(this.lpref, "filterRegexp",'/$|\.html$'); // Filter mode
 }
 HeaderInfoLive.prototype =
 {
@@ -323,6 +325,18 @@ HeaderInfoLive.prototype =
     branch.setBoolPref(name, value);
   },
 
+  getCharPref : function(branch, name, value) {
+    if (branch.prefHasUserValue(name)) {
+      return branch.getCharPref(name);
+    } else {
+      this.setCharPref(branch, name, value);
+      return value;
+    }
+  },
+  setCharPref : function(branch, name, value) {
+    branch.setCharPref(name, value);
+  },
+
   // Initialisation and termination functions
   start : function()
   {
@@ -333,6 +347,8 @@ HeaderInfoLive.prototype =
     document.getElementById("headerinfo-mode").selectedIndex=this.mode;
     document.getElementById("headerinfo-style").checked=this.usestyle;
     document.getElementById("headerinfo-tab").checked=this.usetab;
+    document.getElementById("headerinfo-filter").checked=this.usefilter;
+    document.getElementById("headerinfo-filterRegexp").value=this.filterRegexp;
 
     // Set scrollbar
     this.hScrollBar = document.getElementById("headerinfo-dump-scroll");
@@ -541,6 +557,14 @@ HeaderInfoLive.prototype =
   setTab : function(tab) {
     this.setBoolPref(this.lpref, "tab", tab);
   },
+  setFilter : function(filter) {
+    this.setBoolPref(this.lpref, "filter", filter);
+    this.usefilter = filter;
+  },
+  setFilterRegexp : function(regex) {
+    this.setCharPref(this.lpref, "filterRegexp", regex);
+    this.filterRegexp = regex;
+  },
   setStyle : function(style) {
     if (style) { style=1; } else { style=0; }
     this.setIntPref(this.lpref, "style", style);
@@ -554,6 +578,7 @@ HeaderInfoLive.prototype =
   {
     //dumpall("REQUEST",request);
     if (this.isCapturing) {
+      if (this.usefilter && !name.match(this.filterRegexp)) return;
       var oldrows = this.rowCount;
       this.addRow(name + "\r\n", this.URL);
       this.addRow("\r\n", this.REQSPACE);

@@ -137,11 +137,22 @@
     <separator class="thin" />
     <checkbox id="headerinfo-style" 
               label="&livehttpheaders.config.usestyle;" checked="true"
+              tooltiptext="&livehttpheaders.config.usestyle.tips;"
               oncommand="oHeaderInfoLive.setStyle(this.checked)" />
     <separator class="thin" />
     <checkbox id="headerinfo-tab"
               label="&livehttpheaders.config.usetab;" checked="false"
+              tooltiptext="&livehttpheaders.config.usetab.tips;"
               oncommand="oHeaderInfoLive.setTab(this.checked)" />
+    <separator class="thin" />
+    <hbox>
+      <checkbox id="headerinfo-filter"
+              label="&livehttpheaders.config.usefilter;" checked="false"
+              tooltiptext="&livehttpheaders.config.usefilter.tips;"
+              oncommand="oHeaderInfoLive.setFilter(this.checked)" />
+      <textbox id="headerinfo-filterRegexp" flex="1"
+      	value="" oninput="oHeaderInfoLive.setFilterRegexp(this.value)"/>
+    </hbox>
     <spacer flex="1"/>
     <hbox>
       <spacer flex="1" />
@@ -189,6 +200,7 @@
       <label value="Mandeep Singh" />
       <label value="Mathieu Hautot" />
       <label value="Paul Lacourse" />
+      <label value="Wojtek Meler" />
     </groupbox>
     
     <spacer flex="1"/>

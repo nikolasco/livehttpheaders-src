@@ -13,8 +13,12 @@
 <!ENTITY livehttpheaders.tabs.about             "About" >
 
 <!ENTITY livehttpheaders.config.usetab          "Open LiveHTTPHeaders in a new tab" >
+<!ENTITY livehttpheaders.config.usetab.tips     "Should LiveHTTPHeaders display itself in a new tab or in a window." >
 <!ENTITY livehttpheaders.config.usestyle        "Use style sheet" >
+<!ENTITY livehttpheaders.config.usestyle.tips   "Note: there is currently a bug that may cause this option to take 100 percent cpu." >
 <!ENTITY livehttpheaders.config.post            "POST:" >
+<!ENTITY livehttpheaders.config.usefilter       "Filter URLs with regexp" >
+<!ENTITY livehttpheaders.config.usefilter.tips  "This filter applies to URL and not to each headers." >
 
 <!ENTITY livehttpheaders.about.version          "Version information" >
 <!ENTITY livehttpheaders.about.versiontext      "LiveHTTPHeaders version" >
