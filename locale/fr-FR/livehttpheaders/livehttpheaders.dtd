@@ -17,8 +17,8 @@
 <!ENTITY livehttpheaders.config.usestyle        "Utiliser la feuille de style">
 <!ENTITY livehttpheaders.config.usestyle.tips   "Note: dû à un 'bug', cette fonction peut prendre 100 pourcent du processeur.">
 <!ENTITY livehttpheaders.config.post		"POST:" >
-<!ENTITY livehttpheaders.config.filter		"Filtrer les URLs avec une expression régulière" >
-<!ENTITY livehttpheaders.config.filter.tips	"Le filtre s'applique sur l'URL demandé et non pas sur les entêtes elles-mêmes." >
+<!ENTITY livehttpheaders.config.usefilter	"Filtrer les URLs avec une expression régulière" >
+<!ENTITY livehttpheaders.config.usefilter.tips	"Le filtre s'applique sur l'URL demandé et non pas sur les entêtes elles-mêmes." >
 
 <!ENTITY livehttpheaders.about.version          "Information sur la version" >
 <!ENTITY livehttpheaders.about.versiontext	"LiveHTTPHeaders version " >
