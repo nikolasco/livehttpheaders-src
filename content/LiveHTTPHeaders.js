@@ -20,6 +20,14 @@
 //  Place, Suite 330, Boston, MA 02111-1307 USA
 //  **** END LICENSE BLOCK ****
 
+// To enable dumpall: browser.dom.window.dump.enabled = true
+
+// To use LiveHTTPHeaders's headers, call addObserver(obj) and removeObserver(obj)
+// This will call obj.observeGRequest and obj.observeResponse for each request
+// - observeRequest(uri, request)  // This doesn't exist !!!  It is for future
+// - observeGRequest(uri, method)  // This is only for Generator
+// - observeResponse(uri, request, response, postData, isRedirect)
+
 var oHeaderInfoLive;
 function startHeaderInfoLive() {
   oHeaderInfoLive = new HeaderInfoLive();
@@ -73,7 +81,8 @@ function HeaderInfoLive()
   this.check= new Array(); //This is an array of url to check (modify headers)
   this.names= new Array(); //Names for tree's images
   this.atoms= new Array(); //Atoms for tree's styles
-  
+  this.observers = new Array(); // LiveHTTPHeaders's Observers
+ 
   // Read preferences
   this.pref = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
   this.lpref = this.pref.getBranch("extensions.livehttpheaders."); // Live
@@ -235,8 +244,8 @@ HeaderInfoLive.prototype =
   onselect: function()
   {
     var selection = this.oDump.view.selection;
-    // Look if there is only one item selected
-    if (selection.count == 1 && this.type[selection.currentIndex]==this.URL) {
+    // Look if there is an URL block selected
+    if (selection.count == 1 && this.type[selection.currentIndex]!=this.SEPARATOR) {
       document.getElementById("headerinfo-replay").disabled = false;
     } else {
       document.getElementById("headerinfo-replay").disabled = true;
@@ -420,6 +429,19 @@ HeaderInfoLive.prototype =
     }
   },
 
+  // Add a new LiveHTTPHeaders's observer
+  addObserver: function(obj) {
+    this.observers.push(obj);
+  },
+  // Remove a LiveHTTPHeaders's observer
+  removeObserver: function(obj) {
+    for (observer in this.observers) {
+      if (this.observers[observer] == obj) {
+        delete this.observers[observer];
+      }
+    }
+  },
+
   // Header Info Lives functions
   capture : function(flag)
   {
@@ -495,6 +517,7 @@ HeaderInfoLive.prototype =
       // Change the request to an array
       var tmp = request.split(/[\r\n]/);
       var req = new Array();
+      req['_METHOD_'] = method;
       for (var i in tmp) {
         //dump("Try: " + tmp[i] +"\n");
         var header = tmp[i].match(/^([^:]+)\s*:\s*(.*)$/);
@@ -617,18 +640,9 @@ HeaderInfoLive.prototype =
           this.addRow((flag? i+": " : "") + request[i] + "\r\n", this.REQUEST);
           flag=true;
       }
+      var rawData = null;
       if (postData) {
-        this.t = postData.seekablestream;	//DSMT: REPLAY
-        //this.c = request["CACHE"];
-        var size, mode;
-        switch (this.mode) {
-          case 0: mode=0; size=0; break;	//Don't get any content
-          case 1: mode=1; size=-1; break;	//Get content the fast way
-          case 2: mode=2; size=-1; break;	//Get content the accurate way
-          case 3: mode=2; size=1024; break;	//Only get 1024 bytes of content
-        }
-        postData.setMode(mode);
-        var data = postData.getPostBody(size).match(/^.*(\r\n|\r|\n)?/mg); // "\r\n"
+        var data = postData.match(/^.*(\r\n|\r|\n)?/mg); // "\r\n"
         for (i in data) {
           this.addRow(data[i], this.POSTDATA);
         }
@@ -689,14 +703,16 @@ HeaderInfoLive.prototype =
       delete this.check[uri];
 
       //Set the new headers
+      oHttp.requestMethod = req['_METHOD_']
+      delete req['_METHOD_']
       for (var i in req) {
         try {
           //dump("Try: " + i + " = " + req[i] + "\n");
-          if (i == 'Content-Type' || i == 'Content-Length') {
-            oHttp.setRequestHeader(i, null, false);
-          } else {
-            oHttp.setRequestHeader(i, req[i], false);
-          }
+          //if (i == 'Content-Type' || i == 'Content-Length') {
+          //  oHttp.setRequestHeader(i, null, false);
+          //} else {
+          oHttp.setRequestHeader(i, req[i], false);
+          //}
         } catch (ex) {
           //dump("onModifyRequest: exception: " + ex +"\n");
         }
@@ -709,11 +725,18 @@ HeaderInfoLive.prototype =
       //oHttp.loadFlags = oHttp.LOAD_BYPASS_CACHE;
       //oHttp.loadFlags = oHttp.VALIDATE_ALWAYS;
     }
+    var uri = oHttp.URI.asciiSpec;
+    for (observer in this.observers) {
+      if ('observeGRequest' in this.observers[observer]) {
+        this.observers[observer].observeGRequest(uri, oHttp.requestMethod)
+      }
+    }
   },
 
   onExamineResponse : function (oHttp)
   {
     var name = oHttp.URI.asciiSpec;
+    var origname = oHttp.originalURI.asciiSpec;
     var visitor = new HeaderInfoVisitor(oHttp);
     //dumpall("oHttp",oHttp,2);
     //alert("REsponse: " + oHttp)
@@ -745,7 +768,28 @@ HeaderInfoLive.prototype =
     //dumpall("oHttp.loadGroup.groupObserver",oHttp.loadGroup.groupObserver,2);
     //dumpall("oHttp.loadGroup.notificationCallbacks",oHttp.loadGroup.notificationCallbacks,2);
 
-    this.observeURL(name, request, response, postData);
+    var rawData = null;
+    if (postData && (this.isCapturing || this.observers.length>0)) {
+      this.t = postData.seekablestream;	//DSMT: REPLAY
+      //this.c = request["CACHE"];
+      var size, mode;
+      switch (this.mode) {
+        case 0: mode=0; size=0; break;	//Don't get any content
+        case 1: mode=1; size=-1; break;	//Get content the fast way
+        case 2: mode=2; size=-1; break;	//Get content the accurate way
+        case 3: mode=2; size=1024; break;	//Only get 1024 bytes of content
+      }
+      postData.setMode(mode);
+      rawData = postData.getPostBody(size);
+    }
+    this.observeURL(name, request, response, rawData);
+
+    // Call response observers
+    var isRedirect = (name != origname)
+    for (observer in this.observers) {
+      //dumpall("Observer", this.observers[observer], 1);
+      this.observers[observer].observeResponse(name, request, response, rawData, isRedirect)
+    }
 
     //dumpall("Request",this.request[oHttp.name],1);
     //dumpall("Response",this.response[oHttp.name],1);
@@ -917,7 +961,7 @@ HeaderInfoVisitor.prototype =
           //dump("Exception while getting POST CONTENT with mode "+this.mode+": "+ex+"\n");
           return ""+ex;
         } finally {
-          // Need to close the stream after use
+          // Need to close the stream after use.  
           this.seekablestream.close();
           this.stream.close();
         }

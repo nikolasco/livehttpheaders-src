@@ -53,7 +53,7 @@
   <vbox flex="1" align="stretch">
     <vbox flex="0">
       <hbox flex="1">
-        <menulist id="livehttpheaders.replay.method" editable="false" disabled="true">
+        <menulist id="livehttpheaders.replay.method" editable="true">
           <menupopup>
             <menuitem value="GET" label="GET"/>
             <menuitem value="POST" label="POST"/>

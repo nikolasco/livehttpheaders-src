@@ -5,7 +5,7 @@
 
   <Description about="urn:mozilla:install-manifest">
     <em:id>{8f8fe09b-0bd3-4470-bc1b-8cad42b8203a}</em:id>
-    <em:version>0.9</em:version>
+    <em:version>0.10</em:version>
     
     <!-- Target Application this extension can install into, 
          with minimum and maximum supported versions. --> 
@@ -13,13 +13,12 @@
       <Description>
         <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
         <em:minVersion>0.8</em:minVersion>
-        <em:maxVersion>0.9+</em:maxVersion>
+        <em:maxVersion>1.0+</em:maxVersion>
       </Description>
     </em:targetApplication>
     
-    
     <!-- Front End MetaData -->
-    <em:name>LiveHTTPHeaders</em:name>
+    <em:name>Live HTTP Headers</em:name>
     <em:description>View HTTP headers of a page and while browsing.</em:description>
     <em:creator>Daniel Savard</em:creator>
     <em:homepageURL>http://livehttpheaders.mozdev.org/</em:homepageURL>

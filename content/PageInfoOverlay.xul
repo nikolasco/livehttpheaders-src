@@ -31,7 +31,8 @@
   <tabs id="tabs">
     <tab id="headerinfoTab" label="&livehttpheaders.pageinfo.tab;"
          accesskey="&livehttpheaders.pageinfo.accesskey;"
-	 oncommand="makeHeaderInfoTab()"/>
+	 oncommand="makeHeaderInfoTab()"
+	 onfocus="makeHeaderInfoTab()"/>
   </tabs>
   <tabpanels id="tabpanels">
   <deck id="headerinfoDeck" selectedIndex="0">

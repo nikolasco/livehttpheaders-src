@@ -42,7 +42,7 @@
 <window
   id="LiveHTTPHeaders"
   onload="startHeaderInfoLive(); startGenerator()"
-  onunload="stopHeaderInfoLive(); stopGenerator()"/>
+  onunload="stopGenerator(); stopHeaderInfoLive"/>
 
 <!--
   headerinfo         => generator

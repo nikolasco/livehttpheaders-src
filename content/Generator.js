@@ -25,17 +25,16 @@ var oGenerator;
 function startGenerator() {
   oGenerator = MakeGenerator();
   oGenerator.start();
+  oHeaderInfoLive.addObserver(oGenerator)
   //dump_obj("oGenerator=", oGenerator);
-  addToListener(oGenerator);
   //dump("END startGenerator\n");
 }
 function stopGenerator() {
-  removeFromListener(oGenerator);
+  oHeaderInfoLive.removeObserver(oGenerator)
   oGenerator.stop();
   delete oGenerator;
   oGenerator = null;
 }
-
 
 function MakeGenerator() {
   var gen = new HeaderInfoLive();
@@ -57,7 +56,7 @@ function MakeGenerator() {
   gen.showInvalid    = function(state) { this.show_invalid = state; };
   gen.showSkipped    = function(state) { this.show_skipped = state; };
 
-  gen.generateURL = function(name, request, response, postData, isRedirect) {
+  gen.observeResponse = function(name, request, response, postData, isRedirect) {
     //dump("generateURL name="+name+" request="+request+" isRedirect="+isRedirect+"\n");
     if (this.isWebrobot) {
       //noheaders();
@@ -78,15 +77,12 @@ function MakeGenerator() {
       //  this.addRow(i + "=" + request[i] + "\r\n", this.REQUEST);
       //}
       if (postData) {
-        var size = -1;
-        var mode = 2;
-        postData.setMode(mode);
-        var data = postData.getPostBody(size).match(/^.*(\r\n|\r|\n)?/mg); // "\r\n"
+        var data = postData.match(/^.*(\r\n|\r|\n)?/mg); // "\r\n"
         for (i in data) {
           out += " " + data[i];
         }
       }
-      
+
       var ct = response["Content-Type"] || "";
       var skip = "";
       if (isRedirect) {
@@ -118,51 +114,13 @@ function MakeGenerator() {
     }
   };
 
-//    // This is the observerService's observe listener.
-//    gen.observe = function(aSubject, aTopic, aData) {
-//      //dump("*** oGenerator: observe aSubject=" + aSubject + " aTopic=" + aTopic + " aData=" + aData + "\n");
-//      if (aTopic == 'http-on-modify-request') {
-//        aSubject.QueryInterface(Components.interfaces.nsIHttpChannel);
-//        this.onModifyRequest(aSubject);
-//      } else if (aTopic == 'http-on-examine-response') {
-//        aSubject.QueryInterface(Components.interfaces.nsIHttpChannel);
-//        this.onExamineResponse(aSubject);
-//      }
-//    };
-
-//  gen.onModifyRequest0 = this.onModifyRequest;
-  gen.onModifyRequest = function (oHttp)
+  gen.observeGRequest = function (uri, method)
   {
     if (this.isWebrobot && this.show_requests) {
       var oldrows = this.rowCount;
-      this.addRow("#request# " + oHttp.requestMethod + " " +
-                  oHttp.URI.asciiSpec + "\r\n", this.REQUEST);
+      this.addRow("#request# " + method + " " + uri + "\r\n", this.REQUEST);
       this.rowCountChanged(oldrows,(this.rows-oldrows));
     }
-//    this.onModifyRequest0(oHttp);
-  };
-
-//  gen.onModifyResponse0 = this.onModifyResponse;
-  gen.onExamineResponse = function (oHttp)
-  {
-    //dump("onExamineResponse" + oHttp + "\n");
-    var name = oHttp.URI.asciiSpec;
-    var visitor = new HeaderInfoVisitor(oHttp);
-    
-    // Get the request headers
-    var request = visitor.visitRequest();
-    // and extract Post Data if present
-    var postData = request["POSTDATA"];
-    delete request["POSTDATA"];
- 
-    // Get the response headers
-    var response = visitor.visitResponse();
-
-    this.generateURL(name, request, response, postData,
-                    oHttp.URI.asciiSpec != oHttp.originalURI.asciiSpec);
-
-    //dumpall("Request",this.request[oHttp.name],1);
-    //dumpall("Response",this.response[oHttp.name],1);
   };
 
   // Initialisation and termination functions

@@ -1,7 +1,7 @@
 const X_MSG = 	   "Install Live HTTP Header";
 const X_NAME =     "/livehttpheaders";
 const X_NAME_COM = "/livehttpheaders_com";
-const X_VER  =     "0.9";
+const X_VER  =     "0.10";
 const X_JAR_FILE = "livehttpheaders.jar";
 const X_COM_FILE = "nsHeaderInfo.js";
 
@@ -20,10 +20,12 @@ resetError();
 if (confirm("Do you wish to install LiveHTTPHeaders to your profile ?\n\n"+
             "Click OK to install in your profile.\n\n"+
             "Click Cancel to install it globally.")) {
+  var chromeBase = PROFILE_CHROME;
   var chromeFolder = getFolder("Profile", "chrome");
   var componentDir = getFolder("Profile", "components");
   var iconFolder = getFolder(getFolder("Profile", "icons"), "default");
 } else {
+  var chromeBase = DELAYED_CHROME;
   var chromeFolder = getFolder("Chrome");
   var componentDir = getFolder("Components");
   var iconFolder = getFolder(getFolder("Chrome", "icons"), "default");
@@ -39,12 +41,12 @@ if (err == SUCCESS || err == REBOOT_NEEDED) {
   addFile(X_NAME, "defaults/LiveHTTPHeaders.ico", iconFolder, "");
 }
 if (err == SUCCESS || err == REBOOT_NEEDED) {
-  registerChrome(PROFILE_CHROME | CONTENT, getFolder(chromeFolder, X_JAR_FILE), X_CONTENT);
-  registerChrome(PROFILE_CHROME | SKIN, getFolder(chromeFolder, X_JAR_FILE), X_SKIN);
-  registerChrome(PROFILE_CHROME | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE1);
-  registerChrome(PROFILE_CHROME | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE2);
-  registerChrome(PROFILE_CHROME | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE3);
-  registerChrome(PROFILE_CHROME | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE4);
+  registerChrome(chromeBase | CONTENT, getFolder(chromeFolder, X_JAR_FILE), X_CONTENT);
+  registerChrome(chromeBase | SKIN, getFolder(chromeFolder, X_JAR_FILE), X_SKIN);
+  registerChrome(chromeBase | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE1);
+  registerChrome(chromeBase | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE2);
+  registerChrome(chromeBase | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE3);
+  registerChrome(chromeBase | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE4);
 }
 err = getLastError();
 if (err == SUCCESS || err == REBOOT_NEEDED) {

@@ -20,11 +20,16 @@
 //  Place, Suite 330, Boston, MA 02111-1307 USA
 //  **** END LICENSE BLOCK ****
 
+var flag = 0;
 function makeHeaderInfoTab() {
+  // Only call this function once
+  if (flag) return;
+  flag = 1;
+
   // Look to see if the minimum requirement is there
-  if (theDocument && theDocument.defaultView) {
+  if (theDocument && 'defaultView' in theDocument) {
     loc = theDocument.location.protocol;
-    if (theDocument.defaultView.headers) {
+    if ('headers' in theDocument.defaultView) {
       const headers = theDocument.defaultView.headers;
 
       //dumpall("theWindow",theWindow,2);
@@ -76,7 +81,7 @@ function makeHeaderInfoTab() {
 function saveHeaderInfoTab(title) {
   
   // Look to see if the minimum requirement is there
-  if (theDocument && theDocument.defaultView && theDocument.defaultView.headers) {
+  if (theDocument && 'defaultView' in theDocument && 'headers' in theDocument.defaultView) {
     const headers = theDocument.defaultView.headers;
 
     // First, the URL
@@ -146,11 +151,15 @@ function addhScrollToTreeView(tv) {
     }
     tv.prototype.enablehScroll = function(scrollbar,scrollColumn) {
       var treename = this.tree.treeBody.parentNode.id;
-      this.hScrollColumn = scrollColumn;
+      if (this.tree.columns) {
+        this.hScrollColumn = this.tree.columns[scrollColumn];
+      } else {
+        this.hScrollColumn = scrollColumn;
+      }
       this.hScrollBar = document.getElementById(scrollbar);
       var max=0;
       for (var row=0; row<this.rowCount; row++) {
-        var length = this.getCellTextOrig(row,scrollColumn).length;
+        var length = this.getCellTextOrig(row,this.hScrollColumn).length;
         if (length > max) max = length;
       }
       this.sethScroll(max); // Don't know why, but if I don't call this before
