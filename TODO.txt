@@ -1,13 +1,12 @@
-- Add a Content-Length and Content-Type for POST as they are not available
-  Theses two headers are sent to the server but are not available throw the
-  mozilla API...
+- Clean up the code
+  Need to refactor the code to be more efficient
 
-- Add Save button in live header dialog
-  Clipboards seem to be limited in size (copy all button) at least on linux
+- Detect when same headers is sent multiple time by server
+  There is a limitation in Mozilla where all headers are combined by \n or ','
+  must try to separate them and display them as sent by the server.
 
-- Detect proxy type (http, https and socks).  Only HTTP proxies gets full URL.
-  No proxy and socks have this kind of request: GET /url.html HTTP/1.0
-  HTTP proxies have this type: GET http://www.site.com/url.htm HTTP/1.0
+- Add Help button
+  Need to add help button
 
 - Add epuration
   The headers information is kept as long as the windows is open

@@ -9,11 +9,15 @@
   <RDF:Seq about="urn:mozilla:overlays">
     <RDF:li resource="chrome://navigator/content/pageInfo.xul"/>
     <RDF:li resource="chrome://communicator/content/tasksOverlay.xul"/>
+    <RDF:li resource="chrome://browser/content/browser.xul"/>
   </RDF:Seq>
   <RDF:Seq about="chrome://navigator/content/pageInfo.xul">
     <RDF:li>chrome://livehttpheaders/content/PageInfoOverlay.xul</RDF:li>
   </RDF:Seq>
   <RDF:Seq about="chrome://communicator/content/tasksOverlay.xul">
+    <RDF:li>chrome://livehttpheaders/content/TasksOverlay.xul</RDF:li>
+  </RDF:Seq>
+  <RDF:Seq about="chrome://browser/content/browser.xul">
     <RDF:li>chrome://livehttpheaders/content/TasksOverlay.xul</RDF:li>
   </RDF:Seq>
 
