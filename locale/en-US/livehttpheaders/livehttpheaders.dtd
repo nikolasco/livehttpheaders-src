@@ -12,3 +12,14 @@
 <!ENTITY livehttpheaders.live.capture		"Capture" >
 <!ENTITY livehttpheaders.live.copy		"Copy" >
 <!ENTITY livehttpheaders.live.selectall		"Select All" >
+
+<!ENTITY livehttpheaders.live.post		"Configure POST content display" >
+<!ENTITY livehttpheaders.live.post.none		"none" >
+<!ENTITY livehttpheaders.live.post.none.tips	"Don't show any POST content" >
+<!ENTITY livehttpheaders.live.post.fast		"fast" >
+<!ENTITY livehttpheaders.live.post.fast.tips	"Get POST content with fast code.  Don't work with file upload.  See bug #188328." >
+<!ENTITY livehttpheaders.live.post.slow		"accurate" >
+<!ENTITY livehttpheaders.live.post.slow.tips	"Slow but works with file upload." >
+<!ENTITY livehttpheaders.live.post.max1k	"max 1k" >
+<!ENTITY livehttpheaders.live.post.max1k.tips	"Slow but will only get the first 1k of POST content" >
+

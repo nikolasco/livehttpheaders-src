@@ -24,7 +24,7 @@
 -->
 
 <?xml-stylesheet href="chrome://global/skin" type="text/css"?>
-<?xml-stylesheet href="chrome://livehttpheaders/skin" type="text/css"?>
+<?xml-stylesheet href="chrome://livehttpheaders/skin/livehttpheaders.css" type="text/css"?>
 <!DOCTYPE window SYSTEM "chrome://livehttpheaders/locale/livehttpheaders.dtd" >
 <window title="&livehttpheaders.live.title;"
   xmlns:html="http://www.w3.org/1999/xhtml"
@@ -41,13 +41,13 @@
             hidecolumnpicker="true">
         <treecols>
           <treecol persist="hidden width" flex="1"
-                   id="headerinfo-response-name"
+                   id="headerinfo-response-name" primary="true"
                    label="&livehttpheaders.live.headers;"/>
         </treecols>
         <treechildren flex="1"/>
       </tree>
       
-    <hbox align="right" valign="center">
+    <hbox align="right" valign="middle">
       <button label="&livehttpheaders.live.selectall;"
               oncommand="oHeaderInfoLive.selectAll();"/>
       <button label="&livehttpheaders.live.copy;"
@@ -56,6 +56,24 @@
       <checkbox label="&livehttpheaders.live.capture;" checked="true" 
                 oncommand="oHeaderInfoLive.capture(this.checked)" />
       <separator class="thin"/>
+      <text value="POST:"/>
+      <menulist id="headerinfo-mode" tooltiptext="&livehttpheaders.live.post;">
+        <menupopup>
+          <menuitem value="0" label="&livehttpheaders.live.post.none;"
+                    tooltiptext="&livehttpheaders.live.post.none.tips;"
+                    oncommand="oHeaderInfoLive.setMode(0);" />
+     	  <menuitem value="1" label="&livehttpheaders.live.post.fast;"
+                    tooltiptext="&livehttpheaders.live.post.fast.tips;"
+                    oncommand="oHeaderInfoLive.setMode(1);" />
+          <menuitem value="2" label="&livehttpheaders.live.post.slow;"
+                    tooltiptext="&livehttpheaders.live.post.slow.tips;"
+                    oncommand="oHeaderInfoLive.setMode(2);" />
+          <menuitem value="3" label="&livehttpheaders.live.post.max1k;"
+                    tooltiptext="&livehttpheaders.live.post.max1k.tips;"
+                    oncommand="oHeaderInfoLive.setMode(3);" />
+        </menupopup>
+      </menulist>
+      <separator class="thin" flex="1"/>
       <button label="&livehttpheaders.live.clear;"
               oncommand="oHeaderInfoLive.clear();"/>
       <button label="&livehttpheaders.live.close;"

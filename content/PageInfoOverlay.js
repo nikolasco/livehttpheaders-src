@@ -1,27 +1,25 @@
-// Copyright(c) 2002 Daniel Savard.
-//
-// LiveHTTPHeaders: this programs have two purpose
-// - Add a tab in PageInfo to show http headers sent and received 
-// - Add a tool that display http headers in real time while loading pages
-//
-// This program is free software; you can redistribute it and/or modify it under
-// the terms of the GNU General Public License as published by the Free
-// Software Foundation; either version 2 of the License, or (at your option) 
-// any later version.
-//
-// This program is distributed in the hope that it will be useful, but 
-// WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
-// or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for 
-// more details.
-//
-// You should have received a copy of the GNU General Public License along with
-// this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-// Place, Suite 330, Boston, MA 02111-1307 USA
 
 function makeHeaderInfoTab() {
   // Important variables
   var url = theDocument.location;
   var headerinfo  = window.opener.oHeaderInfo;
+
+  // POST
+//  const JS_FILE_I_STREAM_CID             = "@mozilla.org/scriptableinputstream;1";
+//  const JS_FILE_I_SCRIPTABLE_IN_STREAM   = "nsIScriptableInputStream";
+//  const JS_FILE_InputStream  = new Components.Constructor
+//( JS_FILE_I_STREAM_CID, JS_FILE_I_SCRIPTABLE_IN_STREAM );
+//  var postis = window.opener.getPostData();
+//  var postiss = postis.QueryInterface(Components.interfaces.nsISeekableStream);
+//  postiss.seek(0,0);
+//  var is = new JS_FILE_InputStream();
+//  is.init(postiss);
+//  dumpall("ISS",postiss,2);
+//  dumpall("IS",is,2);
+//  dump("Available:" + is.available()+"\n");
+//  dump("Read:" + is.read(100)+"\n"); 
+  
+  
   
   // Nothing to show if about:blank !
   if (url == 'about:blank') return;

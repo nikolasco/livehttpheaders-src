@@ -1,37 +1,10 @@
-// Copyright(c) 2002 Daniel Savard. 
-//
-// LiveHTTPHeaders: this programs have two purpose
-// - Add a tab in PageInfo to show http headers sent and received 
-// - Add a tool that display http headers in real time while loading pages
-//
-// This program is free software; you can redistribute it and/or modify it under
-// the terms of the GNU General Public License as published by the Free
-// Software Foundation; either version 2 of the License, or (at your option) 
-// any later version.
-//
-// This program is distributed in the hope that it will be useful, but 
-// WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
-// or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for 
-// more details.
-//
-// You should have received a copy of the GNU General Public License along with
-// this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-// Place, Suite 330, Boston, MA 02111-1307 USA
-
-// Utility function, dump an object by reflexion up to the niv'th level
+// Utility function, dump an object by reflexion up to niv level
 function dumpall(name,obj,niv) {
   if (!niv) niv=1;
   var dumpdict=new Object();
 
   dump ("\n\n-------------------------------------------------------\n");
   dump ("Dump of the objet: " + name + " (" + niv + " levels)\n");
-
-//  var ifcs = getInterfaces(obj);
-//  for (var ifc in ifcs) {
-//    dump("-Interface: " + ifc + "\n");
-//  }
-  ifcs = null;
-
   _dumpall(dumpdict,obj,niv,"","");
   dump ("\n\n-------------------------------------------------------\n\n");
   
@@ -83,7 +56,6 @@ function getInterfaces (cls)
     return rv;
 }
 
-// Start of the implementation of LiveHTTPHeaders
 var oHeaderInfo = null;
 
 // Our observer of Navigation Messages
@@ -92,6 +64,7 @@ function HeaderInfo()
 //	alert("HI-Constructor");
 	this.request = new Array();
 	this.response = new Array();
+        this.postData = new Array();
 	this.HeaderInfoVisitor = HeaderInfoVisitor;
 	this.observers = new Array();
 }
@@ -103,23 +76,33 @@ HeaderInfo.prototype =
   request: null,
   response: null,
   HeaderInfoVisitor: null,
-
+ 
   onExamineResponse : function (oHttp)
   {
     //dump("onExamineResponse\n");
 
     var name = oHttp.URI.asciiSpec;
     var visitor = new this.HeaderInfoVisitor(oHttp);
-    this.request[name] = visitor.visitRequest();
-    this.response[name] = visitor.visitResponse();
 
+    // Get the request headers
+    this.request[name] = visitor.visitRequest();
+    // and extract Post Data if present
+    this.postData[name] = this.request[name]["POSTDATA"];
+    delete this.request[name]["POSTDATA"];
+    
+    // Get the response headers
+    this.response[name] = visitor.visitResponse();
+    //dumpall("oHttp",oHttp,5);
+
+    // If there is registered observers, tell them we have headers
     for (var o in this.observers) {
       //dump("There is an observer...\n");
       try {
         //dump("Calling Observer: " + o + "\n");
         if (this.observers[o]) {
           this.observers[o].observe(name, this.request[name], 
-                                          this.response[name]);
+                                          this.response[name],
+                                          this.postData[name]);
         }
       } catch (ex) {
         //dump("Deleting Observer: " + o + "\n");
@@ -185,11 +168,119 @@ HeaderInfoVisitor.prototype =
       return null;
     }
   },
+  getPostData : function(oHttp) {
+    function postData(stream) {
+      // Scriptable Stream Constants
+      const JS_SCRIPTABLEINPUTSTREAM_CID = "@mozilla.org/scriptableinputstream;1";
+      const JS_SCRIPTABLEINPUTSTREAM     = "nsIScriptableInputStream";
+      const JS_ScriptableInputStream = new Components.Constructor
+           ( JS_SCRIPTABLEINPUTSTREAM_CID, JS_SCRIPTABLEINPUTSTREAM );
+      // Create a scriptable stream
+      this.seekablestream = stream;
+      this.stream = new JS_ScriptableInputStream();
+      this.stream.init(this.seekablestream);
+      this.body = -1;
+      this.mode = this.FAST;
+    }
+    postData.prototype = {
+      NONE: 0,
+      FAST: 1,
+      SLOW: 2,
+      rewind: function() {
+        this.seekablestream.seek(0,0);
+      },
+      tell: function() {
+        return this.seekablestream.tell();
+      },
+      readLine: function() {
+        var line = "";
+        var size = this.stream.available();
+        for (var i=0; i<size; i++) {
+          var c = this.stream.read(1);
+          if (c == '\r') {
+          } else if (c == '\n') {
+            break;
+          } else {
+            line += c;
+          }
+        }
+        return line;
+      },
+      setMode: function(mode) {
+        if (mode < this.NONE && mode > this.SLOW) {
+          throw "postData: unsupported mode: " + this.mode;
+        }
+        this.mode = mode;
+      },
+      visitPostHeaders: function(visitor) {
+        this.rewind();
+        var line = this.readLine();
+        while(line) {
+          if (visitor) {
+            var tmp = line.split(/:\s?/);
+            visitor.visitHeader(tmp[0],tmp[1]);
+          }
+          line = this.readLine();
+        }
+        body = this.tell();
+      },
+      getPostBody: function(max) {
+        // Position the stream to the start of the body
+        if (this.body < 0 || this.seekablestream.tell() != this.body) {
+          this.visitPostHeaders(null);
+        }
+
+        var size = this.stream.available();
+        if (max && max >= 0 && max<size) size = max;
+
+        var postString = "";
+        try {
+          switch (this.mode) {
+            case this.NONE:
+              //Don't get any content
+              break;
+            case this.FAST:
+              //Get the content in one shot
+              postString = this.stream.read(size);
+              break;
+            case this.SLOW:
+              //Must read octet by octet because of a bug in nsIMultiplexStream.cpp
+              //This is to avoid 'NS_BASE_STREAM_CLOSED' exception that may occurs
+              //See bug #188328.
+              for (var i=0; i<size; i++) {
+                postString += this.stream.read(1);
+              }
+              break;
+          }
+        } catch (ex) {
+          dump("Exception while getting POST CONTENT with mode "+this.mode+": "+ex+"\n");
+          return ""+ex;
+        }
+	return postString;
+      }
+    }
+   
+    // Get the postData stream from the Http Object 
+    try {
+      // Must change HttpChannel to UploadChannel to be able to access post data
+      oHttp.QueryInterface(Components.interfaces.nsIUploadChannel);
+      // Get the post data stream
+      if (oHttp.uploadStream) {
+        // Must change to SeekableStream to be able to rewind
+        oHttp.uploadStream.QueryInterface(Components.interfaces.nsISeekableStream);
+        // And return a postData object
+        return new postData(oHttp.uploadStream);
+      } 
+    } catch (e) {
+      dump("POSTDATAEXCEPTION:"+e+"\n");
+    }
+  return null;
+  },
   visitHeader : function (name, value)
   {
     this.headers[name] = value;
   },
-  visitRequest : function (visitFunc)
+  visitRequest : function ()
   {
     this.headers = new Array();
     var uri, note;
@@ -215,6 +306,16 @@ HeaderInfoVisitor.prototype =
                             + uri + " HTTP/1.x";
     if (note) this.headers["NOTE"] = note;
     this.oHttp.visitRequestHeaders(this);
+
+    // There may be post data in the request
+    var postData = this.getPostData(this.oHttp);
+    if (postData) {
+      postData.visitPostHeaders(this);
+      this.visitHeader("POSTDATA",postData);
+    } else {
+      this.visitHeader("POSTDATA",null);
+    }
+
     return this.headers;
   },
   visitResponse : function ()
@@ -272,13 +373,24 @@ function stopHeaderInfoLive() {
 function HeaderInfoLive(oHeaderInfo)
 {
   this.oHeaderInfo = oHeaderInfo;
-  this.data = new Array();
+  this.data = new Array(); //Data for each row
+  this.type = new Array(); //Type of data (request, post, response, url, etc)
 }
 HeaderInfoLive.prototype =
 {
+  // Constants
+  URL : 1,
+  REQUEST : 2,
+  POSTDATA : 3,
+  RESPONSE : 4,
+  SPACE : 5,
+  SEPARATOR : 6,
+  
   oHeaderInfo: null,
   oDump: null,
   isCapturing: true,
+  showPostData: true,
+  mode: 1,
 
   // Tree interface
   rows: 0,
@@ -288,21 +400,36 @@ HeaderInfoLive.prototype =
   set rowCount(c) { throw "rowCount is a readonly property"; },
   get rowCount() { return this.rows; },
   setTree: function(tree) { this.tree = tree; },
-  getCellText: function(row, column) { return this.data[row]; },
+  getCellText: function(row, column) {
+    return this.data[row]; 
+  },
   setCellText: function(row, column, text) { },
-  getRowProperties: function(row, column, prop) { },
-  getCellProperties: function(row, prop) { },
+  getRowProperties: function(row, props) { },
+  getCellProperties: function(row, col, props) {
+//    if (this.type[row] == this.POSTDATA) {
+//      var aserv=Components.classes["@mozilla.org/atom-service;1"].
+//                createInstance(Components.interfaces.nsIAtomService);
+//      props.AppendElement(aserv.getAtom("postData"));
+//    }
+  },
   getColumnProperties: function(column, elem, prop) { },
   isContainer: function(index) { return false; },
-  isContainerOpen: function(index) { return false; },
-  isSeparator: function(index) { return this.data[index]==null; },
+  isContainerOpen: function(index) { return this.showPostData; },
+  isContainerEmpty: function(index) { return false; },
+  isSeparator: function(index) { return this.type[index] == this.SEPARATOR; },
   isSorted: function() { },
   canDropOn: function(index) { return false; },
   canDropBeforeAfter: function(index, before) { return false; },
   drop: function(row, orientation) { return false; },
   getParentIndex: function(index) { return 0; },
-  hasNextSibling: function(index, after) { return false; },
-  getLevel: function(index) { return 0; },
+  hasNextSibling: function(index, after) { 
+    if (this.type[index+1] == this.POSTDATA) return true;
+    return false; 
+  },
+  getLevel: function(index) { 
+    if (this.type[index] == this.POSTDATA) return 1;
+    return 0; 
+  },
   getImageSrc: function(row, column) { },
   getProgressMode: function(row, column) { },
   getCellValue: function(row, column) { },
@@ -316,7 +443,10 @@ HeaderInfoLive.prototype =
   performActionOnCell: function(action, row, column) { },
 
   // Tree utility functions
-  addRow: function(row) { this.rows = this.data.push(row); }, //A
+  addRow: function(row, type) { 
+    this.type.push(type);
+    this.rows = this.data.push(row); 
+  }, //A
   rowCountChanged: function(index, count) //A
   {
     this.tree.rowCountChanged(index, count);
@@ -368,6 +498,7 @@ HeaderInfoLive.prototype =
     this.oDump = document.getElementById("headerinfo-dump");
     this.oDump.treeBoxObject.view = this;
     this.oHeaderInfo.addObserver(this);
+    document.getElementById("headerinfo-mode").selectedIndex = this.mode;
   },
 
   stop : function()
@@ -391,26 +522,41 @@ HeaderInfoLive.prototype =
     this.rowCountChanged(0,oldrows);
   },
 
-  observe : function(name, request, response)
+  setMode : function(mode) {
+    this.mode = mode;
+  },
+  observe : function(name, request, response, postData)
   {
     if (this.isCapturing) {
       var oldrows = this.rows;
-      this.addRow(name);
-      this.addRow("");
+      this.addRow(name, this.URL);
+      this.addRow("", this.SPACE);
       var flag = false;
       for (i in request) {
-          this.addRow((flag? i+": " : "") + request[i]);
+          this.addRow((flag? i+": " : "") + request[i], this.REQUEST);
           flag=true;
       }
-      this.addRow("");
+      if (postData) {
+        var size, mode;
+        switch (this.mode) {
+          case 0: mode=0; size=0; break;	//Don't get any content
+          case 1: mode=1; size=-1; break;	//Get content the fast way
+          case 2: mode=2; size=-1; break;	//Get content the accurate way
+          case 3: mode=2; size=1024; break;	//Only get 1024 bytes of content
+        }
+        postData.setMode(mode);
+        var data = postData.getPostBody(size).split("\r\n");
+        for (i in data) {
+          this.addRow(data[i], this.POSTDATA);
+        }
+      }
+      this.addRow("", this.SPACE);
       flag = false;
       for (i in response) {
-        this.addRow((flag ? i+": " : "") + response[i]);
+        this.addRow((flag ? i+": " : "") + response[i], this.RESPONSE);
         flag=true;
       }
-      //this.addRow("");
-      this.addRow(null); // Separator
-      //this.addRow("");
+      this.addRow(null, this.SEPARATOR); // Separator
       this.rowCountChanged(oldrows,this.rows);
     }
   }
@@ -419,4 +565,7 @@ HeaderInfoLive.prototype =
 // Register only if this is a content window
 addEventListener("load", Init, false);
 addEventListener("unload", Destruct, false);
+//dumpall("Window",window,5);
+//dumpall("WebNavigation",window.getWebNavigation(),5);
+//dumpall("Browser",window.getBrowser(),5);
 

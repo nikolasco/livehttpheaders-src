@@ -1,14 +1,24 @@
-<!ENTITY livehttpheaders.pageinfo.tab		"Ent&ecirc;tes" >
-<!ENTITY livehttpheaders.pageinfo.accesskey		"e" >
-<!ENTITY livehttpheaders.headers.request		"Requ&ecirc;te" >
-<!ENTITY livehttpheaders.headers.response		"R&eacute;ponse" >
+<!ENTITY livehttpheaders.pageinfo.tab		"Entêtes" >
+<!ENTITY livehttpheaders.pageinfo.accesskey	"e" >
+<!ENTITY livehttpheaders.headers.request	"Requête" >
+<!ENTITY livehttpheaders.headers.response	"Réponse" >
 <!ENTITY livehttpheaders.headers.name		"Nom" >
 <!ENTITY livehttpheaders.headers.value		"Valeur" >
 
-<!ENTITY livehttpheaders.live.title			"Ent&ecirc;tes HTTP en direct" >
-<!ENTITY livehttpheaders.live.headers		"Ent&ecirc;tes HTTP" >
-<!ENTITY livehttpheaders.live.clear			"Effacer" >
-<!ENTITY livehttpheaders.live.close			"Fermer" >
+<!ENTITY livehttpheaders.live.title		"Entêtes HTTP en direct" >
+<!ENTITY livehttpheaders.live.headers		"Entêtes HTTP" >
+<!ENTITY livehttpheaders.live.clear		"Effacer" >
+<!ENTITY livehttpheaders.live.close		"Fermer" >
 <!ENTITY livehttpheaders.live.capture		"Capturer" >
-<!ENTITY livehttpheaders.live.copy			"Copier" >
-<!ENTITY livehttpheaders.live.selectall		"Selectioner Tout" >
+<!ENTITY livehttpheaders.live.copy		"Copier" >
+<!ENTITY livehttpheaders.live.selectall		"Sélectioner Tout" >
+
+<!ENTITY livehttpheaders.live.post		"Configure l'affichage des données POST" >
+<!ENTITY livehttpheaders.live.post.none		"aucun" >
+<!ENTITY livehttpheaders.live.post.none.tips	"Ne pas afficher les données POST" >
+<!ENTITY livehttpheaders.live.post.fast		"rapide" >
+<!ENTITY livehttpheaders.live.post.fast.tips	"Afficher les données avec un code rapide mais qui ne supporte pas les envois de fichier (file upload). Voir le bug #188328." >
+<!ENTITY livehttpheaders.live.post.slow		"fiable" >
+<!ENTITY livehttpheaders.live.post.slow.tips	"Afficher les données avec un code lent mais qui fonctionne dans tous les cas." >
+<!ENTITY livehttpheaders.live.post.max1k	"max 1K" >
+<!ENTITY livehttpheaders.live.post.max1k.tips	"Identique au choix 'fiable' mais n'affiche que le premier kilo-octet de données" >
