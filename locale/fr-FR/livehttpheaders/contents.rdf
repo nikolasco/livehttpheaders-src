@@ -6,10 +6,6 @@
   </RDF:Seq>
   <!-- locale information -->
   <RDF:Description about="urn:mozilla:locale:fr-FR"
-        chrome:displayName="Français(FR)"
-        chrome:author="livehttpheaders.mozdev.org"
-        chrome:name="fr-FR"
-        chrome:previewURL="http://www.mozilla.org/locales/fr-FR.gif">
     <chrome:packages>
       <RDF:Seq about="urn:mozilla:locale:fr-FR:packages">
         <RDF:li resource="urn:mozilla:locale:fr-FR:livehttpheaders"/>
