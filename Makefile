@@ -26,7 +26,7 @@ xpi:
 
 download:
 	cp livehttpheaders.xpi ../downloads
-	cp livehttpheaders.xpi /var/www/html/
+	cp livehttpheaders.xpi ../www
 
 clean:
 	rm livehttpheaders.xpi livehttpheaders.jar
