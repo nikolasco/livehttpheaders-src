@@ -74,6 +74,7 @@
       <textbox id="livehttpheaders.replay.headers" multiline="true" 
                wrap="false" flex="1" size="80" />
     </vbox>
+    <splitter orient="vertical" collapse="after"/>
     <groupbox flex="1">
       <caption>
         <checkbox checked="false" id="livehttpheaders.replay.sendpost"
@@ -81,7 +82,7 @@
                   oncommand="updatePost();" />
       </caption>
       <textbox id="livehttpheaders.replay.post" multiline="true" 
-               nowrap="true" flex="1" >
+               nowrap="true" flex="1" onblur="updatePost();" >
         <observes element="sendpost" attribute="disabled"/>
       </textbox>
       <hbox>
@@ -93,7 +94,7 @@
     </groupbox>
     <vbox flex="0">
       <hbox flex="1" align="right">
-        <button label="&livehttpheaders.live.replay;"
+        <button label="&livehttpheaders.replay.replay;"
                 oncommand="play();" />
         <button label="&livehttpheaders.live.close;"
                 oncommand="window.close()" />

@@ -1,0 +1,14 @@
+<!ENTITY livehttpheaders.pageinfo.tab		"Headers" >
+<!ENTITY livehttpheaders.pageinfo.accesskey	"h" >
+<!ENTITY livehttpheaders.pageinfo.request	"Request Headers" >
+<!ENTITY livehttpheaders.pageinfo.response	"Response Headers" >
+<!ENTITY livehttpheaders.pageinfo.name		"Name" >
+<!ENTITY livehttpheaders.pageinfo.value		"Value" >
+<!ENTITY livehttpheaders.pageinfo.saveas         "Save As..." >
+<!ENTITY livehttpheaders.pageinfo.fromcache	"Note: headers are from cache." >
+<!ENTITY livehttpheaders.pageinfo.fromcache.t1	"Request headers may not be the real ones are they aren't cached but regenerated." >
+<!ENTITY livehttpheaders.pageinfo.fromcache.t2	"Response headers should be those received originaly from the network." >
+<!ENTITY livehttpheaders.pageinfo.fromnetwork	"Note: headers are from network." >
+<!ENTITY livehttpheaders.pageinfo.fromnetwork.t1 "Request headers are those sent on the network." >
+<!ENTITY livehttpheaders.pageinfo.fromnetwork.t2 "Response headers are those received from the network." >
+

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- 
   **** BEGIN LICENSE BLOCK ****
-  Copyright(c) 2002 Daniel Savard.
+  Copyright(c) 2002-2003 Daniel Savard.
 
   LiveHTTPHeaders: this programs have two purpose
   - Add a tab in PageInfo to show http headers sent and received 
@@ -27,6 +27,7 @@
 <?xml-stylesheet href="chrome://livehttpheaders/skin/livehttpheaders.css" type="text/css"?>
 <!DOCTYPE window SYSTEM "chrome://livehttpheaders/locale/livehttpheaders.dtd" >
 <window title="&livehttpheaders.live.title;"
+  windowtype="global:LiveHTTPHeaders"
   xmlns:html="http://www.w3.org/1999/xhtml"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   width="600"
@@ -34,6 +35,7 @@
   onload="startHeaderInfoLive()"
   onunload="stopHeaderInfoLive()">
 <script type="application/x-javascript" src="chrome://global/content/dialogOverlay.js" />
+<script type="application/x-javascript" src="chrome://livehttpheaders/content/LiveHTTPHeaders.js" />
 <script type="application/x-javascript" src="chrome://livehttpheaders/content/headerinfo.js" />
 
   <popupset>
@@ -71,6 +73,8 @@
     <hbox align="right" valign="middle">
       <button label="&livehttpheaders.live.saveall;"
               oncommand="oHeaderInfoLive.saveAll();" disabled="false" />
+      <button label="&livehttpheaders.live.replay;"
+              oncommand="oHeaderInfoLive.replay();"/>
       <separator class="thin" flex="1" />
       <checkbox label="&livehttpheaders.live.capture;" checked="true" 
                 oncommand="oHeaderInfoLive.capture(this.checked)" />
@@ -94,8 +98,8 @@
         </menupopup>
       </menulist>
       <separator class="thin" flex="1"/>
-      <button label="&livehttpheaders.live.replay;"
-              oncommand="oHeaderInfoLive.replay();"/>
+      <button label="&livehttpheaders.live.clear;"
+              oncommand="oHeaderInfoLive.clear();"/>
       <button label="&livehttpheaders.live.close;"
               disabled="false" oncommand="window.close();"/>
     </hbox>

@@ -1,37 +1,30 @@
-<!ENTITY livehttpheaders.pageinfo.tab		"Entêtes" >
-<!ENTITY livehttpheaders.pageinfo.accesskey	"e" >
-<!ENTITY livehttpheaders.headers.request	"Requête" >
-<!ENTITY livehttpheaders.headers.response	"Réponse" >
-<!ENTITY livehttpheaders.headers.name		"Nom" >
-<!ENTITY livehttpheaders.headers.value		"Valeur" >
-
 <!ENTITY livehttpheaders.menu.file              "Fichier" >
 <!ENTITY livehttpheaders.menu.close             "Fermer" >
-<!ENTITY livehttpheaders.menu.saveselection     "Enregistrer la selection" >
-<!ENTITY livehttpheaders.menu.saveall           "Enregistrer tout" >
+<!ENTITY livehttpheaders.menu.saveselection     "Enregistrer la sélection..." >
+<!ENTITY livehttpheaders.menu.saveall           "Enregistrer tout..." >
 <!ENTITY livehttpheaders.menu.edit              "Edition" >
 <!ENTITY livehttpheaders.menu.copy              "Copier" >
-<!ENTITY livehttpheaders.menu.selectall         "Selectionner Tout" >
+<!ENTITY livehttpheaders.menu.selectall         "Sélectionner tout" >
 <!ENTITY livehttpheaders.menu.view              "Affichage" >
-<!ENTITY livehttpheaders.menu.post              "Données Post" >
+<!ENTITY livehttpheaders.menu.post              "Données POST" >
 
 <!ENTITY livehttpheaders.live.title		"Entêtes HTTP en direct" >
 <!ENTITY livehttpheaders.live.headers		"Entêtes HTTP" >
-<!ENTITY livehttpheaders.live.clear		"Effacer tout" >
+<!ENTITY livehttpheaders.live.clear		"Effacer" >
 <!ENTITY livehttpheaders.live.close		"Fermer" >
 <!ENTITY livehttpheaders.live.capture		"Capturer" >
 <!ENTITY livehttpheaders.live.copy		"Copier" >
-<!ENTITY livehttpheaders.live.selectblock	"Sélectioner le bloc" >
-<!ENTITY livehttpheaders.live.selectall		"Sélectioner Tout" >
-<!ENTITY livehttpheaders.live.saveall           "Enregistrer tout" >
-<!ENTITY livehttpheaders.live.replay            "Rejouer" >
+<!ENTITY livehttpheaders.live.selectblock	"Sélectionner le bloc" >
+<!ENTITY livehttpheaders.live.selectall		"Sélectionner tout" >
+<!ENTITY livehttpheaders.live.saveall           "Enregistrer tout..." >
+<!ENTITY livehttpheaders.live.replay            "Rejouer..." >
 
 <!ENTITY livehttpheaders.live.post		"POST:" >
 <!ENTITY livehttpheaders.live.post.tips		"Configure l'affichage des données POST" >
 <!ENTITY livehttpheaders.live.post.none		"aucun" >
 <!ENTITY livehttpheaders.live.post.none.tips	"Ne pas afficher les données POST" >
 <!ENTITY livehttpheaders.live.post.fast		"rapide" >
-<!ENTITY livehttpheaders.live.post.fast.tips	"Afficher les données avec un code rapide mais qui ne supporte pas les envois de fichier (file upload). Voir le bug #188328." >
+<!ENTITY livehttpheaders.live.post.fast.tips	"Afficher les données avec un code rapide mais qui ne supporte pas le transfert de fichier (file upload). Voir le bogue #188328." >
 <!ENTITY livehttpheaders.live.post.slow		"fiable" >
 <!ENTITY livehttpheaders.live.post.slow.tips	"Afficher les données avec un code lent mais qui fonctionne dans tous les cas." >
 <!ENTITY livehttpheaders.live.post.max1k	"max 1K" >
@@ -43,4 +36,5 @@
 <!ENTITY livehttpheaders.replay.version         "Version" >
 <!ENTITY livehttpheaders.replay.headers         "Entêtes HTTP" >
 <!ENTITY livehttpheaders.replay.post            "Envoyer du contenu POST ?" >
+<!ENTITY livehttpheaders.replay.replay          "Rejouer" >
 

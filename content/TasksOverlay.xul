@@ -1,15 +1,43 @@
+<?xml version="1.0"?>
+<!--
+  **** BEGIN LICENSE BLOCK ****
+  Copyright(c) 2002-2003 Daniel Savard.
+
+  LiveHTTPHeaders: this programs have two purpose
+  - Add a tab in PageInfo to show http headers sent and received
+  - Add a tool that display http headers in real time while loading pages
+
+  This program is free software; you can redistribute it and/or modify it under
+  the terms of the GNU General Public License as published by the Free
+  Software Foundation; either version 2 of the License, or (at your option)
+  any later version.
+
+  This program is distributed in the hope that it will be useful, but
+  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+  or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  more details.
+
+  You should have received a copy of the GNU General Public License along with
+  this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+  Place, Suite 330, Boston, MA 02111-1307 USA
+  **** END LICENSE BLOC ****
+-->
+
 <!DOCTYPE overlay SYSTEM "chrome://livehttpheaders/locale/livehttpheaders.dtd">
 <overlay id="headerinfoTasksOverlay"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-    <script type="application/x-javascript" src="chrome://livehttpheaders/content/headerinfo.js" />
   <menupopup id="toolsPopup">
     <menuitem label="&livehttpheaders.live.title;" 
-              oncommand="toOpenWindowByType('livehttpheaders:main', 
-                        'chrome://livehttpheaders/content/LiveHTTPHeaders.xul');" />
+              oncommand="toOpenWindowByType('global:LiveHTTPHeaders', 
+                              'chrome://livehttpheaders/content/LiveHTTPHeaders.xul');" />
   </menupopup>
+
+  <!-- Phoenix XUL -->
   <menupopup id="menu_ToolsPopup">
     <menuitem label="&livehttpheaders.live.title;" 
-              oncommand="toOpenWindowByType('livehttpheaders:main', 
-                        'chrome://livehttpheaders/content/LiveHTTPHeaders.xul');" />
+              insertafter="javascriptConsole"
+              oncommand="toOpenWindowByType('global:LiveHTTPHeaders', 
+                              'chrome://livehttpheaders/content/LiveHTTPHeaders.xul');" />
   </menupopup>
 </overlay>
+

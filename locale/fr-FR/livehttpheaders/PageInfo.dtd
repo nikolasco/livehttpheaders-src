@@ -1,0 +1,14 @@
+<!ENTITY livehttpheaders.pageinfo.tab		"Entêtes" >
+<!ENTITY livehttpheaders.pageinfo.accesskey	"E" >
+<!ENTITY livehttpheaders.pageinfo.request	"Requête" >
+<!ENTITY livehttpheaders.pageinfo.response	"Réponse" >
+<!ENTITY livehttpheaders.pageinfo.name		"Nom" >
+<!ENTITY livehttpheaders.pageinfo.value		"Valeur" >
+<!ENTITY livehttpheaders.pageinfo.saveas         "Enregistrer sous..." >
+<!ENTITY livehttpheaders.pageinfo.fromcache      "Note: les entêtes proviennent de la cache." >
+<!ENTITY livehttpheaders.pageinfo.fromcache.t1	"Les entêtes 'request' pourraient être erronées (non conservées dans la cache)." >
+<!ENTITY livehttpheaders.pageinfo.fromcache.t2	"Les entêtes 'response' devraient être celles reçues originalement du réseau." >
+<!ENTITY livehttpheaders.pageinfo.fromnetwork    "Note: les entêtes proviennent du réseau." >
+<!ENTITY livehttpheaders.pageinfo.fromnetwork.t1	"Les entêtes 'request' sont celles envoyées sur le réseau." >
+<!ENTITY livehttpheaders.pageinfo.fromnetwork.t2	"Les entêtes 'response' sont celles reçues du réseau." >
+

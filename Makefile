@@ -9,22 +9,25 @@ jar:
         ${CONTENT}/contents.rdf \
         ${CONTENT}/headerinfo.js \
         ${CONTENT}/LiveHTTPHeaders.xul \
+        ${CONTENT}/LiveHTTPHeaders.js \
         ${CONTENT}/LiveHTTPReplay.xul \
         ${CONTENT}/LiveHTTPReplay.js \
         ${CONTENT}/TasksOverlay.xul \
         ${CONTENT}/PageInfoOverlay.xul \
         ${CONTENT}/PageInfoOverlay.js \
         ${LOCALE}/contents.rdf \
+        ${LOCALE}/PageInfo.dtd \
         ${LOCALE}/livehttpheaders.dtd \
         ${LOCALE}/livehttpheaders.properties \
         ${SKIN}/contents.rdf \
         ${SKIN}/livehttpheaders.css
 
 xpi:
-	zip livehttpheaders.xpi \
-        livehttpheaders.jar \
-        install.js \
-        TODO.txt
+	zip -j livehttpheaders.xpi \
+	livehttpheaders.jar \
+	${CONTENT}/nsHeaderInfo.js \
+	install.js \
+	TODO.txt
 
 download:
 	cp livehttpheaders.xpi ../downloads

@@ -1,7 +1,8 @@
-<!DOCTYPE overlay SYSTEM "chrome://livehttpheaders/locale/livehttpheaders.dtd">
+<?xml version="1.0"?>
+<!DOCTYPE overlay SYSTEM "chrome://livehttpheaders/locale/PageInfo.dtd">
 <!-- 
   **** BEGIN LICENSE BLOCK ****
-  Copyright(c) 2002 Daniel Savard.
+  Copyright(c) 2002-2003 Daniel Savard.
 
   LiveHTTPHeaders: this programs have two purpose
   - Add a tab in PageInfo to show http headers sent and received 
@@ -35,34 +36,58 @@
   <tabpanels id="tabpanels">
     <vbox id="headerinfoPanel" flex="1">
       <text id="headerinfo-request" class="header" 
-            value="&livehttpheaders.headers.request;"/>
+            value="&livehttpheaders.pageinfo.request;"/>
       <tree id="headerinfo-request-tree" flex="1" class="inset">
         <treecols>
           <treecol persist="hidden width" flex="1" 
 	           id="headerinfo-request-name"    
-		   label="&livehttpheaders.headers.name;"/>
+		   label="&livehttpheaders.pageinfo.name;"/>
           <splitter class="tree-splitter"/>
           <treecol persist="hidden width" flex="4" 
 	           id="headerinfo-request-value" 
-		   label="&livehttpheaders.headers.value;"/>
+		   label="&livehttpheaders.pageinfo.value;"/>
         </treecols>
         <treechildren flex="1"/>
       </tree>
       <separator class="thin"/>
       <text id="headerinfo-response" class="header" 
-            value="&livehttpheaders.headers.response;"/>
+            value="&livehttpheaders.pageinfo.response;"/>
       <tree id="headerinfo-response-tree" flex="1" class="inset">
         <treecols>
           <treecol persist="hidden width" flex="1" 
 	           id="headerinfo-response-name" 
-		   label="&livehttpheaders.headers.name;"/>
+		   label="&livehttpheaders.pageinfo.name;"/>
           <splitter class="tree-splitter"/>
           <treecol persist="hidden width" flex="4" 
 	           id="headerinfo-response-value" 
-		   label="&livehttpheaders.headers.value;"/>
+		   label="&livehttpheaders.pageinfo.value;"/>
         </treecols>
         <treechildren flex="1"/>
       </tree>
+      <hbox align="center">
+        <button label="&livehttpheaders.pageinfo.saveas;" oncommand="saveHeaderInfoTab();" />
+        <separator class="thin" />
+        <text id="headerinfo-request-fromcache" hidden="true"
+              value="&livehttpheaders.pageinfo.fromcache;" 
+              tooltip="headerinfo-request-fromcache-tips" />
+        <text id="headerinfo-request-fromnetwork" hidden="true"
+              value="&livehttpheaders.pageinfo.fromnetwork;" 
+              tooltip="headerinfo-request-fromnetwork-tips" />
+        <tooltip id="headerinfo-request-fromcache-tips" noautohide="true">
+          <vbox flex="1">
+            <label value="&livehttpheaders.pageinfo.fromcache.t1;" />
+            <label value="&livehttpheaders.pageinfo.fromcache.t2;" />
+          </vbox>
+        </tooltip>
+        <tooltip id="headerinfo-request-fromnetwork-tips" noautohide="true">
+          <vbox flex="1">
+            <label value="&livehttpheaders.pageinfo.fromnetwork.t1;" />
+            <label value="&livehttpheaders.pageinfo.fromnetwork.t2;" />
+          </vbox>
+        </tooltip>
+        <separator class="thin" flex="1" />
+
+      </hbox>
     </vbox>
   </tabpanels>
 </overlay>

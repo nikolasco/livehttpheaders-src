@@ -1,19 +1,7 @@
 - Clean up the code
   Need to refactor the code to be more efficient
 
-- Detect when same headers is sent multiple time by server
-  There is a limitation in Mozilla where all headers are combined by \n or ','
-  must try to separate them and display them as sent by the server.
-
 - Add Help button
   Need to add help button
-
-- Add epuration
-  The headers information is kept as long as the windows is open
-
-- Try to detect same url in two tabs
-  If the same URL is loaded in two TABS in the same window, the information 
-  about the second URL will update the information about the first one
-
 
 
