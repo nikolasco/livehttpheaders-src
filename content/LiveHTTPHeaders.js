@@ -233,11 +233,11 @@ HeaderInfoLive.prototype =
   {
     var selection = this.oDump.view.selection;
     var index = selection.currentIndex;
-    if (index>=0 && !this.isSeparator(index)) {
+    if (index>=0 && this.type[index]!=this.SEPARATOR) {
       var first = index;
       var last = index;
-      while(first>0 && !this.isSeparator(first-1)) first--;
-      while(last<this.rowCount && !this.isSeparator(last+1)) last++;
+      while(first>0 && this.type[first-1]!=this.SEPARATOR) first--;
+      while(last<this.rowCount && this.type[last+1]!=this.SEPARATOR) last++;
       selection.rangedSelect(first,last,false);
     }
   },
@@ -418,11 +418,11 @@ HeaderInfoLive.prototype =
     
     var selection = this.oDump.view.selection;
     var index = selection.currentIndex;
-    if (index>=0 && !this.isSeparator(index)) {
+    if (index>=0 && this.type[index]!=this.SEPARATOR) {
       var first = index;
       var data;
-      while(first>0 && !this.isSeparator(first-1)) first--;
-      for (var i=first; !this.isSeparator(i); i++) {
+      while(first>0 && this.type[first-1]!=this.SEPARATOR) first--;
+      for (var i=first; this.type[i]!=this.SEPARATOR; i++) {
         data = this.data[i];
         //dump("DATA: " + data +"\n");
         switch(this.type[i]) {
