@@ -1,0 +1,14 @@
+<HTML>
+<HEAD>
+<TITLE>The nsHeaderInfo component isn't registered correctly</TITLE>
+</HEAD>
+<BODY>
+To be able to display headers information in the PageInfo tab of Mozilla/Firebird, the nsHeaderInfo component must be registered.  This component is found in the file Mozilla/Components/nsHeaderInfo.js.<p>
+Normaly, this is done automatically by the LiveHTTPHeaders installation.  However, this doesn't work sometimes.  So you need to follow the steps bellow to force Mozilla/Firebird to found and register it.
+<UL>
+<LI>Delete the file <code><b>Mozilla/Components/compreg.dat</b></code></LI>
+<LI>Delete the file <code><b>Mozilla/Components/xpti.dat</b></code></LI>
+</UL>
+This two files should be recreated automatically by Mozilla/Firebird at the next start.
+</BODY>
+</HTML>

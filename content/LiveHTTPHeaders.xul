@@ -143,6 +143,11 @@
               label="&livehttpheaders.config.usetab;" checked="false"
               oncommand="oHeaderInfoLive.setTab(this.checked)" />
     <spacer flex="1"/>
+    <hbox>
+      <spacer flex="1" />
+      <button label="&livehttpheaders.live.close;"
+              disabled="false" oncommand="window.close();"/>
+    </hbox>
   </vbox>
   </tabpanel>
 

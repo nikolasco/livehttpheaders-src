@@ -19,6 +19,7 @@ jar:
         ${LOCALE}/PageInfo.dtd \
         ${LOCALE}/livehttpheaders.dtd \
         ${LOCALE}/livehttpheaders.properties \
+        ${LOCALE}/registerComponent.html \
         ${SKIN}/contents.rdf \
         ${SKIN}/livehttpheaders.css \
         ${SKIN}/favicon.ico \
@@ -38,6 +39,6 @@ download:
 	cp livehttpheaders.xpi ../www
 
 clean:
-	rm livehttpheaders.xpi livehttpheaders.jar
+	rm -f livehttpheaders.xpi livehttpheaders.jar
 
 

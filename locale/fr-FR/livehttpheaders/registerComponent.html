@@ -1,0 +1,14 @@
+<HTML>
+<HEAD>
+<TITLE>Le composant nsHeaderInfo n'est pas enregistr&eacute; correctement</TITLE>
+</HEAD>
+<BODY>
+Afin que les informations des ent&ecirc;tes soient disponibles dans l'onglet PageInfo de Mozilla/Firebird, il est n&eacute;cessaire d'enregistrer le composant nsHeaderInfo.  Ce composant se trouve dans le fichier Mozilla/Components/nsHeaderInfo.js.<P>
+Normalement, ceci est fait automatiquement lors de l'installation de LiveHTTPHeaders.  Cependant, il arrive que l'enregistrement ne fonctionne pas.  Voici donc la proc&eacute;dure &agrave; suivre afin de forcer Mozilla/Firebird &agrave; trouver et enregistrer le composant.
+<UL>
+<LI>Supprimer le fichier <code><b>Mozilla/Components/compreg.dat</b></code></LI>
+<LI>Supprimer le fichier <code><b>Mozilla/Components/xpti.dat</b></code></LI>
+</UL>
+Ces deux fichiers devraient &ecirc;tre recr&eacute;&eacute;s automatiquement lors du prochain d&eacute;marrage de Mozilla/Firebird.
+</BODY>
+</HTML>
