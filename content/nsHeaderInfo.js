@@ -18,7 +18,7 @@
 //  You should have received a copy of the GNU General Public License along with
 //  this program; if not, write to the Free Software Foundation, Inc., 59 Temple
 //  Place, Suite 330, Boston, MA 02111-1307 USA
-//  **** END LICENSE BLOC ****
+//  **** END LICENSE BLOCK ****
 
 /*
  * Constants
@@ -354,7 +354,7 @@ HeaderInfoVisitor.prototype =
 var nsHeaderInfoModule = {
     firstTime : true,
     registerSelf: function(compMgr, fileSpec, location, type) {
-      dump("nsHeaderInfo: registerSelf called!\n");
+      //dump("nsHeaderInfo: registerSelf called!\n");
       if (this.firstTime) {
         this.firstTime = false;
         throw Components.results.NS_ERROR_FACTORY_REGISTER_AGAIN;

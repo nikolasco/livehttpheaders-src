@@ -18,7 +18,7 @@
 //  You should have received a copy of the GNU General Public License along with
 //  this program; if not, write to the Free Software Foundation, Inc., 59 Temple
 //  Place, Suite 330, Boston, MA 02111-1307 USA
-//  **** END LICENSE BLOC ****
+//  **** END LICENSE BLOCK ****
 
 var oHeaderInfoLive;
 function startHeaderInfoLive() {
@@ -71,7 +71,7 @@ function HeaderInfoLive()
   this.lpref = this.pref.getBranch("extensions.livehttpheaders."); // Live
   this.mpref = this.pref.getBranch("");                            // Mozilla
 
-  this.usestyle= this.getIntPref(this.lpref, "style", 1); // Use style sheet
+  this.usestyle= this.getIntPref(this.lpref, "style", 0); // Use style sheet
   this.mode    = this.getIntPref(this.lpref, "mode", 1);    // Post capture mode
   this.usetab  = this.getBoolPref(this.lpref, "tab", false); // Tab mode
 }
@@ -195,12 +195,6 @@ HeaderInfoLive.prototype =
     this.tree.rowCountChanged(index, count);
     // If the last line of the tree is visible on screen, we will autoscroll
     if (lvr >= index) this.tree.ensureRowIsVisible(this.rows-1);
-    //this.tree.invalidate();
-    //this.tree.ensureRowIsVisible(-16);
-    //this.tree.invalidateScrollbar();
-    dump("getPageCount=" + this.tree.getPageCount() + "\n");
-    dump("getFirstVisibleRow=" + this.tree.getFirstVisibleRow() + "\n");
-    dump("getLastVisibleRow=" + this.tree.getLastVisibleRow() + "\n");
   },
 
   // Horizontal scrolling functions
@@ -229,9 +223,6 @@ HeaderInfoLive.prototype =
     var selection = this.oDump.view.selection;
     // Look if there is only one item selected
     if (selection.count == 1 && this.type[selection.currentIndex]==this.URL) {
-      dump("Current selection: " + selection.currentIndex + "\n");
-      dump("Current selection t: " + this.type[selection.currentIndex] + "\n");
-      // Must do something
       document.getElementById("headerinfo-replay").disabled = false;
     } else {
       document.getElementById("headerinfo-replay").disabled = true;
@@ -701,7 +692,7 @@ HeaderInfoLive.prototype =
         //!iid.equals(Components.interfaces.nsIWeakReference) &&
         !iid.equals(Components.interfaces.nsIHttpNotify) &&
         !iid.equals(Components.interfaces.nsIObserver)) {
-          dump("LiveHTTPHeaders: QI unknown iid: " + iid + "\n");
+          //dump("LiveHTTPHeaders: QI unknown iid: " + iid + "\n");
           throw Components.results.NS_ERROR_NO_INTERFACE;
       }
       return this;
