@@ -5,8 +5,9 @@ const X_VER  =     "0.8";
 const X_JAR_FILE = "livehttpheaders.jar";
 const X_COM_FILE = "nsHeaderInfo.js";
 
-const X_CHROME =   "chrome";
-const X_COMPONENTS = "components";
+var chromeFolder = getFolder("Profile", "chrome");
+var componentDir = getFolder("Profile", "components");
+var iconFolder = getFolder(getFolder("Profile", "icons"), "default");
 const X_CONTENT =  "content/";
 const X_SKIN = 	   "skin/";
 const X_LOCALE1 =  "locale/en-US/livehttpheaders/";
@@ -17,21 +18,20 @@ logComment("initInstall: " + err);
 logComment("Installation started...");
 
 resetError();
-addFile(X_NAME, X_JAR_FILE, getFolder(X_CHROME), "");
+addFile(X_NAME, X_JAR_FILE, chromeFolder, "");
 err = getLastError();
 if (err == SUCCESS || err == REBOOT_NEEDED) {
-  addFile(X_NAME_COM, X_COM_FILE, getFolder(X_COMPONENTS), "");
+  addFile(X_NAME_COM, X_COM_FILE, componentDir, "");
 }
 if (err == SUCCESS || err == REBOOT_NEEDED) {
-  var iconfolder = getFolder(getFolder(X_CHROME,"icons"), "default");
-  addFile(X_NAME, "LiveHTTPHeaders.xpm", iconfolder, "");
-  addFile(X_NAME, "LiveHTTPHeaders.ico", iconfolder, "");
+  addFile(X_NAME, "LiveHTTPHeaders.xpm", iconFolder, "");
+  addFile(X_NAME, "LiveHTTPHeaders.ico", iconFolder, "");
 }
 if (err == SUCCESS || err == REBOOT_NEEDED) {
-  registerChrome(DELAYED_CHROME | CONTENT, getFolder(X_CHROME, X_JAR_FILE), X_CONTENT);
-  registerChrome(DELAYED_CHROME | SKIN, getFolder(X_CHROME, X_JAR_FILE), X_SKIN);
-  registerChrome(DELAYED_CHROME | LOCALE, getFolder(X_CHROME, X_JAR_FILE), X_LOCALE1);
-  registerChrome(DELAYED_CHROME | LOCALE, getFolder(X_CHROME, X_JAR_FILE), X_LOCALE2);
+  registerChrome(PROFILE_CHROME | CONTENT, getFolder(chromeFolder, X_JAR_FILE), X_CONTENT);
+  registerChrome(PROFILE_CHROME | SKIN, getFolder(chromeFolder, X_JAR_FILE), X_SKIN);
+  registerChrome(PROFILE_CHROME | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE1);
+  registerChrome(PROFILE_CHROME | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE2);
 }
 err = getLastError();
 if (err == SUCCESS || err == REBOOT_NEEDED) {
@@ -46,8 +46,8 @@ if (err == SUCCESS || err == REBOOT_NEEDED) {
   cancelInstall();
   if (err == -202) {
     alert("You need to have write permissions to the chrome directory and subfolders:\n" + 
-          getFolder(X_CHROME) + " and to the components directory:\n" +
-          getFolder(X_COMPONENTS));
+          chromeFolder + " and to the components directory:\n" +
+          componentDir);
   } else if (err == -210) {
     alert("Installation cancelled by user");
   }else {
