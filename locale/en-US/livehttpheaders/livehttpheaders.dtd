@@ -1,0 +1,14 @@
+<!ENTITY livehttpheaders.pageinfo.tab		"Headers" >
+<!ENTITY livehttpheaders.pageinfo.accesskey	"h" >
+<!ENTITY livehttpheaders.headers.request	"Request Headers" >
+<!ENTITY livehttpheaders.headers.response	"Response Headers" >
+<!ENTITY livehttpheaders.headers.name		"Name" >
+<!ENTITY livehttpheaders.headers.value		"Value" >
+
+<!ENTITY livehttpheaders.live.title		"Live HTTP headers" >
+<!ENTITY livehttpheaders.live.headers		"HTTP headers" >
+<!ENTITY livehttpheaders.live.clear		"Clear" >
+<!ENTITY livehttpheaders.live.close		"Close" >
+<!ENTITY livehttpheaders.live.capture		"Capture" >
+<!ENTITY livehttpheaders.live.copy		"Copy" >
+<!ENTITY livehttpheaders.live.selectall		"Select All" >

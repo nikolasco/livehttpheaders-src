@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:chrome="http://www.mozilla.org/rdf/chrome#">
+  <!-- list all the packages being supplied -->
+  <RDF:Seq about="urn:mozilla:package:root">
+    <RDF:li resource="urn:mozilla:package:livehttpheaders"/>
+  </RDF:Seq>
+
+  <RDF:Seq about="urn:mozilla:overlays">
+    <RDF:li resource="chrome://navigator/content/pageInfo.xul"/>
+    <RDF:li resource="chrome://communicator/content/tasksOverlay.xul"/>
+  </RDF:Seq>
+  <RDF:Seq about="chrome://navigator/content/pageInfo.xul">
+    <RDF:li>chrome://livehttpheaders/content/PageInfoOverlay.xul</RDF:li>
+  </RDF:Seq>
+  <RDF:Seq about="chrome://communicator/content/tasksOverlay.xul">
+    <RDF:li>chrome://livehttpheaders/content/TasksOverlay.xul</RDF:li>
+  </RDF:Seq>
+
+  <!-- package information -->
+  <RDF:Description about="urn:mozilla:package:livehttpheaders"
+        chrome:displayName="Live HTTP Headers"
+        chrome:author="livehttpheaders.mozdev.org"
+        chrome:name="livehttpheaders">
+  </RDF:Description>
+</RDF:RDF>

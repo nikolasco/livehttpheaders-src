@@ -1,0 +1,68 @@
+<!DOCTYPE overlay SYSTEM "chrome://livehttpheaders/locale/livehttpheaders.dtd">
+<!-- 
+  **** BEGIN LICENSE BLOCK ****
+  Copyright(c) 2002 Daniel Savard.
+
+  LiveHTTPHeaders: this programs have two purpose
+  - Add a tab in PageInfo to show http headers sent and received 
+  - Add a tool that display http headers in real time while loading pages
+
+  This program is free software; you can redistribute it and/or modify it under
+  the terms of the GNU General Public License as published by the Free
+  Software Foundation; either version 2 of the License, or (at your option) 
+  any later version.
+
+  This program is distributed in the hope that it will be useful, but 
+  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
+  or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for 
+  more details.
+  
+  You should have received a copy of the GNU General Public License along with
+  this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+  Place, Suite 330, Boston, MA 02111-1307 USA
+  **** END LICENSE BLOC ****
+-->
+
+<overlay id="headerinfoPageInfoOverlayID" 
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script type="application/x-javascript" src="chrome://livehttpheaders/content/PageInfoOverlay.js"/>
+  <script type="application/x-javascript" src="chrome://livehttpheaders/content/headerinfo.js"/>
+  <tabs id="tabs">
+    <tab id="headerinfoTab" label="&livehttpheaders.pageinfo.tab;"
+         accesskey="&livehttpheaders.pageinfo.accesskey;"
+	 oncommand="makeHeaderInfoTab()"/>
+  </tabs>
+  <tabpanels id="tabpanels">
+    <vbox id="headerinfoPanel" flex="1">
+      <text id="headerinfo-request" class="header" 
+            value="&livehttpheaders.headers.request;"/>
+      <tree id="headerinfo-request-tree" flex="1" class="inset">
+        <treecols>
+          <treecol persist="hidden width" flex="1" 
+	           id="headerinfo-request-name"    
+		   label="&livehttpheaders.headers.name;"/>
+          <splitter class="tree-splitter"/>
+          <treecol persist="hidden width" flex="4" 
+	           id="headerinfo-request-value" 
+		   label="&livehttpheaders.headers.value;"/>
+        </treecols>
+        <treechildren flex="1"/>
+      </tree>
+      <separator class="thin"/>
+      <text id="headerinfo-response" class="header" 
+            value="&livehttpheaders.headers.response;"/>
+      <tree id="headerinfo-response-tree" flex="1" class="inset">
+        <treecols>
+          <treecol persist="hidden width" flex="1" 
+	           id="headerinfo-response-name" 
+		   label="&livehttpheaders.headers.name;"/>
+          <splitter class="tree-splitter"/>
+          <treecol persist="hidden width" flex="4" 
+	           id="headerinfo-response-value" 
+		   label="&livehttpheaders.headers.value;"/>
+        </treecols>
+        <treechildren flex="1"/>
+      </tree>
+    </vbox>
+  </tabpanels>
+</overlay>

@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!-- 
+  **** BEGIN LICENSE BLOCK ****
+  Copyright(c) 2002 Daniel Savard.
+
+  LiveHTTPHeaders: this programs have two purpose
+  - Add a tab in PageInfo to show http headers sent and received 
+  - Add a tool that display http headers in real time while loading pages
+
+  This program is free software; you can redistribute it and/or modify it under
+  the terms of the GNU General Public License as published by the Free
+  Software Foundation; either version 2 of the License, or (at your option) 
+  any later version.
+
+  This program is distributed in the hope that it will be useful, but 
+  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
+  or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for 
+  more details.
+  
+  You should have received a copy of the GNU General Public License along with
+  this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+  Place, Suite 330, Boston, MA 02111-1307 USA
+  **** END LICENSE BLOC ****
+-->
+
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+<?xml-stylesheet href="chrome://livehttpheaders/skin" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://livehttpheaders/locale/livehttpheaders.dtd" >
+<window title="&livehttpheaders.live.title;"
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  width="600"
+  height="500"
+  onload="startHeaderInfoLive()"
+  onunload="stopHeaderInfoLive()">
+<script type="application/x-javascript" src="chrome://global/content/dialogOverlay.js" />
+<script type="application/x-javascript" src="chrome://livehttpheaders/content/headerinfo.js" />
+  <vbox flex="1">
+    <separator class="thin"/>
+      <tree id="headerinfo-dump" flex="1" class="inset" seltype="multiple"
+            hidecolumnpicker="true">
+        <treecols>
+          <treecol persist="hidden width" flex="1"
+                   id="headerinfo-response-name"
+                   label="&livehttpheaders.live.headers;"/>
+        </treecols>
+        <treechildren flex="1"/>
+      </tree>
+      
+    <hbox align="right" valign="center">
+      <button label="&livehttpheaders.live.selectall;"
+              oncommand="oHeaderInfoLive.selectAll();"/>
+      <button label="&livehttpheaders.live.copy;"
+              oncommand="oHeaderInfoLive.copy();"/>
+      <separator class="thin" flex="1" />
+      <checkbox label="&livehttpheaders.live.capture;" checked="true" 
+                oncommand="oHeaderInfoLive.capture(this.checked)" />
+      <separator class="thin"/>
+      <button label="&livehttpheaders.live.clear;"
+              oncommand="oHeaderInfoLive.clear();"/>
+      <button label="&livehttpheaders.live.close;"
+              disabled="false" oncommand="window.close();"/>
+    </hbox>
+  </vbox>
+</window>
