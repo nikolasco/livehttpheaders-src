@@ -50,6 +50,7 @@ function makeHeaderInfoTab() {
       requestheaders.addRow([i,headers.requestHeaders[i]]);
     }
     requestheaders.rowCountChanged(0, length);
+    requestheaders.enablehScroll("headerinfo-request-scroll","headerinfo-request-value");
 
     responseheaders.addRow(["RESPONSE", headers.response]);
     for (i in headers.responseHeaders) {
@@ -61,6 +62,7 @@ function makeHeaderInfoTab() {
       }
     }
     responseheaders.rowCountChanged(0, length);
+    responseheaders.enablehScroll("headerinfo-response-scroll","headerinfo-response-value");
   }
 }
 
@@ -95,4 +97,65 @@ function saveHeaderInfoTab(title) {
   }
 }
 
+// Add an link to a horizontal scrollbar on a TreeView class
+addhScrollToTreeView(pageInfoTreeView);
+function addhScrollToTreeView(tv) {
+  // Hack for scrollbar.
+  // Must not do this more than one time (call of original getCellText)
+  if (tv && !("hScrollBar" in tv.prototype)) {
+    // Initialize global scroll object
+    tv.prototype.hScrollTree = new Object();
+    tv.prototype.hScrollPos = 0;
+    tv.prototype.hScrollBar = null;
+    tv.prototype.hScrollColumn = null;
+    tv.prototype.hScrollHandler = function() {
+      // Need to use global oHeaderInfoLive object  this because 'this' 
+      // doesn't seem to be available.
+      for (var id in tv.prototype.hScrollTree) {
+        var base = tv.prototype.hScrollTree[id];
+        if (base && base.tree) { // Check if the tree still exists
+          var curpos=base.hScrollBar.attributes.getNamedItem("curpos").value;
+          if (curpos != base.hScrollPos) {
+            base.hScrollPos = curpos;
+            base.tree.invalidateColumn(base.hScrollColumn);
+          }
+        } // Should we delete the id if it doesn't exist at a time ?
+      }
+    }
+    tv.prototype.sethScroll = function(max) {
+      // Set the new maximum value and page increment to be 5 steps
+      var maxpos = this.hScrollBar.attributes.getNamedItem("maxpos");
+      var pageincrement = this.hScrollBar.attributes.getNamedItem("pageincrement");
+      maxpos.value = (max>0 ? max-1 : 0);
+      pageincrement.value = max/5;
+    }
+    tv.prototype.getCellTextOrig = tv.prototype.getCellText;
+    tv.prototype.getCellText = function(row,column) {
+      if (column == this.hScrollColumn) {
+        return this.getCellTextOrig(row,column).substr(this.hScrollPos);
+      } else {
+        return this.getCellTextOrig(row,column);
+      }
+    }
+    tv.prototype.enablehScroll = function(scrollbar,scrollColumn) {
+      var treename = this.tree.treeBody.parentNode.id;
+      this.hScrollColumn = scrollColumn;
+      this.hScrollBar = document.getElementById(scrollbar);
+      var max=0;
+      for (var row=0; row<this.rowCount; row++) {
+        var length = this.getCellTextOrig(row,scrollColumn).length;
+        if (length > max) max = length;
+      }
+      this.sethScroll(max); // Don't know why, but if I don't call this before
+                            // someone plays with the scrollbar, some 
+                            // attributes of the scrollbar disapears
+        
+      // Keep a global reference to the treeview object
+      tv.prototype.hScrollTree[scrollbar] = this;
+    }
+
+    // Start the timer to update the scroll position
+    setInterval(tv.prototype.hScrollHandler,100);
+  }
+}
 

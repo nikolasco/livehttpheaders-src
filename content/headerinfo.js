@@ -90,3 +90,10 @@ function saveAs(data, title)
   }
 }
 
+function checkForUpdate(version) 
+{ 
+  var url = "http://livehttpheaders.mozdev.org/";
+  if (version) { url += "?ver=" + version; }
+  document.commandDispatcher.focusedWindow.open(url);
+}
+

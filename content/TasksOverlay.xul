@@ -35,7 +35,6 @@
   <!-- Phoenix XUL -->
   <menupopup id="menu_ToolsPopup">
     <menuitem label="&livehttpheaders.live.title;" 
-              insertafter="javascriptConsole"
               oncommand="toOpenWindowByType('global:LiveHTTPHeaders', 
                               'chrome://livehttpheaders/content/LiveHTTPHeaders.xul');" />
   </menupopup>

@@ -57,6 +57,14 @@
     </popup>
   </popupset>
 
+<tabbox flex="1">
+  <tabs id="tabs">
+    <tab id="livehttpheaders-live-tab" label="&livehttpheaders.tabs.headers;" />
+    <tab id="livehttpheaders-about-tab" label="&livehttpheaders.tabs.about;" />
+  </tabs>
+<tabpanels id="tabpanels" flex="1">
+  <!-- LiveHTTPHeaders -->
+  <tabpanel>
   <vbox flex="1">
     <separator class="thin"/>
       <tree id="headerinfo-dump" flex="1" class="inset" seltype="multiple"
@@ -69,6 +77,8 @@
         </treecols>
         <treechildren flex="1"/>
       </tree>
+      <scrollbar id="headerinfo-dump-scroll" curpos="0" maxpos="0" pageincrement="0" 
+                 orient="horizontal" />
       
     <hbox align="right" valign="middle">
       <button label="&livehttpheaders.live.saveall;"
@@ -80,8 +90,7 @@
                 oncommand="oHeaderInfoLive.capture(this.checked)" />
       <separator class="thin"/>
       <text value="&livehttpheaders.live.post;"/>
-      <menulist id="headerinfo-mode" 
-                tooltiptext="&livehttpheaders.live.post.tips;">
+      <menulist id="headerinfo-mode" tooltiptext="&livehttpheaders.live.post.tips;">
         <menupopup>
           <menuitem value="0" label="&livehttpheaders.live.post.none;"
                     tooltiptext="&livehttpheaders.live.post.none.tips;"
@@ -104,4 +113,40 @@
               disabled="false" oncommand="window.close();"/>
     </hbox>
   </vbox>
+  </tabpanel>
+
+  <!-- LiveHTTPAbout -->
+  <tabpanel>
+  <vbox flex="1">
+    <groupbox>
+      <caption label="&livehttpheaders.about.version;"/>
+        <hbox align="center">
+          <label value="&livehttpheaders.about.versiontext;"/>
+          <label value="&livehttpheaders.about.currentversion;"/>
+          <spacer flex="1"/>
+          <button label="&livehttpheaders.about.homepage;" 
+                  onclick="checkForUpdate();"/>
+          <spacer flex="1"/>
+          <button label="&livehttpheaders.about.checkforupdate;" 
+                  onclick="checkForUpdate('&livehttpheaders.about.currentversion;');"/>
+        </hbox>
+    </groupbox>
+    <groupbox>
+      <caption label="&livehttpheaders.about.author;"/>
+      <label value="Daniel Savard" />
+    </groupbox>
+    <groupbox orient="vertical" >
+      <caption label="&livehttpheaders.about.thanks;"/>
+      <label value="&livehttpheaders.about.suggestions;" />
+      <label value="Christopher Cook" />
+      <label value="François Constantineau" />
+      <label value="Henrik Gemal" />
+      <label value="Paul Lacourse" />
+    </groupbox>
+    
+  </vbox>
+  </tabpanel>
+
+</tabpanels>
+</tabbox>
 </window>

@@ -67,11 +67,17 @@ HeaderInfoLive.prototype =
   rows: 0,
   tree: null,
 
+  // Horizontal scrolling
+  hScrollBar: null,
+  hScrollPos: 0,
+  hScrollMax: 0,
+
   set rowCount(c) { throw "rowCount is a readonly property"; },
   get rowCount() { return this.rows; },
   setTree: function(tree) { this.tree = tree; },
   getCellText: function(row, column) {
-    return this.data[row].match(/^.*/);
+    //return this.data[row].match(/^.*/);
+    return this.data[row].substr(this.hScrollPos).match(/^.*/);
   },
   setCellText: function(row, column, text) { },
   getRowProperties: function(row, props) { },
@@ -116,6 +122,7 @@ HeaderInfoLive.prototype =
   addRow: function(row, type) { 
     this.type.push(type);
     this.rows = this.data.push(row);
+    if (row.length > this.hScrollMax) this.sethScroll(row.length);
   }, //A
   rowCountChanged: function(index, count) //A
   {
@@ -124,6 +131,26 @@ HeaderInfoLive.prototype =
     this.tree.rowCountChanged(index, count);
     // If the last line of the tree is visible on screen, we will autoscroll
     if (lvr >= index) tbo.ensureRowIsVisible(this.rows-1);
+  },
+
+  // Horizontal scrolling functions
+  sethScroll: function(max) {
+    // Set the new maximum value and page increment to be 5 steps
+    var maxpos = this.hScrollBar.attributes.getNamedItem("maxpos");
+    var pageincrement=this.hScrollBar.attributes.getNamedItem("pageincrement");
+    maxpos.value = (max>2 ? max-3 : 0);
+    pageincrement.value = max/5;
+    this.hScrollMax = max;
+  },
+  hScrollHandler: function() {
+    // Need to use global oHeaderInfoLive object  this because 'this'
+    // doesn't seem to be available.
+    var base = oHeaderInfoLive;
+    var curpos = base.hScrollBar.attributes.getNamedItem("curpos").value;
+    if (curpos != base.hScrollPos) {
+      base.hScrollPos = curpos;
+      base.tree.invalidate();
+    }
   },
 
   // Select and copy function
@@ -214,12 +241,15 @@ HeaderInfoLive.prototype =
     this.oDump = document.getElementById("headerinfo-dump");
     this.oDump.treeBoxObject.view = this;
     document.getElementById("headerinfo-mode").selectedIndex=this.mode;
+    this.hScrollBar = document.getElementById("headerinfo-dump-scroll");
+    setInterval(this.hScrollHandler,100);
   },
 
   stop : function()
   {
     this.oDump.treeBoxObject.view = null;
     this.oDump = null;
+    this.hScrollBar = null;
   },
 
   // Header Info Lives functions
@@ -235,6 +265,8 @@ HeaderInfoLive.prototype =
     this.data = new Array();
     this.type = new Array();
     this.rowCountChanged(0,oldrows);
+    this.hScrollMax = 0;
+    this.sethScroll(0);
   },
 
   saveAll: function(title)

@@ -8,6 +8,19 @@
 <!ENTITY livehttpheaders.menu.view              "Affichage" >
 <!ENTITY livehttpheaders.menu.post              "Données POST" >
 
+<!ENTITY livehttpheaders.tabs.headers           "Entêtes" >
+<!ENTITY livehttpheaders.tabs.about             "A propos" >
+
+<!ENTITY livehttpheaders.about.version          "Information sur la version" >
+<!ENTITY livehttpheaders.about.versiontext	"LiveHTTPHeaders version " >
+<!ENTITY livehttpheaders.about.currentversion	"0.6" >
+<!ENTITY livehttpheaders.about.checkforupdate   "Vérifier s'il existe une nouvelle version" >
+<!ENTITY livehttpheaders.about.homepage         "Page principale" >
+<!ENTITY livehttpheaders.about.homepageurl      "http://livehttpheaders.mozdev.org" >
+<!ENTITY livehttpheaders.about.author           "Auteur" >
+<!ENTITY livehttpheaders.about.thanks           "Merci aux personnes suivantes" >
+<!ENTITY livehttpheaders.about.suggestions      "Toutes les personnes qui ont faites des suggestions">
+
 <!ENTITY livehttpheaders.live.title		"Entêtes HTTP en direct" >
 <!ENTITY livehttpheaders.live.headers		"Entêtes HTTP" >
 <!ENTITY livehttpheaders.live.clear		"Effacer" >

@@ -26,8 +26,8 @@
 
 <overlay id="headerinfoPageInfoOverlayID" 
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-  <script type="application/x-javascript" src="chrome://livehttpheaders/content/PageInfoOverlay.js"/>
   <script type="application/x-javascript" src="chrome://livehttpheaders/content/headerinfo.js"/>
+  <script type="application/x-javascript" src="chrome://livehttpheaders/content/PageInfoOverlay.js"/>
   <tabs id="tabs">
     <tab id="headerinfoTab" label="&livehttpheaders.pageinfo.tab;"
          accesskey="&livehttpheaders.pageinfo.accesskey;"
@@ -49,6 +49,8 @@
         </treecols>
         <treechildren flex="1"/>
       </tree>
+      <scrollbar id="headerinfo-request-scroll" curpos="0" maxpos="0" pageincrement="0"
+                 orient="horizontal" />
       <separator class="thin"/>
       <text id="headerinfo-response" class="header" 
             value="&livehttpheaders.pageinfo.response;"/>
@@ -64,6 +66,8 @@
         </treecols>
         <treechildren flex="1"/>
       </tree>
+      <scrollbar id="headerinfo-response-scroll" curpos="0" maxpos="0" pageincrement="0" 
+                 orient="horizontal" />
       <hbox align="center">
         <button label="&livehttpheaders.pageinfo.saveas;" oncommand="saveHeaderInfoTab();" />
         <separator class="thin" />
