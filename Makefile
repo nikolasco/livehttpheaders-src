@@ -9,6 +9,8 @@ jar:
         ${CONTENT}/contents.rdf \
         ${CONTENT}/headerinfo.js \
         ${CONTENT}/LiveHTTPHeaders.xul \
+        ${CONTENT}/LiveHTTPReplay.xul \
+        ${CONTENT}/LiveHTTPReplay.js \
         ${CONTENT}/TasksOverlay.xul \
         ${CONTENT}/PageInfoOverlay.xul \
         ${CONTENT}/PageInfoOverlay.js \

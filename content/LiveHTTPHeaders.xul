@@ -35,10 +35,31 @@
   onunload="stopHeaderInfoLive()">
 <script type="application/x-javascript" src="chrome://global/content/dialogOverlay.js" />
 <script type="application/x-javascript" src="chrome://livehttpheaders/content/headerinfo.js" />
+
+  <popupset>
+    <popup id="headerinfo-context">
+      <menuitem label="&livehttpheaders.live.copy;"
+                oncommand="oHeaderInfoLive.copy();" />
+      <menuitem label="&livehttpheaders.live.selectblock;"
+                oncommand="oHeaderInfoLive.selectBlock();" />
+      <menuitem label="&livehttpheaders.live.selectall;"
+                oncommand="oHeaderInfoLive.selectAll();" />
+      <menuseparator/>
+      <menuitem label="&livehttpheaders.menu.saveselection;"
+                oncommand="oHeaderInfoLive.saveSelection();" />
+      <menuitem label="&livehttpheaders.menu.saveall;"
+                oncommand="oHeaderInfoLive.saveAll();" />
+      <menuseparator/>
+      <menuitem label="&livehttpheaders.live.clear;"
+                oncommand="oHeaderInfoLive.clear();" />
+    </popup>
+  </popupset>
+
   <vbox flex="1">
     <separator class="thin"/>
       <tree id="headerinfo-dump" flex="1" class="inset" seltype="multiple"
-            hidecolumnpicker="true">
+            hidecolumnpicker="true" context="headerinfo-context"
+            onselect="oHeaderInfoLive.onselect();">
         <treecols>
           <treecol persist="hidden width" flex="1"
                    id="headerinfo-response-name" primary="true"
@@ -48,16 +69,15 @@
       </tree>
       
     <hbox align="right" valign="middle">
-      <button label="&livehttpheaders.live.selectall;"
-              oncommand="oHeaderInfoLive.selectAll();"/>
-      <button label="&livehttpheaders.live.copy;"
-              oncommand="oHeaderInfoLive.copy();"/>
+      <button label="&livehttpheaders.live.saveall;"
+              oncommand="oHeaderInfoLive.saveAll();" disabled="false" />
       <separator class="thin" flex="1" />
       <checkbox label="&livehttpheaders.live.capture;" checked="true" 
                 oncommand="oHeaderInfoLive.capture(this.checked)" />
       <separator class="thin"/>
-      <text value="POST:"/>
-      <menulist id="headerinfo-mode" tooltiptext="&livehttpheaders.live.post;">
+      <text value="&livehttpheaders.live.post;"/>
+      <menulist id="headerinfo-mode" 
+                tooltiptext="&livehttpheaders.live.post.tips;">
         <menupopup>
           <menuitem value="0" label="&livehttpheaders.live.post.none;"
                     tooltiptext="&livehttpheaders.live.post.none.tips;"
@@ -74,8 +94,8 @@
         </menupopup>
       </menulist>
       <separator class="thin" flex="1"/>
-      <button label="&livehttpheaders.live.clear;"
-              oncommand="oHeaderInfoLive.clear();"/>
+      <button label="&livehttpheaders.live.replay;"
+              oncommand="oHeaderInfoLive.replay();"/>
       <button label="&livehttpheaders.live.close;"
               disabled="false" oncommand="window.close();"/>
     </hbox>

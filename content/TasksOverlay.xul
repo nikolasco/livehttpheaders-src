@@ -7,4 +7,9 @@
               oncommand="toOpenWindowByType('livehttpheaders:main', 
                         'chrome://livehttpheaders/content/LiveHTTPHeaders.xul');" />
   </menupopup>
+  <menupopup id="menu_ToolsPopup">
+    <menuitem label="&livehttpheaders.live.title;" 
+              oncommand="toOpenWindowByType('livehttpheaders:main', 
+                        'chrome://livehttpheaders/content/LiveHTTPHeaders.xul');" />
+  </menupopup>
 </overlay>

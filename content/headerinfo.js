@@ -5,6 +5,14 @@ function dumpall(name,obj,niv) {
 
   dump ("\n\n-------------------------------------------------------\n");
   dump ("Dump of the objet: " + name + " (" + niv + " levels)\n");
+  dump ("Interfaces: ");
+  for (var i in Components.interfaces) {
+    try {
+      obj.QueryInterface(Components.interfaces[i]);
+      dump(""+Components.interfaces[i]+", ");
+    } catch (ex) {}
+  }
+  dump("\n");
   _dumpall(dumpdict,obj,niv,"","");
   dump ("\n\n-------------------------------------------------------\n\n");
   
@@ -67,6 +75,7 @@ function HeaderInfo()
         this.postData = new Array();
 	this.HeaderInfoVisitor = HeaderInfoVisitor;
 	this.observers = new Array();
+        this.replay = new Array();
 }
 
 HeaderInfo.prototype = 
@@ -74,12 +83,18 @@ HeaderInfo.prototype =
   observer: null,
   observers: null,
   request: null,
+  postData: null,
   response: null,
+  replay: null,
   HeaderInfoVisitor: null,
  
   onExamineResponse : function (oHttp)
   {
     //dump("onExamineResponse\n");
+    //dumpall("oHttp",oHttp,2);
+    //dumpall("URI",oHttp.URI,2);
+    //oHttp.QueryInterface(Components.interfaces.nsICachingChannel);
+    //dumpall("cacheToken",oHttp.cacheToken,2);
 
     var name = oHttp.URI.asciiSpec;
     var visitor = new this.HeaderInfoVisitor(oHttp);
@@ -89,6 +104,8 @@ HeaderInfo.prototype =
     // and extract Post Data if present
     this.postData[name] = this.request[name]["POSTDATA"];
     delete this.request[name]["POSTDATA"];
+    //DSMT
+    //this.request[name]["CACHE"] = oHttp.cacheToken;
     
     // Get the response headers
     this.response[name] = visitor.visitResponse();
@@ -118,8 +135,62 @@ HeaderInfo.prototype =
   {
     //dump("onModifyRequest\n");
     //dumpall("Request", oHttp,1);
+    dump("MODIFY: '" + oHttp.URI.asciiSpec +"'\n");
+
+    if (oHttp.URI.asciiSpec in this.replay) {
+      // This observer is designed to delete all observed headers
+      function emptyObserver(oHttp) {
+        this.oHttp = oHttp;
+        this.request = new Array();
+      }
+      emptyObserver.prototype = {
+        visitHeader : function (name, value)
+        {
+          this.request[name.toLowerCase()]=value;
+        },
+        emptyHeaders: function ()
+        {
+          oHttp.visitRequestHeaders(this);
+          for (var i in this.request) {
+            this.oHttp.setRequestHeader(i,null,false);
+          }
+        }
+      }
+      var empty = new emptyObserver(oHttp);
+      empty.emptyHeaders();
+
+      //Get the URI and request array
+      dump("BINGO: " + uri);
+      var uri = oHttp.URI.asciiSpec;
+      var req = this.replay[uri];
+      delete this.replay[uri];
+
+      //Set the new headers
+      for (var i in req) {
+        try {
+          dump("Try: " + i + " = " + req[i] + "\n");
+          if (i == 'Content-Type' || i == 'Content-Length') {
+            oHttp.setRequestHeader(i, null, false);
+          } else {
+            oHttp.setRequestHeader(i, req[i], false);
+          }
+        } catch (ex) {
+          dump("onModifyRequest: exception: " + ex +"\n");
+        }
+      }
+      if (!this.test) this.test = 0;
+      //oHttp.setRequestHeader("X-TEST", "TEST" + this.test++, false);
+      //oHttp.requestMethod = "Get";
+      oHttp.loadFlags = oHttp.LOAD_NORMAL;
+    }
   },
- 
+
+  checkrequest : function (url, request)
+  {
+    dump("CHECK: '" + url +"'\n");
+    this.replay[url] = request;
+  },
+
   addObserver : function (observer)
   {
     this.observers[observer] = observer;
@@ -152,20 +223,46 @@ HeaderInfoVisitor.prototype =
 {
   oHttp : null,
   headers : null,
+  getHttpRequestVersion: function (httpProxy)
+  {
+    var version = "1.0"; // Default value for direct HTTP and proxy HTTP
+    try {
+      // This code is based on netwerk/protocol/http/src/nsHttpHandler.cpp (PrefsChanged)
+      var pref = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
+      pref = pref.getBranch("");
+      // Now, get the value of the HTTP version fields
+      if (httpProxy) {
+        var tmp = pref.getCharPref("network.http.proxy.version");
+        if (tmp == "1.1") version = tmp;
+      } else {
+        var tmp = pref.getCharPref("network.http.version");
+        if (tmp == "1.1" || tmp == "0.9") version = tmp;
+      }
+    } catch (ex) {}
+    return version;
+  },
   useHttpProxy : function (uri)
   {
+    // This code is based on netwerk/base/src/nsProtocolProxyService.cpp (ExamineForProxy)
     try {
       var pps = Components.classes["@mozilla.org/network/protocol-proxy-service;1"].getService().QueryInterface(Components.interfaces.nsIProtocolProxyService);
       
       // If a proxy is used for this url, we need to keep the host part
       if (pps.proxyEnabled && (pps.examineForProxy(uri)!=null)) {
         // Proxies are enabled.  Now, check if it is an HTTP proxy.
-        return true;
-      } else {
-        return false;
-      }
+        var pref = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
+        pref = pref.getBranch("");
+        // Now, get the value of the HTTP proxy fields
+        var http_host = pref.getCharPref("network.proxy.http");
+        var http_port = pref.getIntPref("network.proxy.http_port");
+        // network.proxy.http_port network.proxy.http
+        if (http_host && http_port>0) {
+          return true; // HTTP Proxy
+        } 
+      } 
+      return false; // No proxy or not HTTP Proxy
     } catch (ex) {
-      return null;
+      return null; // Error
     }
   },
   getPostData : function(oHttp) {
@@ -179,8 +276,17 @@ HeaderInfoVisitor.prototype =
       this.seekablestream = stream;
       this.stream = new JS_ScriptableInputStream();
       this.stream.init(this.seekablestream);
-      this.body = -1;
       this.mode = this.FAST;
+
+      // Check if the stream has headers
+      try { 
+        this.seekablestream.QueryInterface(Components.interfaces.nsIMIMEInputStream);
+        this.hasheaders = true;
+        this.body = -1; // Must read header to find body
+      } catch (ex) {
+        this.hasheaders = false;
+        this.body = 0;  // Body at the start of the stream
+      }
     }
     postData.prototype = {
       NONE: 0,
@@ -214,6 +320,7 @@ HeaderInfoVisitor.prototype =
       },
       visitPostHeaders: function(visitor) {
         this.rewind();
+        if (!this.hasheaders) { return; }
         var line = this.readLine();
         while(line) {
           if (visitor) {
@@ -248,7 +355,8 @@ HeaderInfoVisitor.prototype =
               //This is to avoid 'NS_BASE_STREAM_CLOSED' exception that may occurs
               //See bug #188328.
               for (var i=0; i<size; i++) {
-                postString += this.stream.read(1);
+                var c=this.stream.read(1);
+                c ? postString+=c : postString+='\0';
               }
               break;
           }
@@ -283,7 +391,7 @@ HeaderInfoVisitor.prototype =
   visitRequest : function ()
   {
     this.headers = new Array();
-    var uri, note;
+    var uri, note, ver;
     try {
       
       // Get the URL and get parts
@@ -294,8 +402,10 @@ HeaderInfoVisitor.prototype =
       // If an http proxy is used for this url, we need to keep the host part
       if (this.useHttpProxy(this.oHttp.URI)==true) {
         uri = url.match(/^(.*\/\/[^\/]+\/[^#]*)/)[1];
+        ver = this.getHttpRequestVersion(true);
       } else {
         uri = url.match(/^.*\/\/[^\/]+(\/[^#]*)/)[1];
+        ver = this.getHttpRequestVersion(false);
       }
     } catch (ex) {
       dump("PPS: cas5: " + ex + "\n");
@@ -303,7 +413,7 @@ HeaderInfoVisitor.prototype =
       note = "Unsure about the precedent REQUEST uri";
     }
     this.headers["REQUEST"] = this.oHttp.requestMethod + " " 
-                            + uri + " HTTP/1.x";
+                            + uri + " HTTP/" + ver;
     if (note) this.headers["NOTE"] = note;
     this.oHttp.visitRequestHeaders(this);
 
@@ -385,6 +495,7 @@ HeaderInfoLive.prototype =
   RESPONSE : 4,
   SPACE : 5,
   SEPARATOR : 6,
+  SEPSTRING: "----------------------------------------------------------\r\n",
   
   oHeaderInfo: null,
   oDump: null,
@@ -395,13 +506,12 @@ HeaderInfoLive.prototype =
   // Tree interface
   rows: 0,
   tree: null,
-  data: null,
 
   set rowCount(c) { throw "rowCount is a readonly property"; },
   get rowCount() { return this.rows; },
   setTree: function(tree) { this.tree = tree; },
   getCellText: function(row, column) {
-    return this.data[row]; 
+    return this.data[row].match(/^.*/);
   },
   setCellText: function(row, column, text) { },
   getRowProperties: function(row, props) { },
@@ -416,7 +526,7 @@ HeaderInfoLive.prototype =
   isContainer: function(index) { return false; },
   isContainerOpen: function(index) { return this.showPostData; },
   isContainerEmpty: function(index) { return false; },
-  isSeparator: function(index) { return this.type[index] == this.SEPARATOR; },
+  isSeparator: function(index) { return this.type[index]==this.SEPARATOR; },
   isSorted: function() { },
   canDropOn: function(index) { return false; },
   canDropBeforeAfter: function(index, before) { return false; },
@@ -445,14 +555,42 @@ HeaderInfoLive.prototype =
   // Tree utility functions
   addRow: function(row, type) { 
     this.type.push(type);
-    this.rows = this.data.push(row); 
+    this.rows = this.data.push(row);
   }, //A
   rowCountChanged: function(index, count) //A
   {
+    var tbo = this.oDump.treeBoxObject;
+    var lvr = tbo.getLastVisibleRow();
     this.tree.rowCountChanged(index, count);
+    // If the last line of the tree is visible on screen, we will autoscroll
+    if (lvr >= index) tbo.ensureRowIsVisible(this.rows-1);
   },
 
-  // Header Info Lives functions
+  // Select and copy function
+  onselect: function()
+  {
+    var selection = this.oDump.view.selection;
+    // Look if there is only one item selected
+    if (selection.count == 1) {
+      if (this.type[selection.currentIndex]==this.URL) {
+        // Must do something
+      }
+    }
+  },
+
+  selectBlock: function()
+  {
+    var selection = this.oDump.view.selection;
+    var index = selection.currentIndex;
+    if (index>=0 && !this.isSeparator(index)) {
+      var first = index;
+      var last = index;
+      while(first>0 && !this.isSeparator(first-1)) first--;
+      while(last<this.rowCount && !this.isSeparator(last+1)) last++;
+      selection.rangedSelect(first,last,false);
+    }
+  },
+
   selectAll : function()
   {
     return this.oDump.view.selection.selectAll();
@@ -474,7 +612,11 @@ HeaderInfoLive.prototype =
   
   copy: function()
   {
-    const sep = "----------------------------------------------------------\n";
+    this.toClipboard(this.getSelection());
+  },
+ 
+  getSelection: function()
+  {
     var selection = this.oDump.view.selection;
     var data = "", rStart = {}, rEnd = {};
     var ranges = selection.getRangeCount();
@@ -482,23 +624,38 @@ HeaderInfoLive.prototype =
       selection.getRangeAt(range, rStart, rEnd);
       if (rStart.value >=0 && rEnd.value >=0) {
         for (var row=rStart.value; row<=rEnd.value; row++) {
-	  if (this.data[row]==null) {
-	    data += sep; // This is a separator
+	  if (this.type[row]==this.SEPARATOR) {
+	    data += this.SEPSTRING; // This is a separator
 	  } else {
-            data += this.data[row]+"\n";
+            data += this.data[row];
 	  }
 	}
       }
     }
-    this.toClipboard(data);
+    return data;
+  },
+  
+  getAll: function()
+  { 
+    var data = "";
+    for (var row=0; row<this.rows; row++) {
+      if (this.type[row]==this.SEPARATOR) {
+	data += this.SEPSTRING; // This is a separator
+      } else {
+        data += this.data[row];
+      }
+    }
+    return data;
   },
 
+  // Initialisation and termination functions
   start : function()
   {
     this.oDump = document.getElementById("headerinfo-dump");
     this.oDump.treeBoxObject.view = this;
     this.oHeaderInfo.addObserver(this);
-    document.getElementById("headerinfo-mode").selectedIndex = this.mode;
+    document.getElementById("headerinfo-mode").selectedIndex=this.mode;
+    dump("MODE="+this.mode+"\n");
   },
 
   stop : function()
@@ -508,6 +665,7 @@ HeaderInfoLive.prototype =
     this.oDump = null;
   },
 
+  // Header Info Lives functions
   capture : function(flag)
   {
     this.isCapturing = flag;
@@ -519,7 +677,142 @@ HeaderInfoLive.prototype =
     var oldrows = this.rows;
     this.rows = 0;
     this.data = new Array();
+    this.type = new Array();
     this.rowCountChanged(0,oldrows);
+  },
+
+  saveAll: function(title)
+  {
+    this.saveAs(title,this.getAll());
+  },
+  
+  saveSelection: function(title)
+  {
+    this.saveAs(title,this.getSelection());
+  },
+
+  saveAs: function(title,data)
+  {
+    title = "Salut";
+    const MODE =  0x2A; // MODE_WRONLY | MODE_CREATE | MODE_TRUNCAT
+    const PERM = 00644; // PERM_IRUSR | PERM_IWUSR | PERM_IRGRP | PERM_IROTH
+    const PICKER_CTRID = "@mozilla.org/filepicker;1";
+    const FILEOUT_CTRID = "@mozilla.org/network/file-output-stream;1";
+    const nsIFilePicker = Components.interfaces.nsIFilePicker;
+    const nsIFileOutputStream = Components.interfaces.nsIFileOutputStream;
+
+    try {
+      var picker = Components.classes[PICKER_CTRID].createInstance(nsIFilePicker);
+      picker.appendFilters(Components.interfaces.nsIFilePicker.filterAll);
+      picker.init (window, title, Components.interfaces.nsIFilePicker.modeSave);
+      var rv = picker.show();
+
+      if (rv != Components.interfaces.nsIFilePicker.returnCancel) {
+        var os = Components.classes[FILEOUT_CTRID].createInstance(nsIFileOutputStream);
+        os.init(picker.file, MODE, PERM, 0);
+        os.write(data, data.length);
+      }
+    } catch (ex) {
+      alert(ex);
+    }
+  },
+
+  replay: function()
+  {
+    var method=null, url=null, version=null, request=null, postdata=null;
+    
+    var selection = this.oDump.view.selection;
+    var index = selection.currentIndex;
+    if (index>=0 && !this.isSeparator(index)) {
+      var first = index;
+      var data;
+      while(first>0 && !this.isSeparator(first-1)) first--;
+      for (var i=first; !this.isSeparator(i); i++) {
+        data = this.data[i];
+        dump("DATA: " + data +"\n");
+        switch(this.type[i]) {
+        case this.URL: url = data;
+                       break;
+        case this.REQUEST: 
+                       if (!method) {
+                         var tmp = data.match(/^(\S+).*\/(\S+)/);
+                         method = tmp[1];
+                         version = tmp[2];
+                       } else {
+                         request?request=request+data:request=data;
+                       }
+                       break;
+        case this.POSTDATA: 
+                       postdata?postdata=postdata+data:postdata=data;
+                       break;
+        }
+      }  
+      var replaywindow = "chrome://livehttpheaders/content/LiveHTTPReplay.xul";
+      var replayoptions = "chrome,dialog=no,extrachrome,menubar,resizable,scrollbars,status,toolbar";
+      window.openDialog(replaywindow, "_blank", replayoptions, 
+                        this, method, url, version, request, postdata);
+    }
+  },
+  play: function(method, url, version, request, postdata)
+  {
+    //DSMT: REPLAY
+    //dumpall("OPENER",window.opener,2);
+    var browser = window.opener.getWebNavigation();
+    if (browser) {
+      // Change the request in a array
+      var tmp = request.split(/[\r\n]/);
+      var req = new Array();
+      for (var i in tmp) {
+        dump("Try: " + tmp[i] +"\n");
+        var header = tmp[i].match(/^([^:]+)\s*:\s*(.*)$/);
+        if (header) {
+          dump("Found: " + header[1] +"="+header[2]+"\n");
+          req[header[1]]=header[2];
+        }
+      }
+      // Change the post data in an InputStream
+      var post = null;
+      if (postdata) {
+        const STRING_STREAM_CID = "@mozilla.org/io/string-input-stream;1";
+        const nsIStringInputStream = Components.interfaces.nsIStringInputStream;
+        //const SCRIPTABLE_STREAM_CID = "@mozilla.org/scriptableinputstream;1";
+        //const nsIScriptableInputStream = Components.interfaces.nsIScriptableInputStream;
+        const MIME_STREAM_CID = "@mozilla.org/network/mime-input-stream;1";
+        const nsIMIMEInputStream = Components.interfaces.nsIMIMEInputStream;
+        
+        var sis = Components.classes[STRING_STREAM_CID];
+        tmp = sis.createInstance(nsIStringInputStream);
+        //postdata = "\r\n" + postdata; // Add header separator at begining
+        tmp.setData (postdata, postdata.length);
+        tmp.QueryInterface(Components.interfaces.nsISeekableStream);
+        
+        // Create a scriptable stream
+        //var scis = Components.classes[SCRIPTABLE_STREAM_CID];
+        //post = scis.createInstance(nsIScriptableInputStream);
+        //post.init(tmp);
+
+        // Create a mime stream
+        var mis = Components.classes[MIME_STREAM_CID];
+        post = mis.createInstance(nsIMIMEInputStream);
+        post.setData(tmp);
+
+        //post.QueryInterface(Components.interfaces.nsIInputStream);
+        //dumpall("POST",post,2);
+        //dump("POST: available: " + post.available() + "\n");
+        //dump("POST: data: '" + post.read(post.available()) + "'\n");
+        //tmp.seek(0,0);
+        for (var i in Components.classes) {
+          dump("Classes: " + i + "\n");
+        }
+        for (var o in Components.interfaces) {
+          dump("Interfaces: " + o + "\n");
+        }
+        //post=tmp;
+      }
+      this.oHeaderInfo.checkrequest(url,req);
+      browser.loadURI(url,0,null,post,null);
+      //browser.loadURI(url,0,null,this.t.getPostBody(),null);
+    }
   },
 
   setMode : function(mode) {
@@ -528,15 +821,17 @@ HeaderInfoLive.prototype =
   observe : function(name, request, response, postData)
   {
     if (this.isCapturing) {
-      var oldrows = this.rows;
-      this.addRow(name, this.URL);
-      this.addRow("", this.SPACE);
+      var oldrows = this.rowCount;
+      this.addRow(name + "\r\n", this.URL);
+      this.addRow("\r\n", this.SPACE);
       var flag = false;
       for (i in request) {
-          this.addRow((flag? i+": " : "") + request[i], this.REQUEST);
+          this.addRow((flag? i+": " : "") + request[i] + "\r\n", this.REQUEST);
           flag=true;
       }
       if (postData) {
+        this.t = postData.seekablestream;	//DSMT: REPLAY
+        //this.c = request["CACHE"];
         var size, mode;
         switch (this.mode) {
           case 0: mode=0; size=0; break;	//Don't get any content
@@ -545,18 +840,18 @@ HeaderInfoLive.prototype =
           case 3: mode=2; size=1024; break;	//Only get 1024 bytes of content
         }
         postData.setMode(mode);
-        var data = postData.getPostBody(size).split("\r\n");
+        var data = postData.getPostBody(size).match(/^.*(\r\n|\r|\n)?/mg); // "\r\n"
         for (i in data) {
           this.addRow(data[i], this.POSTDATA);
         }
       }
-      this.addRow("", this.SPACE);
+      this.addRow("\r\n", this.SPACE);
       flag = false;
       for (i in response) {
-        this.addRow((flag ? i+": " : "") + response[i], this.RESPONSE);
+        this.addRow((flag ? i+": " : "") + response[i] + "\r\n", this.RESPONSE);
         flag=true;
       }
-      this.addRow(null, this.SEPARATOR); // Separator
+      this.addRow("", this.SEPARATOR); // Separator
       this.rowCountChanged(oldrows,this.rows);
     }
   }
@@ -568,4 +863,3 @@ addEventListener("unload", Destruct, false);
 //dumpall("Window",window,5);
 //dumpall("WebNavigation",window.getWebNavigation(),5);
 //dumpall("Browser",window.getBrowser(),5);
-

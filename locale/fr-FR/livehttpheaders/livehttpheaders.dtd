@@ -5,15 +5,29 @@
 <!ENTITY livehttpheaders.headers.name		"Nom" >
 <!ENTITY livehttpheaders.headers.value		"Valeur" >
 
+<!ENTITY livehttpheaders.menu.file              "Fichier" >
+<!ENTITY livehttpheaders.menu.close             "Fermer" >
+<!ENTITY livehttpheaders.menu.saveselection     "Enregistrer la selection" >
+<!ENTITY livehttpheaders.menu.saveall           "Enregistrer tout" >
+<!ENTITY livehttpheaders.menu.edit              "Edition" >
+<!ENTITY livehttpheaders.menu.copy              "Copier" >
+<!ENTITY livehttpheaders.menu.selectall         "Selectionner Tout" >
+<!ENTITY livehttpheaders.menu.view              "Affichage" >
+<!ENTITY livehttpheaders.menu.post              "Données Post" >
+
 <!ENTITY livehttpheaders.live.title		"Entêtes HTTP en direct" >
 <!ENTITY livehttpheaders.live.headers		"Entêtes HTTP" >
-<!ENTITY livehttpheaders.live.clear		"Effacer" >
+<!ENTITY livehttpheaders.live.clear		"Effacer tout" >
 <!ENTITY livehttpheaders.live.close		"Fermer" >
 <!ENTITY livehttpheaders.live.capture		"Capturer" >
 <!ENTITY livehttpheaders.live.copy		"Copier" >
+<!ENTITY livehttpheaders.live.selectblock	"Sélectioner le bloc" >
 <!ENTITY livehttpheaders.live.selectall		"Sélectioner Tout" >
+<!ENTITY livehttpheaders.live.saveall           "Enregistrer tout" >
+<!ENTITY livehttpheaders.live.replay            "Rejouer" >
 
-<!ENTITY livehttpheaders.live.post		"Configure l'affichage des données POST" >
+<!ENTITY livehttpheaders.live.post		"POST:" >
+<!ENTITY livehttpheaders.live.post.tips		"Configure l'affichage des données POST" >
 <!ENTITY livehttpheaders.live.post.none		"aucun" >
 <!ENTITY livehttpheaders.live.post.none.tips	"Ne pas afficher les données POST" >
 <!ENTITY livehttpheaders.live.post.fast		"rapide" >
@@ -22,3 +36,11 @@
 <!ENTITY livehttpheaders.live.post.slow.tips	"Afficher les données avec un code lent mais qui fonctionne dans tous les cas." >
 <!ENTITY livehttpheaders.live.post.max1k	"max 1K" >
 <!ENTITY livehttpheaders.live.post.max1k.tips	"Identique au choix 'fiable' mais n'affiche que le premier kilo-octet de données" >
+
+<!ENTITY livehttpheaders.replay.title           "Live HTTP Replay" >
+<!ENTITY livehttpheaders.replay.method          "Méthode" >
+<!ENTITY livehttpheaders.replay.url             "URL" >
+<!ENTITY livehttpheaders.replay.version         "Version" >
+<!ENTITY livehttpheaders.replay.headers         "Entêtes HTTP" >
+<!ENTITY livehttpheaders.replay.post            "Envoyer du contenu POST ?" >
+

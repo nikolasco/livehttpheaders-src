@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<!-- 
+  **** BEGIN LICENSE BLOCK ****
+  Copyright(c) 2002-2003 Daniel Savard.
+
+  LiveHTTPHeaders: this programs have two purpose
+  - Add a tab in PageInfo to show http headers sent and received 
+  - Add a tool that display http headers in real time while loading pages
+
+  This program is free software; you can redistribute it and/or modify it under
+  the terms of the GNU General Public License as published by the Free
+  Software Foundation; either version 2 of the License, or (at your option) 
+  any later version.
+
+  This program is distributed in the hope that it will be useful, but 
+  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
+  or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for 
+  more details.
+  
+  You should have received a copy of the GNU General Public License along with
+  this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+  Place, Suite 330, Boston, MA 02111-1307 USA
+  **** END LICENSE BLOC ****
+-->
+
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+<?xml-stylesheet href="chrome://livehttpheaders/skin/livehttpheaders.css" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://livehttpheaders/locale/livehttpheaders.dtd" >
+<window title="&livehttpheaders.replay.title;"
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  width="600"
+  height="500"
+  onload="init()">
+<script type="application/x-javascript" src="chrome://global/content/dialogOverlay.js" />
+<script type="application/x-javascript" src="chrome://livehttpheaders/content/LiveHTTPReplay.js" />
+
+  <popupset>
+    <popup id="headerinfo-context">
+      <menuitem label="&livehttpheaders.live.copy;"
+                oncommand="oHeaderInfoLive.copy();" />
+      <menuitem label="&livehttpheaders.live.selectblock;"
+                oncommand="oHeaderInfoLive.selectBlock();" />
+      <menuitem label="&livehttpheaders.live.selectall;"
+                oncommand="oHeaderInfoLive.selectAll();" />
+      <menuseparator/>
+    </popup>
+  </popupset>
+  <broadcasterset>
+    <broadcaster id="sendpost"/>
+  </broadcasterset>
+
+  <vbox flex="1" align="stretch">
+    <vbox flex="0">
+      <hbox flex="1">
+        <menulist id="livehttpheaders.replay.method" editable="false" disabled="true">
+          <menupopup>
+            <menuitem value="GET" label="GET"/>
+            <menuitem value="POST" label="POST"/>
+          </menupopup>
+        </menulist>
+        <textbox id="livehttpheaders.replay.url" multiline="false" rows="1" flex="1" />
+        <menulist id="livehttpheaders.replay.version" disabled="true">
+          <menupopup>
+            <menuitem value="1.1" label="HTTP/1.1"/>
+            <menuitem value="1.0" label="HTTP/1.0"/>
+          </menupopup>
+        </menulist>
+      </hbox>
+    </vbox>
+    <vbox flex="1">
+      <label control="livehttpheaders.replay.headers"
+             value="&livehttpheaders.replay.headers;" />
+      <textbox id="livehttpheaders.replay.headers" multiline="true" 
+               wrap="false" flex="1" size="80" />
+    </vbox>
+    <groupbox flex="1">
+      <caption>
+        <checkbox checked="false" id="livehttpheaders.replay.sendpost"
+                  label="&livehttpheaders.replay.post;" flex="0" 
+                  oncommand="updatePost();" />
+      </caption>
+      <textbox id="livehttpheaders.replay.post" multiline="true" 
+               nowrap="true" flex="1" >
+        <observes element="sendpost" attribute="disabled"/>
+      </textbox>
+      <hbox>
+        <label multiline="false" flex="0" value="Content-Length: "
+               observes="sendpost" /> 
+        <label id="livehttpheaders.replay.contentlength" observes="sendpost"
+               multiline="false" flex="0" value="0" />
+      </hbox>
+    </groupbox>
+    <vbox flex="0">
+      <hbox flex="1" align="right">
+        <button label="&livehttpheaders.live.replay;"
+                oncommand="play();" />
+        <button label="&livehttpheaders.live.close;"
+                oncommand="window.close()" />
+      </hbox>
+    </vbox>
+  </vbox>
+</window>

@@ -5,15 +5,29 @@
 <!ENTITY livehttpheaders.headers.name		"Name" >
 <!ENTITY livehttpheaders.headers.value		"Value" >
 
+<!ENTITY livehttpheaders.menu.file		"File" >
+<!ENTITY livehttpheaders.menu.close		"Close" >
+<!ENTITY livehttpheaders.menu.saveselection	"Save Selection" >
+<!ENTITY livehttpheaders.menu.saveall		"Save All" >
+<!ENTITY livehttpheaders.menu.edit		"Edit" >
+<!ENTITY livehttpheaders.menu.copy		"Copy" >
+<!ENTITY livehttpheaders.menu.selectall		"Select All" >
+<!ENTITY livehttpheaders.menu.view		"View" >
+<!ENTITY livehttpheaders.menu.post		"Post Data" >
+
 <!ENTITY livehttpheaders.live.title		"Live HTTP headers" >
-<!ENTITY livehttpheaders.live.headers		"HTTP headers" >
-<!ENTITY livehttpheaders.live.clear		"Clear" >
+<!ENTITY livehttpheaders.live.headers		"HTTP Headers" >
+<!ENTITY livehttpheaders.live.clear		"Delete All" >
 <!ENTITY livehttpheaders.live.close		"Close" >
 <!ENTITY livehttpheaders.live.capture		"Capture" >
 <!ENTITY livehttpheaders.live.copy		"Copy" >
+<!ENTITY livehttpheaders.live.selectblock	"Select Block" >
 <!ENTITY livehttpheaders.live.selectall		"Select All" >
+<!ENTITY livehttpheaders.live.saveall		"Save All" >
+<!ENTITY livehttpheaders.live.replay		"Replay" >
 
-<!ENTITY livehttpheaders.live.post		"Configure POST content display" >
+<!ENTITY livehttpheaders.live.post		"POST:" >
+<!ENTITY livehttpheaders.live.post.tips		"Configure POST content display" >
 <!ENTITY livehttpheaders.live.post.none		"none" >
 <!ENTITY livehttpheaders.live.post.none.tips	"Don't show any POST content" >
 <!ENTITY livehttpheaders.live.post.fast		"fast" >
@@ -22,4 +36,9 @@
 <!ENTITY livehttpheaders.live.post.slow.tips	"Slow but works with file upload." >
 <!ENTITY livehttpheaders.live.post.max1k	"max 1k" >
 <!ENTITY livehttpheaders.live.post.max1k.tips	"Slow but will only get the first 1k of POST content" >
+
+<!ENTITY livehttpheaders.replay.title		"Live HTTP Replay" >
+<!ENTITY livehttpheaders.replay.url		"URL" >
+<!ENTITY livehttpheaders.replay.headers		"HTTP Headers" >
+<!ENTITY livehttpheaders.replay.post		"Send POST Content ?" >
 
