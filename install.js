@@ -1,7 +1,7 @@
 const X_MSG = 	   "Install Live HTTP Header";
 const X_NAME =     "/livehttpheaders";
 const X_NAME_COM = "/livehttpheaders_com";
-const X_VER  =     "0.6";
+const X_VER  =     "0.7";
 const X_JAR_FILE = "livehttpheaders.jar";
 const X_COM_FILE = "nsHeaderInfo.js";
 
@@ -23,6 +23,11 @@ if (err == SUCCESS || err == REBOOT_NEEDED) {
   addFile(X_NAME_COM, X_COM_FILE, getFolder(X_COMPONENTS), "");
 }
 if (err == SUCCESS || err == REBOOT_NEEDED) {
+  var iconfolder = getFolder(getFolder(X_CHROME,"icons"), "default");
+  addFile(X_NAME, "LiveHTTPHeaders.xpm", iconfolder, "");
+  addFile(X_NAME, "LiveHTTPHeaders.ico", iconfolder, "");
+}
+if (err == SUCCESS || err == REBOOT_NEEDED) {
   registerChrome(DELAYED_CHROME | CONTENT, getFolder(X_CHROME, X_JAR_FILE), X_CONTENT);
   registerChrome(DELAYED_CHROME | SKIN, getFolder(X_CHROME, X_JAR_FILE), X_SKIN);
   registerChrome(DELAYED_CHROME | LOCALE, getFolder(X_CHROME, X_JAR_FILE), X_LOCALE1);
@@ -40,7 +45,7 @@ if (err == SUCCESS || err == REBOOT_NEEDED) {
 } else {
   cancelInstall();
   if (err == -202) {
-    alert("You need to have write permissions to the chrome directory:\n" + 
+    alert("You need to have write permissions to the chrome directory and subfolders:\n" + 
           getFolder(X_CHROME) + " and to the components directory:\n" +
           getFolder(X_COMPONENTS));
   } else if (err == -210) {

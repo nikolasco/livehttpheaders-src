@@ -34,6 +34,7 @@
 	 oncommand="makeHeaderInfoTab()"/>
   </tabs>
   <tabpanels id="tabpanels">
+  <deck id="headerinfoDeck" selectedIndex="0">
     <vbox id="headerinfoPanel" flex="1">
       <text id="headerinfo-request" class="header" 
             value="&livehttpheaders.pageinfo.request;"/>
@@ -93,5 +94,9 @@
 
       </hbox>
     </vbox>
+    <vbox id="headerinfoCNR" hidden="true">
+      <iframe flex="1" src="chrome://livehttpheaders/locale/registerComponent.html" />
+    </vbox>
+  </deck>
   </tabpanels>
 </overlay>

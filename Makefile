@@ -20,12 +20,16 @@ jar:
         ${LOCALE}/livehttpheaders.dtd \
         ${LOCALE}/livehttpheaders.properties \
         ${SKIN}/contents.rdf \
-        ${SKIN}/livehttpheaders.css
+        ${SKIN}/livehttpheaders.css \
+        ${SKIN}/favicon.ico \
+        ${SKIN}/img/*
 
 xpi:
 	zip -j livehttpheaders.xpi \
 	livehttpheaders.jar \
 	${CONTENT}/nsHeaderInfo.js \
+        ${SKIN}/LiveHTTPHeaders.ico \
+        ${SKIN}/LiveHTTPHeaders.xpm \
 	install.js \
 	TODO.txt
 

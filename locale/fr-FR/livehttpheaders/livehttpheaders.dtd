@@ -9,11 +9,16 @@
 <!ENTITY livehttpheaders.menu.post              "Données POST" >
 
 <!ENTITY livehttpheaders.tabs.headers           "Entêtes" >
+<!ENTITY livehttpheaders.tabs.config            "Configuration" >
 <!ENTITY livehttpheaders.tabs.about             "A propos" >
+
+<!ENTITY livehttpheaders.config.usetab          "Ouvrir LiveHTTPHeaders dans un onglet">
+<!ENTITY livehttpheaders.config.usestyle        "Utiliser la feuille de style">
+<!ENTITY livehttpheaders.config.post		"POST:" >
 
 <!ENTITY livehttpheaders.about.version          "Information sur la version" >
 <!ENTITY livehttpheaders.about.versiontext	"LiveHTTPHeaders version " >
-<!ENTITY livehttpheaders.about.currentversion	"0.6" >
+<!ENTITY livehttpheaders.about.currentversion	"0.7" >
 <!ENTITY livehttpheaders.about.checkforupdate   "Vérifier s'il existe une nouvelle version" >
 <!ENTITY livehttpheaders.about.homepage         "Page principale" >
 <!ENTITY livehttpheaders.about.homepageurl      "http://livehttpheaders.mozdev.org" >
@@ -31,8 +36,8 @@
 <!ENTITY livehttpheaders.live.selectall		"Sélectionner tout" >
 <!ENTITY livehttpheaders.live.saveall           "Enregistrer tout..." >
 <!ENTITY livehttpheaders.live.replay            "Rejouer..." >
+<!ENTITY livehttpheaders.live.replay.tips       "Cliquer sur un URL afin de pouvoir le rejouer..." >
 
-<!ENTITY livehttpheaders.live.post		"POST:" >
 <!ENTITY livehttpheaders.live.post.tips		"Configure l'affichage des données POST" >
 <!ENTITY livehttpheaders.live.post.none		"aucun" >
 <!ENTITY livehttpheaders.live.post.none.tips	"Ne pas afficher les données POST" >

@@ -25,18 +25,48 @@
 
 <!DOCTYPE overlay SYSTEM "chrome://livehttpheaders/locale/livehttpheaders.dtd">
 <overlay id="headerinfoTasksOverlay"
+    xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <html:script>
+    <![CDATA[
+      function getBoolPref(name, value) {
+        try {
+          var pref = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
+          pref = pref.getBranch("extensions.livehttpheaders.");
+          if (pref.prefHasUserValue(name)) {
+            value = pref.getBoolPref(name);
+          } else {
+            pref.setBoolPref(name, value);
+          }
+        } catch (ex) { alert(ex); }
+        return value;
+      }
+      function openLiveHTTPHeaders() {
+        var usetab = getBoolPref("tab", false);
+        if (!gInPrintPreviewMode && usetab) {
+          // Open LiveHTTPHeaders in a new tab
+          gBrowser.selectedTab = gBrowser.addTab('chrome://livehttpheaders/content/LiveHTTPHeaders.xul');
+          setTimeout("gURLBar.focus();", 0);
+          gBrowser.selectedTab.setAttribute("image", "chrome://livehttpheaders/skin/favicon.ico");
+        } else {
+          // Open LiveHTTPHeaders in a global window
+          toOpenWindowByType('global:LiveHTTPHeaders', 
+                   'chrome://livehttpheaders/content/LiveHTTPHeaders.xul');
+        }
+      }
+    ]]>
+  </html:script>
+
   <menupopup id="toolsPopup">
     <menuitem label="&livehttpheaders.live.title;" 
-              oncommand="toOpenWindowByType('global:LiveHTTPHeaders', 
-                              'chrome://livehttpheaders/content/LiveHTTPHeaders.xul');" />
+              oncommand="openLiveHTTPHeaders();" />
   </menupopup>
 
   <!-- Phoenix XUL -->
   <menupopup id="menu_ToolsPopup">
     <menuitem label="&livehttpheaders.live.title;" 
-              oncommand="toOpenWindowByType('global:LiveHTTPHeaders', 
-                              'chrome://livehttpheaders/content/LiveHTTPHeaders.xul');" />
+              oncommand="openLiveHTTPHeaders();" />
   </menupopup>
 </overlay>
 

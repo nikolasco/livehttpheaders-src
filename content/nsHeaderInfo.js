@@ -106,10 +106,24 @@ var nsHeaderInfo = {
   },
 
     observe: function(aSubject, aTopic, aData) {
-      if (aTopic == 'app-startup') {
-        var netModuleMgr = Components.classes["@mozilla.org/network/net-extern-mod;1"].getService(Components.interfaces.nsINetModuleMgr);
-        netModuleMgr.registerModule("@mozilla.org/network/moduleMgr/http/request;1", nsHeaderInfo);
-        //netModuleMgr.registerModule("@mozilla.org/network/moduleMgr/http/response;1", nsHeaderInfo);
+      if (aTopic == 'http-on-modify-request') {
+        aSubject.QueryInterface(Components.interfaces.nsIHttpChannel);
+        this.onModifyRequest(aSubject);
+      //} else if (aTopic == 'http-on-examine-response') {
+      //  aSubject.QueryInterface(Components.interfaces.nsIHttpChannel);
+      //  this.onExamineResponse(aSubject);
+      } else if (aTopic == 'app-startup') {
+        if ('nsINetModuleMgr' in Components.interfaces) {
+	  // Should be an old version of Mozilla (before september 15, 2003
+          var netModuleMgr = Components.classes["@mozilla.org/network/net-extern-mod;1"].getService(Components.interfaces.nsINetModuleMgr);
+          netModuleMgr.registerModule("@mozilla.org/network/moduleMgr/http/request;1", nsHeaderInfo);
+          //netModuleMgr.registerModule("@mozilla.org/network/moduleMgr/http/response;1", nsHeaderInfo);
+	} else {
+	  // Should be a new version of  Mozilla (after september 15, 2003)
+          var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
+          observerService.addObserver(nsHeaderInfo, "http-on-modify-request", false);
+          //observerService.addObserver(nsHeaderInfo, "http-on-examine-response", false);
+	}
         
         // Initialisation of all needed vars 
         this.observers = new Array();
@@ -120,15 +134,16 @@ var nsHeaderInfo = {
     },
    
     GetWeakReference : function () {
-       dump("GetWeakReference called!!!\n");
+       dump("nsHeaderInfo: GetWeakReference called!!!\n");
     },
- 
+
     QueryInterface: function(iid) {
         if (!iid.equals(Components.interfaces.nsISupports) &&
             !iid.equals(Components.interfaces.nsISupportsWeakReference) &&
+            //!iid.equals(Components.interfaces.nsIWeakReference) &&
             !iid.equals(Components.interfaces.nsIWebProgressListener) &&
             !iid.equals(Components.interfaces.nsIHttpNotify)) {
-            dump("nsHeaderInfo: QI unknown interface: " + iid + "\n");
+            //dump("nsHeaderInfo: QI unknown interface: " + iid + "\n");
             throw Components.results.NS_ERROR_NO_INTERFACE;
         }
         return this;
@@ -169,22 +184,44 @@ HeaderInfoVisitor.prototype =
       }
     } catch (ex) {}
   },
+  getHttpResponseVersion: function ()
+  {
+    var version = "1.z"; // Default value
+    // Check if this is Mozilla v1.5a and more
+    try {
+      var maj = new Object();
+      var min = new Object();
+      this.oHttp.QueryInterface(Components.interfaces.nsIHttpChannelInternal);
+      this.oHttp.getResponseVersion(maj,min);
+      version = "" + maj.value + "."+ min.value;
+    } catch (ex) {}
+    return version;
+  },
   getHttpRequestVersion: function (httpProxy)
   {
-    var version = "1.0"; // Default value for direct HTTP and proxy HTTP
+    var version = "1.x"; // Default value for direct HTTP and proxy HTTP
+    // Check if this is Mozilla v1.5a and more
     try {
-      // This code is based on netwerk/protocol/http/src/nsHttpHandler.cpp (PrefsChanged)
-      var pref = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
-      pref = pref.getBranch("");
-      // Now, get the value of the HTTP version fields
-      if (httpProxy) {
-        var tmp = pref.getCharPref("network.http.proxy.version");
-        if (tmp == "1.1") version = tmp;
-      } else {
-        var tmp = pref.getCharPref("network.http.version");
-        if (tmp == "1.1" || tmp == "0.9") version = tmp;
-      }
-    } catch (ex) {}
+      var maj = new Object();
+      var min = new Object();
+      this.oHttp.QueryInterface(Components.interfaces.nsIHttpChannelInternal);
+      this.oHttp.getRequestVersion(maj,min);
+      version = "" + maj.value + "."+ min.value;
+    } catch (ex) {
+      try {
+        // This code is based on netwerk/protocol/http/src/nsHttpHandler.cpp (PrefsChanged)
+        var pref = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
+        pref = pref.getBranch("");
+        // Now, get the value of the HTTP version fields
+        if (httpProxy) {
+          var tmp = pref.getCharPref("network.http.proxy.version");
+          if (tmp == "1.1") version = tmp;
+        } else {
+          var tmp = pref.getCharPref("network.http.version");
+          if (tmp == "1.1" || tmp == "0.9") version = tmp;
+        }
+      } catch (ex) {}
+    }
     return version;
   },
   useHttpProxy : function (uri)
@@ -251,7 +288,9 @@ HeaderInfoVisitor.prototype =
             visitor.visitHeader(tmp[0],tmp[1]);
             line = this.readLine(stream);
           }
-        } catch (ex) {}
+        } catch (ex) {} 
+        // Need to close the stream after use
+        finally { this.oHttp.uploadStream.close(); stream.close(); }
       }
     } catch (e) {}
   },
@@ -273,10 +312,10 @@ HeaderInfoVisitor.prototype =
       // If an http proxy is used for this url, we need to keep the host part
       this.headers.isFromProxy = this.useHttpProxy(this.oHttp.URI);
       if (this.headers.isFromProxy) {
-        uri = url.match(/^(.*\/\/[^\/]+\/[^#]*)/)[1];
+        uri = url.match(/^(.*?\/\/[^\/]+\/[^#]*)/)[1];
         ver = this.getHttpRequestVersion(true);
       } else {
-        uri = url.match(/^.*\/\/[^\/]+(\/[^#]*)/)[1];
+        uri = url.match(/^.*?\/\/[^\/]+(\/[^#]*)/)[1];
         ver = this.getHttpRequestVersion(false);
       }
     } catch (ex) {
@@ -291,8 +330,9 @@ HeaderInfoVisitor.prototype =
   },
   visitResponse : function ()
   {
+    var ver = this.getHttpResponseVersion();
     this.theaders = new Array();
-    this.headers.response = "HTTP/1.x " + this.oHttp.responseStatus + " " + this.oHttp.responseStatusText;
+    this.headers.response = "HTTP/" + ver + " " + this.oHttp.responseStatus + " " + this.oHttp.responseStatusText;
     this.oHttp.visitResponseHeaders(this);
     this.headers.responseHeaders = this.theaders;
 
@@ -314,22 +354,24 @@ HeaderInfoVisitor.prototype =
 var nsHeaderInfoModule = {
     firstTime : true,
     registerSelf: function(compMgr, fileSpec, location, type) {
-        if (this.firstTime) {
-            this.firstTime = false;
-            throw Components.results.NS_ERROR_FACTORY_REGISTER_AGAIN;
-        }
-        var compMgr = compMgr.QueryInterface(Components.interfaces.nsIComponentRegistrar);
-        compMgr.registerFactoryLocation(HEADERINFO_CID, 
-                                        "nsHeaderInfo JS component", 
-                                        HEADERINFO_CONTRACTID, 
-                                        fileSpec, location, type);
+      dump("nsHeaderInfo: registerSelf called!\n");
+      if (this.firstTime) {
+        this.firstTime = false;
+        throw Components.results.NS_ERROR_FACTORY_REGISTER_AGAIN;
+      }
+      var compMgr = compMgr.QueryInterface(Components.interfaces.nsIComponentRegistrar);
+      compMgr.registerFactoryLocation(HEADERINFO_CID, 
+                                      "nsHeaderInfo JS component", 
+                                      HEADERINFO_CONTRACTID, 
+                                      fileSpec, location, type);
 
-        var catman = Components.classes[CATMAN_CONTRACTID].getService(Components.interfaces.nsICategoryManager);
-        catman.addCategoryEntry("app-startup", "HeaderInfo",
-                            HEADERINFO_CONTRACTID,true, true);
+      var catman = Components.classes[CATMAN_CONTRACTID].getService(Components.interfaces.nsICategoryManager);
+      catman.addCategoryEntry("app-startup", "HeaderInfo",
+                              HEADERINFO_CONTRACTID,true, true);
     },
 
     unregisterSelf: function(compMgr, fileSpec, location) {
+      // Remove the auto-startup
       var compMgr = compMgr.QueryInterface(Components.interfaces.nsIComponentRegistrar);
 
       compMgr.unregisterFactoryLocation(HEADERINFO_CID, fileSpec);

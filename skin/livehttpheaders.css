@@ -1,5 +1,128 @@
-treechildren:-moz-tree-cell(postData)
-{
-  background-color: window;
+/*-------------------------------------------------------*/
+
+/* The URL line (first line of each block) */
+treechildren:-moz-tree-cell(URL) {
+  background-image: url(img/URL.png); 
+  background-color: #DFE7EA;
+  padding-left: 14px;
 }
+
+/* The empty line between the URL and the request */
+treechildren:-moz-tree-cell(SpaceRequest) {
+  background-image: url(img/SpaceRequest.png);
+}
+
+/*-------------------------------------------------------*/
+
+/* If the request is consist of only one line (very rare) */
+treechildren:-moz-tree-cell(SingleRequest) {
+  background-color: #DFE7EA;
+}
+
+/* The first line of a multi line request */
+treechildren:-moz-tree-cell(FirstRequest) { 
+  background-color: #DFE7EA;
+}
+
+/* The middles lines of a multi line request */
+treechildren:-moz-tree-cell(MidRequest) { 
+  background-color: #DFE7EA;
+  padding-left: 14px;
+}
+
+/* The last line of a multi line request */
+treechildren:-moz-tree-cell(LastRequest) {
+  background-color: #DFE7EA;
+  padding-left: 14px;
+}
+
+/* Arrow for request */
+treechildren:-moz-tree-image(FirstRequest) {
+  list-style-image: url("chrome://livehttpheaders/skin/img/ArrowRight.png") !important;
+}
+treechildren:-moz-tree-image(SingleRequest) {
+  list-style-image: url("chrome://livehttpheaders/skin/img/ArrowRight.png") !important;
+}
+
+/*-------------------------------------------------------*/
+
+/* If the post data consist of only one line (normal post data) */
+treechildren:-moz-tree-cell(SinglePostData) {
+  background-color: #CAD2D5;
+  background-image: url(img/SinglePostData.png);
+}
+
+/* The first line of a multi line post data (mostly file upload) */
+treechildren:-moz-tree-cell(FirstPostData) {
+  background-color: #CAD2D5;
+  background-image: url(img/FirstPostData.png);
+}
+
+/* The middle lines of a multi line post data (mostly file upload) */
+treechildren:-moz-tree-cell(MidPostData) {
+  background-color: #CAD2D5;
+}
+
+/* The last line of a multi line post data (mostly file upload) */
+treechildren:-moz-tree-cell(LastPostData) {
+  background-color: #CAD2D5;
+  background-image: url(img/LastPostData.png);
+}
+
+/*-------------------------------------------------------*/
+
+/* The empty line between the request and the response */
+treechildren:-moz-tree-cell(SpaceResponse) {
+  background-image: url(img/SpaceResponse.png);
+  background-color: #E6EDFA;
+}
+
+/* If the response is consist of only one line (impossible ?) */
+treechildren:-moz-tree-cell(SingleResponse) {
+  background-color: #E6EDFA;
+}
+
+/* The first line of a multi line response */
+treechildren:-moz-tree-cell(FirstResponse) {
+  background-color: #E6EDFA;
+}
+
+/* The middles lines of a multi line response */
+treechildren:-moz-tree-cell(MidResponse) {
+  background-color: #E6EDFA;
+  padding-left: 14px;
+}
+
+/* The last line of a multi line response */
+treechildren:-moz-tree-cell(LastResponse) {
+  background-color: #E6EDFA;
+  padding-left: 14px;
+}
+
+/* Arrow for response */
+treechildren:-moz-tree-image(FirstResponse) {
+  list-style-image: url("chrome://livehttpheaders/skin/img/ArrowLeft.png") !important;
+}
+treechildren:-moz-tree-image(SingleResponse) {
+  list-style-image: url("chrome://livehttpheaders/skin/img/ArrowLeft.png") !important;
+}
+/*-------------------------------------------------------*/
+
+/* The separator line */
+treechildren:-moz-tree-cell(Separator) {
+  background-image: url(img/Separator.png);
+}
+
+/*-------------------------------------------------------*/
+
+/* Logo */
+.logo {
+  background-image: url(img/Logo.png);
+  background-repeat: no-repeat;
+}
+
+/*-------------------------------------------------------*/
+
+/* This is to suppress the space between each row */
+treechildren:-moz-tree-row {border: 0px solid;}
 

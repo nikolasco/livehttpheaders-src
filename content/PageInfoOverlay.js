@@ -22,47 +22,53 @@
 
 function makeHeaderInfoTab() {
   // Look to see if the minimum requirement is there
-  if (theDocument && theDocument.defaultView && theDocument.defaultView.headers) {
-    const headers = theDocument.defaultView.headers;
+  if (theDocument && theDocument.defaultView) {
+    if (theDocument.defaultView.headers) {
+      const headers = theDocument.defaultView.headers;
 
-    //dumpall("theWindow",theWindow,2);
-    //dumpall("theDocument",theDocument,2);
-    //dumpall("opener",window.opener,2);
+      //dumpall("theWindow",theWindow,2);
+      //dumpall("theDocument",theDocument,2);
+      //dumpall("opener",window.opener,2);
 
-    // Get references to the trees to populate
-    var requestheaders = new pageInfoTreeView(["headerinfo-request-name","headerinfo-request-value"], COPYCOL_META_CONTENT);
-    var responseheaders = new pageInfoTreeView(["headerinfo-response-name","headerinfo-response-value"], COPYCOL_META_CONTENT);
-    var requestTree = document.getElementById("headerinfo-request-tree");
-    var responseTree = document.getElementById("headerinfo-response-tree");
+      // Get references to the trees to populate
+      var requestheaders = new pageInfoTreeView(["headerinfo-request-name","headerinfo-request-value"], COPYCOL_META_CONTENT);
+      var responseheaders = new pageInfoTreeView(["headerinfo-response-name","headerinfo-response-value"], COPYCOL_META_CONTENT);
+      var requestTree = document.getElementById("headerinfo-request-tree");
+      var responseTree = document.getElementById("headerinfo-response-tree");
   
-    requestTree.treeBoxObject.view = requestheaders;
-    responseTree.treeBoxObject.view = responseheaders;
+      requestTree.treeBoxObject.view = requestheaders;
+      responseTree.treeBoxObject.view = responseheaders;
 
-    // Show source of the requests
-    var source = (headers.isFromCache ? "fromcache" : "fromnetwork");
-    source = document.getElementById("headerinfo-request-" + source);
-    source.hidden = false;
+      // Show source of the requests
+      var source = (headers.isFromCache ? "fromcache" : "fromnetwork");
+      source = document.getElementById("headerinfo-request-" + source);
+      source.hidden = false;
 
-    // Populate the trees
-    var i;
-    requestheaders.addRow(["REQUEST",headers.request]);
-    for (i in headers.requestHeaders) {
-      requestheaders.addRow([i,headers.requestHeaders[i]]);
-    }
-    requestheaders.rowCountChanged(0, length);
-    requestheaders.enablehScroll("headerinfo-request-scroll","headerinfo-request-value");
-
-    responseheaders.addRow(["RESPONSE", headers.response]);
-    for (i in headers.responseHeaders) {
-      // Server can send some headers multiple times...  
-      // Try to detect this and present them in the 'good' way.
-      var multi = headers.responseHeaders[i].split('\n');
-      for (var o in multi) {
-        responseheaders.addRow([i, multi[o]]);
+      // Populate the trees
+      var i;
+      requestheaders.addRow(["REQUEST",headers.request]);
+      for (i in headers.requestHeaders) {
+        requestheaders.addRow([i,headers.requestHeaders[i]]);
       }
+      requestheaders.rowCountChanged(0, length);
+      requestheaders.enablehScroll("headerinfo-request-scroll","headerinfo-request-value");
+
+      responseheaders.addRow(["RESPONSE", headers.response]);
+      for (i in headers.responseHeaders) {
+        // Server can send some headers multiple times...  
+        // Try to detect this and present them in the 'good' way.
+        var multi = headers.responseHeaders[i].split('\n');
+        for (var o in multi) {
+         responseheaders.addRow([i, multi[o]]);
+        }
+      }
+      responseheaders.rowCountChanged(0, length);
+      responseheaders.enablehScroll("headerinfo-response-scroll","headerinfo-response-value");
+    } else {
+      // If we are here, it must be because the nsHeaderInfo component wasn't registered
+      document.getElementById("headerinfoCNR").hidden = false;
+      document.getElementById("headerinfoDeck").selectedIndex = 1;
     }
-    responseheaders.rowCountChanged(0, length);
-    responseheaders.enablehScroll("headerinfo-response-scroll","headerinfo-response-value");
   }
 }
 

@@ -27,10 +27,11 @@
 <?xml-stylesheet href="chrome://livehttpheaders/skin/livehttpheaders.css" type="text/css"?>
 <!DOCTYPE window SYSTEM "chrome://livehttpheaders/locale/livehttpheaders.dtd" >
 <window title="&livehttpheaders.live.title;"
+  id="LiveHTTPHeaders"
   windowtype="global:LiveHTTPHeaders"
   xmlns:html="http://www.w3.org/1999/xhtml"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-  width="600"
+  width="750"
   height="500"
   onload="startHeaderInfoLive()"
   onunload="stopHeaderInfoLive()">
@@ -38,36 +39,49 @@
 <script type="application/x-javascript" src="chrome://livehttpheaders/content/LiveHTTPHeaders.js" />
 <script type="application/x-javascript" src="chrome://livehttpheaders/content/headerinfo.js" />
 
+<html:LINK REL="SHORTCUT ICON" HREF="chrome://livehttpheaders/content/favicon.ico" />
+
   <popupset>
     <popup id="headerinfo-context">
       <menuitem label="&livehttpheaders.live.copy;"
+                observes="datapresent"
                 oncommand="oHeaderInfoLive.copy();" />
       <menuitem label="&livehttpheaders.live.selectblock;"
+                observes="datapresent"
                 oncommand="oHeaderInfoLive.selectBlock();" />
       <menuitem label="&livehttpheaders.live.selectall;"
+                observes="datapresent"
                 oncommand="oHeaderInfoLive.selectAll();" />
       <menuseparator/>
       <menuitem label="&livehttpheaders.menu.saveselection;"
+                observes="datapresent"
                 oncommand="oHeaderInfoLive.saveSelection();" />
       <menuitem label="&livehttpheaders.menu.saveall;"
+                observes="datapresent"
                 oncommand="oHeaderInfoLive.saveAll();" />
       <menuseparator/>
       <menuitem label="&livehttpheaders.live.clear;"
+                observes="datapresent"
                 oncommand="oHeaderInfoLive.clear();" />
     </popup>
   </popupset>
 
+  <broadcasterset>
+    <broadcaster id="datapresent" disabled="true" />
+  </broadcasterset>
+
 <tabbox flex="1">
   <tabs id="tabs">
     <tab id="livehttpheaders-live-tab" label="&livehttpheaders.tabs.headers;" />
+    <tab id="livehttpheaders-conf-tab" label="&livehttpheaders.tabs.config;" />
     <tab id="livehttpheaders-about-tab" label="&livehttpheaders.tabs.about;" />
   </tabs>
 <tabpanels id="tabpanels" flex="1">
   <!-- LiveHTTPHeaders -->
   <tabpanel>
-  <vbox flex="1">
+  <vbox flex="1" id="livehttpheaders-live-tab-box">
     <separator class="thin"/>
-      <tree id="headerinfo-dump" flex="1" class="inset" seltype="multiple"
+      <tree id="headerinfo-dump" flex="1" aclass="inset" seltype="multiple"
             hidecolumnpicker="true" context="headerinfo-context"
             onselect="oHeaderInfoLive.onselect();">
         <treecols>
@@ -81,21 +95,34 @@
                  orient="horizontal" />
       
     <hbox align="right" valign="middle">
-      <button label="&livehttpheaders.live.saveall;"
-              oncommand="oHeaderInfoLive.saveAll();" disabled="false" />
-      <button label="&livehttpheaders.live.replay;"
-              oncommand="oHeaderInfoLive.replay();"/>
+      <button label="&livehttpheaders.live.saveall;" id="headerinfo-saveall"
+              oncommand="oHeaderInfoLive.saveAll();" observes="datapresent" />
+      <button id="headerinfo-replay" label="&livehttpheaders.live.replay;"
+              oncommand="oHeaderInfoLive.replay();" observes="datapresent"
+	      tooltiptext="&livehttpheaders.live.replay.tips;" />
       <separator class="thin" flex="1" />
       <checkbox label="&livehttpheaders.live.capture;" checked="true" 
                 oncommand="oHeaderInfoLive.capture(this.checked)" />
-      <separator class="thin"/>
-      <text value="&livehttpheaders.live.post;"/>
+      <separator class="thin" flex="1" />
+      <button label="&livehttpheaders.live.clear;" id="headerinfo-clear"
+              oncommand="oHeaderInfoLive.clear();" observes="datapresent" />
+      <button label="&livehttpheaders.live.close;"
+              disabled="false" oncommand="window.close();"/>
+    </hbox>
+  </vbox>
+  </tabpanel>
+
+  <!-- LiveHTTPConfig -->
+  <tabpanel>
+  <vbox flex="1">
+    <hbox align="baseline">
+      <text value="&livehttpheaders.config.post;"/>
       <menulist id="headerinfo-mode" tooltiptext="&livehttpheaders.live.post.tips;">
         <menupopup>
           <menuitem value="0" label="&livehttpheaders.live.post.none;"
                     tooltiptext="&livehttpheaders.live.post.none.tips;"
                     oncommand="oHeaderInfoLive.setMode(0);" />
-     	  <menuitem value="1" label="&livehttpheaders.live.post.fast;"
+          <menuitem value="1" label="&livehttpheaders.live.post.fast;"
                     tooltiptext="&livehttpheaders.live.post.fast.tips;"
                     oncommand="oHeaderInfoLive.setMode(1);" />
           <menuitem value="2" label="&livehttpheaders.live.post.slow;"
@@ -106,18 +133,24 @@
                     oncommand="oHeaderInfoLive.setMode(3);" />
         </menupopup>
       </menulist>
-      <separator class="thin" flex="1"/>
-      <button label="&livehttpheaders.live.clear;"
-              oncommand="oHeaderInfoLive.clear();"/>
-      <button label="&livehttpheaders.live.close;"
-              disabled="false" oncommand="window.close();"/>
     </hbox>
+    <separator class="thin" />
+    <checkbox id="headerinfo-style" 
+              label="&livehttpheaders.config.usestyle;" checked="true"
+              oncommand="oHeaderInfoLive.setStyle(this.checked)" />
+    <separator class="thin" />
+    <checkbox id="headerinfo-tab"
+              label="&livehttpheaders.config.usetab;" checked="false"
+              oncommand="oHeaderInfoLive.setTab(this.checked)" />
+    <spacer flex="1"/>
   </vbox>
   </tabpanel>
 
   <!-- LiveHTTPAbout -->
   <tabpanel>
   <vbox flex="1">
+    <hbox>
+    <vbox flex="1">
     <groupbox>
       <caption label="&livehttpheaders.about.version;"/>
         <hbox align="center">
@@ -135,15 +168,30 @@
       <caption label="&livehttpheaders.about.author;"/>
       <label value="Daniel Savard" />
     </groupbox>
+    </vbox>
+    <vbox class="logo" width="115" height="115" />
+    </hbox>
     <groupbox orient="vertical" >
       <caption label="&livehttpheaders.about.thanks;"/>
       <label value="&livehttpheaders.about.suggestions;" />
       <label value="Christopher Cook" />
+      <label value="Daniel Brooks" />
+      <label value="David Boswell" />
+      <label value="Ere Maijala" />
       <label value="François Constantineau" />
       <label value="Henrik Gemal" />
+      <label value="Macarie Neculai" />
+      <label value="Mandeep Singh" />
+      <label value="Mathieu Hautot" />
       <label value="Paul Lacourse" />
     </groupbox>
     
+    <spacer flex="1"/>
+    <hbox>
+      <spacer flex="1" />
+      <button label="&livehttpheaders.live.close;"
+              disabled="false" oncommand="window.close();"/>
+    </hbox>
   </vbox>
   </tabpanel>
 

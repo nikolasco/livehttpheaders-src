@@ -26,15 +26,31 @@ function startHeaderInfoLive() {
   oHeaderInfoLive.start();
 
   // Register new request and response listener
-  var netModuleMgr = Components.classes["@mozilla.org/network/net-extern-mod;1"].getService(Components.interfaces.nsINetModuleMgr);
-  netModuleMgr.registerModule("@mozilla.org/network/moduleMgr/http/request;1", oHeaderInfoLive);
-  netModuleMgr.registerModule("@mozilla.org/network/moduleMgr/http/response;1", oHeaderInfoLive)
+  if ('nsINetModuleMgr' in Components.interfaces) {
+    // Should be an old version of Mozilla/Phoenix (before september 15, 2003)
+    var netModuleMgr = Components.classes["@mozilla.org/network/net-extern-mod;1"].getService(Components.interfaces.nsINetModuleMgr);
+    netModuleMgr.registerModule("@mozilla.org/network/moduleMgr/http/request;1", oHeaderInfoLive);
+    netModuleMgr.registerModule("@mozilla.org/network/moduleMgr/http/response;1", oHeaderInfoLive)
+  } else {
+    // Should be a new version of  Mozilla/Phoenix (after september 15, 2003)
+    var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
+    observerService.addObserver(oHeaderInfoLive, "http-on-modify-request", false);
+    observerService.addObserver(oHeaderInfoLive, "http-on-examine-response", false);
+  }
 }
 function stopHeaderInfoLive() {
   // Unregistering listener
-  var netModuleMgr = Components.classes["@mozilla.org/network/net-extern-mod;1"].getService(Components.interfaces.nsINetModuleMgr);
-  netModuleMgr.unregisterModule("@mozilla.org/network/moduleMgr/http/request;1", oHeaderInfoLive);
-  netModuleMgr.unregisterModule("@mozilla.org/network/moduleMgr/http/response;1", oHeaderInfoLive);
+  if ('nsINetModuleMgr' in Components.interfaces) {
+    // Should be an old version of Mozilla/Phoenix (before september 15, 2003)
+    var netModuleMgr = Components.classes["@mozilla.org/network/net-extern-mod;1"].getService(Components.interfaces.nsINetModuleMgr);
+    netModuleMgr.unregisterModule("@mozilla.org/network/moduleMgr/http/request;1", oHeaderInfoLive);
+    netModuleMgr.unregisterModule("@mozilla.org/network/moduleMgr/http/response;1", oHeaderInfoLive);
+  } else {
+    // Should be a new version of  Mozilla/Phoenix (after september 15, 2003)
+    var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
+    observerService.removeObserver(oHeaderInfoLive, "http-on-modify-request");
+    observerService.removeObserver(oHeaderInfoLive, "http-on-examine-response");
+  }
 
   oHeaderInfoLive.stop();
   delete oHeaderInfoLive;
@@ -45,23 +61,41 @@ function HeaderInfoLive()
 {
   this.data = new Array(); //Data for each row
   this.type = new Array(); //Type of data (request, post, response, url, etc)
-  this.check= new Array(); // This is an array of url to check (modify headers)
+  this.style= new Array(); //Style of data (request, post, response, url, etc)
+  this.check= new Array(); //This is an array of url to check (modify headers)
+  this.names= new Array(); //Names for tree's images
+  this.atoms= new Array(); //Atoms for tree's styles
+  
+  // Read preferences
+  this.pref = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
+  this.lpref = this.pref.getBranch("extensions.livehttpheaders."); // Live
+  this.mpref = this.pref.getBranch("");                            // Mozilla
+
+  this.usestyle= this.getIntPref(this.lpref, "style", 1); // Use style sheet
+  this.mode    = this.getIntPref(this.lpref, "mode", 1);    // Post capture mode
+  this.usetab  = this.getBoolPref(this.lpref, "tab", false); // Tab mode
 }
 HeaderInfoLive.prototype =
 {
   // Constants
+  // Type
   URL : 1,
   REQUEST : 2,
   POSTDATA : 3,
   RESPONSE : 4,
-  SPACE : 5,
-  SEPARATOR : 6,
+  REQSPACE : 5,
+  RESSPACE : 6,
+  SEPARATOR : 7,
+  // Style
+  FIRST : 100,
+  MID   : 200,
+  LAST  : 300,
+  SINGLE: 400,
+  // Strings
   SEPSTRING: "----------------------------------------------------------\r\n",
   
   oDump: null,
   isCapturing: true,
-  showPostData: true,
-  mode: 1,
 
   // Tree interface
   rows: 0,
@@ -82,17 +116,21 @@ HeaderInfoLive.prototype =
   setCellText: function(row, column, text) { },
   getRowProperties: function(row, props) { },
   getCellProperties: function(row, col, props) {
-//    if (this.type[row] == this.POSTDATA) {
-//      var aserv=Components.classes["@mozilla.org/atom-service;1"].
-//                createInstance(Components.interfaces.nsIAtomService);
-//      props.AppendElement(aserv.getAtom("postData"));
-//    }
+    if (this.usestyle) {
+      props.AppendElement(this.atoms[this.type[row]+this.style[row]]);
+    }
   },
   getColumnProperties: function(column, elem, prop) { },
   isContainer: function(index) { return false; },
-  isContainerOpen: function(index) { return this.showPostData; },
+  isContainerOpen: function(index) { },
   isContainerEmpty: function(index) { return false; },
-  isSeparator: function(index) { return this.type[index]==this.SEPARATOR; },
+  isSeparator: function(index) { 
+    if (this.usestyle) {
+      return false ; 
+    } else {
+      return this.type[index]==this.SEPARATOR; 
+    }
+  },
   isSorted: function() { },
   canDropOn: function(index) { return false; },
   canDropBeforeAfter: function(index, before) { return false; },
@@ -120,17 +158,49 @@ HeaderInfoLive.prototype =
 
   // Tree utility functions
   addRow: function(row, type) { 
+    // Compute the style
+    var style;
+    if (this.rows>0) {
+      var ptype = this.type[this.rows-1];
+      var pstyle = this.style[this.rows-1];
+      if (type != ptype) {
+        // We have a new type.  The line above may be single or last.
+        if (pstyle == this.FIRST) {
+          pstyle = this.SINGLE;
+	} else {
+	  pstyle = this.LAST;
+        }
+        this.style[this.rows-1] = pstyle; // Update the style for the line above
+        style = this.FIRST;
+      } else {
+        // Same type.  This line should be middle
+        style = this.MID;
+      }
+    } else {
+        // The first line.  No doubts, it should be of style FIRST.
+        style = this.FIRST;
+        document.getElementById("datapresent").removeAttribute('disabled');
+    }
+
+    // Add the row
     this.type.push(type);
+    this.style.push(style);
     this.rows = this.data.push(row);
     if (row.length > this.hScrollMax) this.sethScroll(row.length);
+
   }, //A
   rowCountChanged: function(index, count) //A
   {
-    var tbo = this.oDump.treeBoxObject;
-    var lvr = tbo.getLastVisibleRow();
+    var lvr = this.tree.getLastVisibleRow();
     this.tree.rowCountChanged(index, count);
     // If the last line of the tree is visible on screen, we will autoscroll
-    if (lvr >= index) tbo.ensureRowIsVisible(this.rows-1);
+    if (lvr >= index) this.tree.ensureRowIsVisible(this.rows-1);
+    //this.tree.invalidate();
+    //this.tree.ensureRowIsVisible(-16);
+    //this.tree.invalidateScrollbar();
+    dump("getPageCount=" + this.tree.getPageCount() + "\n");
+    dump("getFirstVisibleRow=" + this.tree.getFirstVisibleRow() + "\n");
+    dump("getLastVisibleRow=" + this.tree.getLastVisibleRow() + "\n");
   },
 
   // Horizontal scrolling functions
@@ -158,10 +228,13 @@ HeaderInfoLive.prototype =
   {
     var selection = this.oDump.view.selection;
     // Look if there is only one item selected
-    if (selection.count == 1) {
-      if (this.type[selection.currentIndex]==this.URL) {
-        // Must do something
-      }
+    if (selection.count == 1 && this.type[selection.currentIndex]==this.URL) {
+      dump("Current selection: " + selection.currentIndex + "\n");
+      dump("Current selection t: " + this.type[selection.currentIndex] + "\n");
+      // Must do something
+      document.getElementById("headerinfo-replay").disabled = false;
+    } else {
+      document.getElementById("headerinfo-replay").disabled = true;
     }
   },
 
@@ -235,14 +308,70 @@ HeaderInfoLive.prototype =
     return data;
   },
 
+  // Preferences function for LiveHTTPHeaders
+  getIntPref : function(branch, name, value) {
+    if (branch.prefHasUserValue(name)) {
+      return branch.getIntPref(name);
+    } else {
+      this.setIntPref(branch, name, value);
+      return value;
+    }
+  },
+  setIntPref : function(branch, name, value) {
+    branch.setIntPref(name, value);
+  },
+  getBoolPref : function(branch, name, value) {
+    if (branch.prefHasUserValue(name)) {
+      return branch.getBoolPref(name);
+    } else {
+      this.setBoolPref(branch, name, value);
+      return value;
+    }
+  },
+  setBoolPref : function(branch, name, value) {
+    branch.setBoolPref(name, value);
+  },
+
   // Initialisation and termination functions
   start : function()
   {
     this.oDump = document.getElementById("headerinfo-dump");
     this.oDump.treeBoxObject.view = this;
+ 
+    // Set configuration tab
     document.getElementById("headerinfo-mode").selectedIndex=this.mode;
+    document.getElementById("headerinfo-style").checked=this.usestyle;
+    document.getElementById("headerinfo-tab").checked=this.usetab;
+
+    // Set scrollbar
     this.hScrollBar = document.getElementById("headerinfo-dump-scroll");
     setInterval(this.hScrollHandler,100);
+
+    // Pre-generate the atoms
+    var aserv=Components.classes["@mozilla.org/atom-service;1"].
+              createInstance(Components.interfaces.nsIAtomService);
+    this.atoms[this.URL + this.SINGLE] = aserv.getAtom("URL");
+    this.atoms[this.REQUEST + this.FIRST] = aserv.getAtom("FirstRequest");
+    this.atoms[this.REQUEST + this.MID] = aserv.getAtom("MidRequest");
+    this.atoms[this.REQUEST + this.LAST] = aserv.getAtom("LastRequest");
+    this.atoms[this.REQUEST + this.SINGLE] = aserv.getAtom("SingleRequest");
+    this.atoms[this.POSTDATA+ this.FIRST] = aserv.getAtom("FirstPostData");
+    this.atoms[this.POSTDATA+ this.MID] = aserv.getAtom("MidPostData");
+    this.atoms[this.POSTDATA+ this.LAST] = aserv.getAtom("LastPostData");
+    this.atoms[this.POSTDATA+ this.SINGLE] = aserv.getAtom("SinglePostData");
+    this.atoms[this.RESPONSE+ this.FIRST] = aserv.getAtom("FirstResponse");
+    this.atoms[this.RESPONSE+ this.MID] = aserv.getAtom("MidResponse");
+    this.atoms[this.RESPONSE+ this.LAST] = aserv.getAtom("LastResponse");
+    this.atoms[this.RESPONSE+ this.SINGLE] = aserv.getAtom("SingleResponse");
+    this.atoms[this.REQSPACE+ this.SINGLE] = aserv.getAtom("SpaceRequest");
+    this.atoms[this.RESSPACE+ this.SINGLE] = aserv.getAtom("SpaceResponse");
+    this.atoms[this.SEPARATOR + this.SINGLE] = aserv.getAtom("Separator");
+    this.atoms[this.SEPARATOR + this.FIRST] = aserv.getAtom("Separator");
+  },
+
+  generateNamesAndAtoms : function(as, typeno, typename) {
+    this.names[typeno+this.FIRST] = "First" + typename;
+    this.atoms[typeno+this.FIRST] = as.getAtom(this.names[typeno+this.FIRST]);
   },
 
   stop : function()
@@ -250,6 +379,17 @@ HeaderInfoLive.prototype =
     this.oDump.treeBoxObject.view = null;
     this.oDump = null;
     this.hScrollBar = null;
+  },
+
+  // This is the observerService's observe listener.
+  observe: function(aSubject, aTopic, aData) {
+    if (aTopic == 'http-on-modify-request') {
+      aSubject.QueryInterface(Components.interfaces.nsIHttpChannel);
+      this.onModifyRequest(aSubject);
+    } else if (aTopic == 'http-on-examine-response') {
+      aSubject.QueryInterface(Components.interfaces.nsIHttpChannel);
+      this.onExamineResponse(aSubject);
+    }
   },
 
   // Header Info Lives functions
@@ -264,9 +404,11 @@ HeaderInfoLive.prototype =
     this.rows = 0;
     this.data = new Array();
     this.type = new Array();
-    this.rowCountChanged(0,oldrows);
+    this.style= new Array();
+    this.rowCountChanged(0,-oldrows);
     this.hScrollMax = 0;
     this.sethScroll(0);
+    document.getElementById("datapresent").setAttribute('disabled','true');
   },
 
   saveAll: function(title)
@@ -405,16 +547,25 @@ HeaderInfoLive.prototype =
     }
   },
 
+  setTab : function(tab) {
+    this.setBoolPref(this.lpref, "tab", tab);
+  },
+  setStyle : function(style) {
+    if (style) { style=1; } else { style=0; }
+    this.setIntPref(this.lpref, "style", style);
+    this.usestyle = style;
+  },
   setMode : function(mode) {
+    this.setIntPref(this.lpref, "mode", mode);
     this.mode = mode;
   },
-  observe : function(name, request, response, postData)
+  observeURL : function(name, request, response, postData)
   {
     //dumpall("REQUEST",request);
     if (this.isCapturing) {
       var oldrows = this.rowCount;
       this.addRow(name + "\r\n", this.URL);
-      this.addRow("\r\n", this.SPACE);
+      this.addRow("\r\n", this.REQSPACE);
       var flag = false;
       for (i in request) {
           this.addRow((flag? i+": " : "") + request[i] + "\r\n", this.REQUEST);
@@ -436,7 +587,7 @@ HeaderInfoLive.prototype =
           this.addRow(data[i], this.POSTDATA);
         }
       }
-      this.addRow("\r\n", this.SPACE);
+      this.addRow("\r\n", this.RESSPACE);
       flag = false;
       for (i in response) {
         // Server can send some headers multiple times...
@@ -448,7 +599,7 @@ HeaderInfoLive.prototype =
         flag=true;
       }
       this.addRow("", this.SEPARATOR); // Separator
-      this.rowCountChanged(oldrows,this.rows);
+      this.rowCountChanged(oldrows,(this.rows-oldrows));
     }
   },
 
@@ -536,7 +687,7 @@ HeaderInfoLive.prototype =
     //dumpall("oHttp.loadGroup.groupObserver",oHttp.loadGroup.groupObserver,2);
     //dumpall("oHttp.loadGroup.notificationCallbacks",oHttp.loadGroup.notificationCallbacks,2);
 
-    this.observe(name, request, response, postData);
+    this.observeURL(name, request, response, postData);
 
     //dumpall("Request",this.request[oHttp.name],1);
     //dumpall("Response",this.response[oHttp.name],1);
@@ -545,8 +696,12 @@ HeaderInfoLive.prototype =
   QueryInterface: function(iid) {
     if (!iid.equals(Components.interfaces.nsISupports) &&
         !iid.equals(Components.interfaces.nsIHttpNotify) &&
+        //!iid.equals(Components.interfaces.nsIClassInfo) &&
+        //!iid.equals(Components.interfaces.nsISecurityCheckedComponent) &&
+        //!iid.equals(Components.interfaces.nsIWeakReference) &&
+        !iid.equals(Components.interfaces.nsIHttpNotify) &&
         !iid.equals(Components.interfaces.nsIObserver)) {
-          //dump("LiveHTTPHeaders: QI unknown iid: " + iid + "\n");
+          dump("LiveHTTPHeaders: QI unknown iid: " + iid + "\n");
           throw Components.results.NS_ERROR_NO_INTERFACE;
       }
       return this;
@@ -703,6 +858,10 @@ HeaderInfoVisitor.prototype =
         } catch (ex) {
           //dump("Exception while getting POST CONTENT with mode "+this.mode+": "+ex+"\n");
           return ""+ex;
+        } finally {
+          // Need to close the stream after use
+          this.seekablestream.close();
+          this.stream.close();
         }
 	return postString;
       }
@@ -741,10 +900,10 @@ HeaderInfoVisitor.prototype =
 
       // If an http proxy is used for this url, we need to keep the host part
       if (this.useHttpProxy(this.oHttp.URI)==true) {
-        uri = url.match(/^(.*\/\/[^\/]+\/[^#]*)/)[1];
+        uri = url.match(/^(.*?\/\/[^\/]+\/[^#]*)/)[1];
         ver = this.getHttpRequestVersion(true);
       } else {
-        uri = url.match(/^.*\/\/[^\/]+(\/[^#]*)/)[1];
+        uri = url.match(/^.*?\/\/[^\/]+(\/[^#]*)/)[1];
         ver = this.getHttpRequestVersion(false);
       }
     } catch (ex) {
