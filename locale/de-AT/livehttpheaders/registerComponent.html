@@ -1,0 +1,24 @@
+<HTML>
+<HEAD>
+<TITLE>Die nsHeaderInfo ist nicht korrekt registriert</TITLE>
+</HEAD>
+<BODY>
+Um die Anzeige der Headerinformationen im Pageinfo-Tab von Mozilla/Firefox zu erm&ouml;glichen, 
+muss die nsHeaderInfo Komponente registriert sein.<br>
+Diese Komponente sollte in der Datei Mozilla/Components/nsHeaderInfo.js gefunden werden.<p>
+
+Die Registration sollte durch die LiveHTTPHeaders Installation erfolgt sein.<br>
+Dies kann jedoch manchmal nicht funktionieren.<br>
+Bitte folgen sie diese Schritte, um es Mozilla/Firefox zu erm&ouml;glichen, die Komponente zu finden und
+zu registrieren:<br>
+<UL>
+<LI>Die Datei <code><b>Mozilla/Components/compreg.dat</b></code> l&ouml;schen</LI>
+<LI>Die Datei <code><b>Mozilla/Components/xpti.dat</b></code> l&ouml;schen</LI>
+</UL>
+Diese beiden Dateien sollten beim n&auml;chten Start von Mozilla/Firefox automatisch neu erzeugt werden.<p>
+
+<b>Bemerkung</b>: wenn LiveHTTPHeaders in ihrem <b>Benutzerprofil</b> installiert ist, dann befindet
+sich eine Kopie der Datei nsHeadersInfo.js im Verzeichnis profile/components. Sie m&uuml;ssen die Datei
+nach Mozilla/Components kopieren und dann nach obiger Anleitung vorgehen.<br>
+</BODY>
+</HTML>

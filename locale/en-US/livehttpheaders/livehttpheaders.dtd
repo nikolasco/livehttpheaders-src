@@ -19,10 +19,16 @@
 <!ENTITY livehttpheaders.config.post            "POST:" >
 <!ENTITY livehttpheaders.config.usefilter       "Filter URLs with regexp" >
 <!ENTITY livehttpheaders.config.usefilter.tips  "This filter applies to URL and not to each headers." >
+<!ENTITY livehttpheaders.config.useexclude       "Exclude URLs with regexp" >
+<!ENTITY livehttpheaders.config.useexclude.tips  "This exclude applies to URL and not to each headers." >
+<!ENTITY livehttpheaders.config.addsidebar	"Add LiveHTTPHeaders to sidebar">
+<!ENTITY livehttpheaders.config.addsidebar.tips	"This button adds LiveHTTPHeaders to your sidebar.  To see your sideBar, press F9.">
+<!ENTITY livehttpheaders.config.addsidebar.added " successfully added to your sidebar.">
+<!ENTITY livehttpheaders.config.addsidebar.present " already exists in your sidebar.">
 
 <!ENTITY livehttpheaders.about.version          "Version information" >
 <!ENTITY livehttpheaders.about.versiontext      "LiveHTTPHeaders version" >
-<!ENTITY livehttpheaders.about.currentversion   "0.8" >
+<!ENTITY livehttpheaders.about.currentversion   "0.9" >
 <!ENTITY livehttpheaders.about.checkforupdate   "Check for update" >
 <!ENTITY livehttpheaders.about.homepage         "Home page" >
 <!ENTITY livehttpheaders.about.homepageurl      "http://livehttpheaders.mozdev.org" >

@@ -1,0 +1,37 @@
+***************
+*** 8,24 ****
+  <!ENTITY livehttpheaders.menu.view              "Affichage" >
+  <!ENTITY livehttpheaders.menu.post              "Données POST" >
+  
+- <!ENTITY livehttpheaders.tabs.headers           "Entêtes" >
+  <!ENTITY livehttpheaders.tabs.config            "Configuration" >
+  <!ENTITY livehttpheaders.tabs.about             "A propos" >
+  
+  <!ENTITY livehttpheaders.config.usetab          "Ouvrir LiveHTTPHeaders dans un onglet">
+  <!ENTITY livehttpheaders.config.usetab.tips     "Détermine si LiveHTTPHeaders doit s'ouvrir dans une nouvelle fenêtre ou bien dans un onglet.">
+  <!ENTITY livehttpheaders.config.usestyle        "Utiliser la feuille de style">
+- <!ENTITY livehttpheaders.config.usestyle.tips   "Note: dû à un 'bug', cette fonction peut prendre 100 pourcent du processeur.">
+  <!ENTITY livehttpheaders.config.post		"POST:" >
+  <!ENTITY livehttpheaders.config.usefilter	"Filtrer les URLs avec une expression régulière" >
+- <!ENTITY livehttpheaders.config.usefilter.tips	"Le filtre s'applique sur l'URL demandé et non pas sur les entêtes elles-mêmes." >
+  
+  <!ENTITY livehttpheaders.about.version          "Information sur la version" >
+  <!ENTITY livehttpheaders.about.versiontext	"LiveHTTPHeaders version " >
+--- 8,24 ----
+  <!ENTITY livehttpheaders.menu.view              "Affichage" >
+  <!ENTITY livehttpheaders.menu.post              "Données POST" >
+  
++ <!ENTITY livehttpheaders.tabs.headers           "En-têtes" >
+  <!ENTITY livehttpheaders.tabs.config            "Configuration" >
+  <!ENTITY livehttpheaders.tabs.about             "A propos" >
+  
+  <!ENTITY livehttpheaders.config.usetab          "Ouvrir LiveHTTPHeaders dans un onglet">
+  <!ENTITY livehttpheaders.config.usetab.tips     "Détermine si LiveHTTPHeaders doit s'ouvrir dans une nouvelle fenêtre ou bien dans un onglet.">
+  <!ENTITY livehttpheaders.config.usestyle        "Utiliser la feuille de style">
++ <!ENTITY livehttpheaders.config.usestyle.tips   "Note: dû à un bogue, cette fonction peut prendre 100 pourcent du processeur.">
+  <!ENTITY livehttpheaders.config.post		"POST:" >
+  <!ENTITY livehttpheaders.config.usefilter	"Filtrer les URLs avec une expression régulière" >
++ <!ENTITY livehttpheaders.config.usefilter.tips	"Le filtre s'applique sur l'URL demandée et non pas sur les en-têtes." >
+  
+  <!ENTITY livehttpheaders.about.version          "Information sur la version" >
+  <!ENTITY livehttpheaders.about.versiontext	"LiveHTTPHeaders version " >

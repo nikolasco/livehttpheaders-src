@@ -25,6 +25,7 @@
 
 <?xml-stylesheet href="chrome://global/skin" type="text/css"?>
 <?xml-stylesheet href="chrome://livehttpheaders/skin/livehttpheaders.css" type="text/css"?>
+<?xul-overlay    href="chrome://livehttpheaders/content/Generator.xul"?>
 <!DOCTYPE window SYSTEM "chrome://livehttpheaders/locale/livehttpheaders.dtd" >
 <window title="&livehttpheaders.live.title;"
   id="LiveHTTPHeaders"
@@ -38,10 +39,11 @@
 <script type="application/x-javascript" src="chrome://global/content/dialogOverlay.js" />
 <script type="application/x-javascript" src="chrome://livehttpheaders/content/LiveHTTPHeaders.js" />
 <script type="application/x-javascript" src="chrome://livehttpheaders/content/headerinfo.js" />
+<script type="application/x-javascript" src="chrome://livehttpheaders/content/addpanel.js"/>
 
 <html:LINK REL="SHORTCUT ICON" HREF="chrome://livehttpheaders/content/favicon.ico" />
 
-  <popupset>
+  <popupset id="popupset">
     <popup id="headerinfo-context">
       <menuitem label="&livehttpheaders.live.copy;"
                 observes="datapresent"
@@ -66,7 +68,7 @@
     </popup>
   </popupset>
 
-  <broadcasterset>
+  <broadcasterset id="broadcasterset">
     <broadcaster id="datapresent" disabled="true" />
   </broadcasterset>
 
@@ -78,7 +80,7 @@
   </tabs>
 <tabpanels id="tabpanels" flex="1">
   <!-- LiveHTTPHeaders -->
-  <tabpanel>
+  <tabpanel id="livehttpheaders-live-tab-panel">
   <vbox flex="1" id="livehttpheaders-live-tab-box">
     <separator class="thin"/>
       <tree id="headerinfo-dump" flex="1" aclass="inset" seltype="multiple"
@@ -113,8 +115,8 @@
   </tabpanel>
 
   <!-- LiveHTTPConfig -->
-  <tabpanel>
-  <vbox flex="1">
+  <tabpanel id="livehttpheaders-conf-tab-panel">
+  <vbox flex="1" id="livehttpheaders-conf-tab-box">
     <hbox align="baseline">
       <text value="&livehttpheaders.config.post;"/>
       <menulist id="headerinfo-mode" tooltiptext="&livehttpheaders.live.post.tips;">
@@ -153,6 +155,24 @@
       <textbox id="headerinfo-filterRegexp" flex="1"
       	value="" oninput="oHeaderInfoLive.setFilterRegexp(this.value)"/>
     </hbox>
+    <hbox>
+      <checkbox id="headerinfo-exclude"
+              label="&livehttpheaders.config.useexclude;" checked="false"
+              tooltiptext="&livehttpheaders.config.useexclude.tips;"
+              oncommand="oHeaderInfoLive.setExclude(this.checked)" />
+      <textbox id="headerinfo-excludeRegexp" flex="1"
+      	value="" oninput="oHeaderInfoLive.setExcludeRegexp(this.value)"/>
+    </hbox>
+    <hbox>
+      <button label="&livehttpheaders.config.addsidebar;"
+              tooltiptext="&livehttpheaders.config.addsidebar.tips;"
+              disabled="false" 
+              oncommand="addPanel('&livehttpheaders.live.title;',
+              'chrome://livehttpheaders/content/LiveHTTPSideBar.xul',
+              '&livehttpheaders.config.addsidebar.added;',
+              '&livehttpheaders.config.addsidebar.present;');"/>
+      <spacer flex="1" />
+    </hbox>
     <spacer flex="1"/>
     <hbox>
       <spacer flex="1" />
@@ -163,8 +183,8 @@
   </tabpanel>
 
   <!-- LiveHTTPAbout -->
-  <tabpanel>
-  <vbox flex="1">
+  <tabpanel id="livehttpheaders-about-tab-panel">
+  <vbox flex="1" id="livehttpheaders-about-tab-box">
     <hbox>
     <vbox flex="1">
     <groupbox>
@@ -187,20 +207,26 @@
     </vbox>
     <vbox class="logo" width="115" height="115" />
     </hbox>
-    <groupbox orient="vertical" >
+    <groupbox orient="vertical" style="overflow:-moz-scrollbars-vertical;" flex="1">
       <caption label="&livehttpheaders.about.thanks;"/>
       <label value="&livehttpheaders.about.suggestions;" />
+      <label value="Bernardo A. de la Ossa Pérez" />
       <label value="Christopher Cook" />
       <label value="Daniel Brooks" />
       <label value="David Boswell" />
       <label value="Ere Maijala" />
       <label value="François Constantineau" />
+      <label value="Grégoire Lejeune" />
       <label value="Henrik Gemal" />
       <label value="Macarie Neculai" />
       <label value="Mandeep Singh" />
       <label value="Mathieu Hautot" />
+      <label value="Nathan Fain" />
       <label value="Paul Lacourse" />
+      <label value="Richard Marti" />
       <label value="Richard Mlynarik" />
+      <label value="Stefan Trcek" />
+      <label value="Sven Anders" />
       <label value="Wojtek Meler" />
     </groupbox>
     

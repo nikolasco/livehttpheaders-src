@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<!-- 
+  **** BEGIN LICENSE BLOCK ****
+  Copyright(c) 2004 ABAS Software AG (Stefan Trcek)
+  Based on LiveHTTPHeaders.js Copyright(c) 2002-2003 Daniel Savard.
+
+  Generator:
+    This program can write test plan fragments suitable for load testing
+    or unit testing.
+
+  This program is free software; you can redistribute it and/or modify it under
+  the terms of the GNU General Public License as published by the Free
+  Software Foundation; either version 2 of the License, or (at your option) 
+  any later version.
+
+  This program is distributed in the hope that it will be useful, but 
+  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
+  or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for 
+  more details.
+  
+  You should have received a copy of the GNU General Public License along with
+  this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+  Place, Suite 330, Boston, MA 02111-1307 USA
+  **** END LICENSE BLOCK ****
+-->
+
+<!DOCTYPE overlay [
+  <!ENTITY % liveHttpHeadersDTD SYSTEM "chrome://livehttpheaders/locale/livehttpheaders.dtd" >
+  %liveHttpHeadersDTD;
+  <!ENTITY % generatorDTD SYSTEM "chrome://livehttpheaders/locale/generator.dtd" >
+  %generatorDTD;
+]>
+
+<overlay id="generator-overlay"
+  xmlns:html="http://www.w3.org/1999/xhtml" 
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+>
+
+<script type="application/x-javascript" src="chrome://livehttpheaders/content/Generator.js" />
+
+<window
+  id="LiveHTTPHeaders"
+  onload="startHeaderInfoLive(); startGenerator()"
+  onunload="stopHeaderInfoLive(); stopGenerator()"/>
+
+<!--
+  headerinfo         => generator
+  oHeaderInfoLive    => oGenerator
+  headerinfo-context => generator-context
+  <popupset id="popupset">
+-->
+
+  <popupset id="popupset">
+    <popup id="generator-context">
+      <menuitem label="&livehttpheaders.live.copy;"
+                observes="gen-datapresent"
+                oncommand="oGenerator.copy();" />
+<!--
+      <menuitem label="&livehttpheaders.live.selectblock;"
+                observes="gen-datapresent"
+                oncommand="oGenerator.selectBlock();" />
+-->
+      <menuitem label="&livehttpheaders.live.selectall;"
+                observes="gen-datapresent"
+                oncommand="oGenerator.selectAll();" />
+      <menuseparator/>
+      <menuitem label="&livehttpheaders.menu.saveselection;"
+                observes="gen-datapresent"
+                oncommand="oGenerator.saveSelection();" />
+      <menuitem label="&livehttpheaders.menu.saveall;"
+                observes="gen-datapresent"
+                oncommand="oGenerator.saveAll();" />
+      <menuseparator/>
+      <menuitem label="&livehttpheaders.live.clear;"
+                observes="gen-datapresent"
+                oncommand="oGenerator.clear();" />
+    </popup>
+  </popupset>
+
+<broadcasterset id="broadcasterset">
+  <broadcaster id="gen-datapresent" disabled="true" />
+</broadcasterset>
+
+<tabs id="tabs">
+  <tab id="livehttpheaders-generator-tab" 
+       insertbefore="livehttpheaders-conf-tab"
+       label="&livehttpheaders.tabs.generator;"/>
+</tabs>
+
+<tabpanels id="tabpanels" flex="1">
+  <!-- LiveHTTPGenerator -->
+  <tabpanel id="livehttpgenerator-generator-tab-panel"
+            insertbefore="livehttpheaders-conf-tab-panel">
+    <vbox flex="1" id="livehttpgenerator-generator-tab-box">
+      <separator class="thin"/>
+      <hbox flex="1">
+        <vbox flex="1">
+          <tree id="generator-dump" flex="1" aclass="inset" seltype="multiple"
+                hidecolumnpicker="true" context="generator-context"
+                onselect="oGenerator.onselect();">
+            <treecols>
+              <treecol persist="hidden width" flex="1"
+                       id="generator-response-name" primary="true"
+                       label="&generator.title;"/>
+            </treecols>
+            <treechildren flex="1"/>
+          </tree>
+          <scrollbar id="generator-dump-scroll" curpos="0" maxpos="0" pageincrement="0" 
+                 orient="horizontal" />
+        </vbox>
+      
+        <vbox align="middle" valign="top">
+          <label>&generator.label.show;</label>
+          <checkbox label="&generator.option.redirect;" checked="false"
+                    tooltiptext="&generator.popup.redirect;"
+                    oncommand="oGenerator.showRedirects(this.checked)" />
+          <checkbox label="&generator.option.invalid;" checked="false"
+                    tooltiptext="&generator.popup.invalid;"
+                    oncommand="oGenerator.showInvalid(this.checked)" />
+          <checkbox label="&generator.option.image;" checked="true"
+                    tooltiptext="&generator.popup.image;"
+                    oncommand="oGenerator.showImages(this.checked)" />
+          <checkbox label="&generator.option.css;" checked="true"
+                    tooltiptext="&generator.popup.css;"
+                    oncommand="oGenerator.showCSS(this.checked)" />
+          <checkbox label="&generator.option.skipped;" checked="false"
+                    tooltiptext="&generator.popup.skipped;"
+                    oncommand="oGenerator.showSkipped(this.checked)" />
+          <spacer/>
+          <label>&generator.label.request;</label>
+          <checkbox label="&generator.option.request;" checked="false"
+                    tooltiptext="&generator.popup.request;"
+                    oncommand="oGenerator.showRequest(this.checked)" />
+          <spacer flex="1"/>
+          <button label="&generator.button.help;"
+                  oncommand='window.open("chrome://livehttpheaders/locale/generator-help.xul", "generator_help", "resizable");' 
+          />
+        </vbox>
+      </hbox>
+
+      <hbox align="right" valign="middle">
+        <button label="&livehttpheaders.live.saveall;" id="generator-saveall"
+                oncommand="oGenerator.saveAll();" observes="gen-datapresent" />
+        <separator class="thin" flex="1" />
+        <checkbox label="&generator.capture;" checked="true"
+                  oncommand="oGenerator.setWebrobot(this.checked)" />
+        <separator class="thin" flex="1" />
+        <button label="&livehttpheaders.live.clear;" id="generator-clear"
+                oncommand="oGenerator.clear();" observes="gen-datapresent" />
+        <button label="&livehttpheaders.live.close;"
+                disabled="false" oncommand="window.close();"/>
+      </hbox>
+
+    </vbox>
+  </tabpanel>
+</tabpanels>
+
+
+</overlay>

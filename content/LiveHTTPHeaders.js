@@ -24,41 +24,49 @@ var oHeaderInfoLive;
 function startHeaderInfoLive() {
   oHeaderInfoLive = new HeaderInfoLive();
   oHeaderInfoLive.start();
-
-  // Register new request and response listener
-  if ('nsINetModuleMgr' in Components.interfaces) {
-    // Should be an old version of Mozilla/Phoenix (before september 15, 2003)
-    var netModuleMgr = Components.classes["@mozilla.org/network/net-extern-mod;1"].getService(Components.interfaces.nsINetModuleMgr);
-    netModuleMgr.registerModule("@mozilla.org/network/moduleMgr/http/request;1", oHeaderInfoLive);
-    netModuleMgr.registerModule("@mozilla.org/network/moduleMgr/http/response;1", oHeaderInfoLive)
-  } else {
-    // Should be a new version of  Mozilla/Phoenix (after september 15, 2003)
-    var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
-    observerService.addObserver(oHeaderInfoLive, "http-on-modify-request", false);
-    observerService.addObserver(oHeaderInfoLive, "http-on-examine-response", false);
-  }
+  addToListener(oHeaderInfoLive)
 }
 function stopHeaderInfoLive() {
-  // Unregistering listener
-  if ('nsINetModuleMgr' in Components.interfaces) {
-    // Should be an old version of Mozilla/Phoenix (before september 15, 2003)
-    var netModuleMgr = Components.classes["@mozilla.org/network/net-extern-mod;1"].getService(Components.interfaces.nsINetModuleMgr);
-    netModuleMgr.unregisterModule("@mozilla.org/network/moduleMgr/http/request;1", oHeaderInfoLive);
-    netModuleMgr.unregisterModule("@mozilla.org/network/moduleMgr/http/response;1", oHeaderInfoLive);
-  } else {
-    // Should be a new version of  Mozilla/Phoenix (after september 15, 2003)
-    var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
-    observerService.removeObserver(oHeaderInfoLive, "http-on-modify-request");
-    observerService.removeObserver(oHeaderInfoLive, "http-on-examine-response");
-  }
-
+  removeFromListener(oHeaderInfoLive)
   oHeaderInfoLive.stop();
   delete oHeaderInfoLive;
   oHeaderInfoLive = null;
 }
 
+function addToListener(obj)
+{
+  // Register new request and response listener
+  if ('nsINetModuleMgr' in Components.interfaces) {
+    // Should be an old version of Mozilla/Phoenix (before september 15, 2003)
+    var netModuleMgr = Components.classes["@mozilla.org/network/net-extern-mod;1"].getService(Components.interfaces.nsINetModuleMgr);
+    netModuleMgr.registerModule("@mozilla.org/network/moduleMgr/http/request;1", obj);
+    netModuleMgr.registerModule("@mozilla.org/network/moduleMgr/http/response;1", obj)
+  } else {
+    // Should be a new version of  Mozilla/Phoenix (after september 15, 2003)
+    var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
+    observerService.addObserver(obj, "http-on-modify-request", false);
+    observerService.addObserver(obj, "http-on-examine-response", false);
+  }
+}
+function removeFromListener(obj)
+{
+  // Unregistering listener
+  if ('nsINetModuleMgr' in Components.interfaces) {
+    // Should be an old version of Mozilla/Phoenix (before september 15, 2003)
+    var netModuleMgr = Components.classes["@mozilla.org/network/net-extern-mod;1"].getService(Components.interfaces.nsINetModuleMgr);
+    netModuleMgr.unregisterModule("@mozilla.org/network/moduleMgr/http/request;1", obj);
+    netModuleMgr.unregisterModule("@mozilla.org/network/moduleMgr/http/response;1", obj);
+  } else {
+    // Should be a new version of  Mozilla/Phoenix (after september 15, 2003)
+    var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
+    observerService.removeObserver(obj, "http-on-modify-request");
+    observerService.removeObserver(obj, "http-on-examine-response");
+  }
+}
+
 function HeaderInfoLive()
 {
+  this.test = new Array(); //Test
   this.data = new Array(); //Data for each row
   this.type = new Array(); //Type of data (request, post, response, url, etc)
   this.style= new Array(); //Style of data (request, post, response, url, etc)
@@ -76,6 +84,8 @@ function HeaderInfoLive()
   this.usetab  = this.getBoolPref(this.lpref, "tab", false); // Tab mode
   this.usefilter  = this.getBoolPref(this.lpref, "filter", false); // Filter mode
   this.filterRegexp  = this.getCharPref(this.lpref, "filterRegexp",'/$|\.html$'); // Filter mode
+  this.useexclude  = this.getBoolPref(this.lpref, "exclude", false); // exclude mode
+  this.excludeRegexp  = this.getCharPref(this.lpref, "excludeRegexp",'\.gif$|\.jpg$|\.ico$|\.css$|\.js$'); // exclude mode
 }
 HeaderInfoLive.prototype =
 {
@@ -95,7 +105,8 @@ HeaderInfoLive.prototype =
   SINGLE: 400,
   // Strings
   SEPSTRING: "----------------------------------------------------------\r\n",
-  
+ 
+  test : null, 
   oDump: null,
   isCapturing: true,
 
@@ -107,6 +118,7 @@ HeaderInfoLive.prototype =
   hScrollBar: null,
   hScrollPos: 0,
   hScrollMax: 0,
+  datapresent: "datapresent",
 
   set rowCount(c) { throw "rowCount is a readonly property"; },
   get rowCount() { return this.rows; },
@@ -181,7 +193,7 @@ HeaderInfoLive.prototype =
     } else {
         // The first line.  No doubts, it should be of style FIRST.
         style = this.FIRST;
-        document.getElementById("datapresent").removeAttribute('disabled');
+        document.getElementById(this.datapresent).removeAttribute('disabled');
     }
 
     // Add the row
@@ -344,16 +356,25 @@ HeaderInfoLive.prototype =
     this.oDump.treeBoxObject.view = this;
  
     // Set configuration tab
-    document.getElementById("headerinfo-mode").selectedIndex=this.mode;
-    document.getElementById("headerinfo-style").checked=this.usestyle;
-    document.getElementById("headerinfo-tab").checked=this.usetab;
-    document.getElementById("headerinfo-filter").checked=this.usefilter;
-    document.getElementById("headerinfo-filterRegexp").value=this.filterRegexp;
+    try {
+        document.getElementById("headerinfo-mode").selectedIndex=this.mode;
+        document.getElementById("headerinfo-style").checked=this.usestyle;
+        document.getElementById("headerinfo-tab").checked=this.usetab;
+        document.getElementById("headerinfo-filter").checked=this.usefilter;
+        document.getElementById("headerinfo-filterRegexp").value=this.filterRegexp;
+        document.getElementById("headerinfo-exclude").checked=this.useexclude;
+        document.getElementById("headerinfo-excludeRegexp").value=this.excludeRegexp;
+    } catch (ex) {}
 
     // Set scrollbar
     this.hScrollBar = document.getElementById("headerinfo-dump-scroll");
     setInterval(this.hScrollHandler,100);
 
+    this.initAtoms();
+  },
+
+  initAtoms : function()
+  {
     // Pre-generate the atoms
     var aserv=Components.classes["@mozilla.org/atom-service;1"].
               createInstance(Components.interfaces.nsIAtomService);
@@ -415,7 +436,7 @@ HeaderInfoLive.prototype =
     this.rowCountChanged(0,-oldrows);
     this.hScrollMax = 0;
     this.sethScroll(0);
-    document.getElementById("datapresent").setAttribute('disabled','true');
+    document.getElementById(this.datapresent).setAttribute('disabled','true');
   },
 
   saveAll: function(title)
@@ -565,6 +586,14 @@ HeaderInfoLive.prototype =
     this.setCharPref(this.lpref, "filterRegexp", regex);
     this.filterRegexp = regex;
   },
+  setExclude : function(exclude) {
+    this.setBoolPref(this.lpref, "exclude", exclude);
+    this.useexclude = exclude;
+  },
+  setExcludeRegexp : function(regex) {
+    this.setCharPref(this.lpref, "excludeRegexp", regex);
+    this.excludeRegexp = regex;
+  },
   setStyle : function(style) {
     if (style) { style=1; } else { style=0; }
     this.setIntPref(this.lpref, "style", style);
@@ -579,6 +608,7 @@ HeaderInfoLive.prototype =
     //dumpall("REQUEST",request);
     if (this.isCapturing) {
       if (this.usefilter && !name.match(this.filterRegexp)) return;
+      if (this.useexclude && name.match(this.excludeRegexp)) return;
       var oldrows = this.rowCount;
       this.addRow(name + "\r\n", this.URL);
       this.addRow("\r\n", this.REQSPACE);
@@ -622,10 +652,12 @@ HeaderInfoLive.prototype =
   onModifyRequest : function (oHttp)
   {
     //dump("onModifyRequest\n");
-    //dumpall("Request", oHttp,1);
+    //dumpall("Request", oHttp,2);
     //dump("MODIFY: '" + oHttp.URI.asciiSpec +"'\n");
 
     //this.onExamineResponse(oHttp);
+    //alert("REquest: " + oHttp)
+    //this.test[oHttp.URI.asciiSpec] = 1
 
     if (oHttp.URI.asciiSpec in this.check) {
       //dumpall("Request", oHttp,1);
@@ -683,7 +715,17 @@ HeaderInfoLive.prototype =
   {
     var name = oHttp.URI.asciiSpec;
     var visitor = new HeaderInfoVisitor(oHttp);
-    
+    //dumpall("oHttp",oHttp,2);
+    //alert("REsponse: " + oHttp)
+    //alert(this.test[oHttp])
+    //if (name in this.test) {
+    //    dump("URL FOUND: " + name +"\n");
+    //    delete this.test[name];
+    //}
+    //for (i in this.test) {
+    //    dump("URL: " + i + "\n");
+    //}
+ 
     // Get the request headers
     var request = visitor.visitRequest();
     // and extract Post Data if present

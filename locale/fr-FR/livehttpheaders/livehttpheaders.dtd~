@@ -1,0 +1,53 @@
+<!ENTITY livehttpheaders.pageinfo.tab		"Entêtes" >
+<!ENTITY livehttpheaders.pageinfo.accesskey	"E" >
+<!ENTITY livehttpheaders.headers.request	"Requête" >
+<!ENTITY livehttpheaders.headers.response	"Réponse" >
+<!ENTITY livehttpheaders.headers.name		"Nom" >
+<!ENTITY livehttpheaders.headers.value		"Valeur" >
+<!ENTITY livehttpheaders.headers.saveas         "Enregistrer sous..." >
+<!ENTITY livehttpheaders.headers.fromcache      "Les entêtes proviennent de la cache" >
+<!ENTITY livehttpheaders.headers.fromcache.t1	"Les entêtes 'request' pourraient être erronées (non conservées dans la cache)." >
+<!ENTITY livehttpheaders.headers.fromcache.t2	"Les entêtes 'response' devraient être celles recues originalement du réseau." >
+<!ENTITY livehttpheaders.headers.fromnetwork    "Les entêtes proviennent du réseau" >
+<!ENTITY livehttpheaders.headers.fromnetwork.t1	"Les entêtes 'request' sont celles envoyées sur le réseau." >
+<!ENTITY livehttpheaders.headers.fromnetwork.t2	"Les entêtes 'response' sont celles reéues du réseau." >
+
+<!ENTITY livehttpheaders.menu.file              "Fichier" >
+<!ENTITY livehttpheaders.menu.close             "Fermer" >
+<!ENTITY livehttpheaders.menu.saveselection     "Enregistrer la sélection" >
+<!ENTITY livehttpheaders.menu.saveall           "Enregistrer tout" >
+<!ENTITY livehttpheaders.menu.edit              "Edition" >
+<!ENTITY livehttpheaders.menu.copy              "Copier" >
+<!ENTITY livehttpheaders.menu.selectall         "Sélectionner tout" >
+<!ENTITY livehttpheaders.menu.view              "Affichage" >
+<!ENTITY livehttpheaders.menu.post              "Données POST" >
+
+<!ENTITY livehttpheaders.live.title		"Entêtes HTTP en direct" >
+<!ENTITY livehttpheaders.live.headers		"Entêtes HTTP" >
+<!ENTITY livehttpheaders.live.clear		"Effacer" >
+<!ENTITY livehttpheaders.live.close		"Fermer" >
+<!ENTITY livehttpheaders.live.capture		"Capturer" >
+<!ENTITY livehttpheaders.live.copy		"Copier" >
+<!ENTITY livehttpheaders.live.selectblock	"Sélectionner le bloc" >
+<!ENTITY livehttpheaders.live.selectall		"Sélectionner tout" >
+<!ENTITY livehttpheaders.live.saveall           "Enregistrer tout" >
+<!ENTITY livehttpheaders.live.replay            "Rejouer" >
+
+<!ENTITY livehttpheaders.live.post		"POST:" >
+<!ENTITY livehttpheaders.live.post.tips		"Configure l'affichage des données POST" >
+<!ENTITY livehttpheaders.live.post.none		"aucun" >
+<!ENTITY livehttpheaders.live.post.none.tips	"Ne pas afficher les données POST" >
+<!ENTITY livehttpheaders.live.post.fast		"rapide" >
+<!ENTITY livehttpheaders.live.post.fast.tips	"Afficher les données avec un code rapide mais qui ne supporte pas le transfert de fichier (file upload). Voir le bogue #188328." >
+<!ENTITY livehttpheaders.live.post.slow		"fiable" >
+<!ENTITY livehttpheaders.live.post.slow.tips	"Afficher les données avec un code lent mais qui fonctionne dans tous les cas." >
+<!ENTITY livehttpheaders.live.post.max1k	"max 1K" >
+<!ENTITY livehttpheaders.live.post.max1k.tips	"Identique au choix 'fiable' mais n'affiche que le premier kilo-octet de données" >
+
+<!ENTITY livehttpheaders.replay.title           "Live HTTP Replay" >
+<!ENTITY livehttpheaders.replay.method          "Méthode" >
+<!ENTITY livehttpheaders.replay.url             "URL" >
+<!ENTITY livehttpheaders.replay.version         "Version" >
+<!ENTITY livehttpheaders.replay.headers         "Entêtes HTTP" >
+<!ENTITY livehttpheaders.replay.post            "Envoyer du contenu POST ?" >
+

@@ -26,8 +26,9 @@
 <!DOCTYPE overlay SYSTEM "chrome://livehttpheaders/locale/livehttpheaders.dtd">
 <overlay id="headerinfoTasksOverlay"
     xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:nc="http://home.netscape.com/NC-rdf#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-
   <html:script>
     <![CDATA[
       function getBoolPref(name, value) {
@@ -49,6 +50,8 @@
           gBrowser.selectedTab = gBrowser.addTab('chrome://livehttpheaders/content/LiveHTTPHeaders.xul');
           setTimeout("gURLBar.focus();", 0);
           gBrowser.selectedTab.setAttribute("image", "chrome://livehttpheaders/skin/favicon.ico");
+          var title = document.getElementById("livehttpheaders.title").label
+          gBrowser.selectedTab.setAttribute("label", title);
         } else {
           // Open LiveHTTPHeaders in a global window
           toOpenWindowByType('global:LiveHTTPHeaders', 
@@ -58,15 +61,32 @@
     ]]>
   </html:script>
 
+  <!-- Mozilla XUL -->
   <menupopup id="toolsPopup">
-    <menuitem label="&livehttpheaders.live.title;" 
+    <menuitem id="livehttpheaders.title" label="&livehttpheaders.live.title;" 
               oncommand="openLiveHTTPHeaders();" />
   </menupopup>
-
+ 
   <!-- Phoenix XUL -->
   <menupopup id="menu_ToolsPopup">
     <menuitem label="&livehttpheaders.live.title;" 
               oncommand="openLiveHTTPHeaders();" />
   </menupopup>
+
+  <!-- Phoenix Sidebar -->
+  <broadcasterset id="mainBroadcasterSet">
+  <broadcaster id="viewLiveHTTPSidebar" autoCheck="false" 
+               label="LiveHTTPHeaders" type="checkbox" group="sidebar"
+               sidebarurl="chrome://livehttpheaders/content/LiveHTTPSideBar.xul"
+               oncommand="toggleSidebar('viewLiveHTTPSidebar');"/>
+  </broadcasterset>
+  <keyset id="mainKeyset">
+  <key id="key_viewLiveHTTPSidebar" key="L" command="viewLiveHTTPSidebar" 
+       modifiers="alt"/>
+  </keyset>
+  <menupopup id="viewSidebarMenu">
+  <menuitem key="key_viewLiveHTTPSidebar" observes="viewLiveHTTPSidebar"/>
+  </menupopup>
+
 </overlay>
 

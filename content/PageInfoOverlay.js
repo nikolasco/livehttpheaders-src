@@ -23,6 +23,7 @@
 function makeHeaderInfoTab() {
   // Look to see if the minimum requirement is there
   if (theDocument && theDocument.defaultView) {
+    loc = theDocument.location.protocol;
     if (theDocument.defaultView.headers) {
       const headers = theDocument.defaultView.headers;
 
@@ -64,7 +65,7 @@ function makeHeaderInfoTab() {
       }
       responseheaders.rowCountChanged(0, length);
       responseheaders.enablehScroll("headerinfo-response-scroll","headerinfo-response-value");
-    } else {
+    } else if(loc=='http:' || loc=='https:') {
       // If we are here, it must be because the nsHeaderInfo component wasn't registered
       document.getElementById("headerinfoCNR").hidden = false;
       document.getElementById("headerinfoDeck").selectedIndex = 1;

@@ -1,37 +1,50 @@
 const X_MSG = 	   "Install Live HTTP Header";
 const X_NAME =     "/livehttpheaders";
 const X_NAME_COM = "/livehttpheaders_com";
-const X_VER  =     "0.8";
+const X_VER  =     "0.9";
 const X_JAR_FILE = "livehttpheaders.jar";
 const X_COM_FILE = "nsHeaderInfo.js";
 
-const X_CHROME =   "chrome";
-const X_COMPONENTS = "components";
 const X_CONTENT =  "content/";
 const X_SKIN = 	   "skin/";
 const X_LOCALE1 =  "locale/en-US/livehttpheaders/";
 const X_LOCALE2 =  "locale/fr-FR/livehttpheaders/";
+const X_LOCALE3 =  "locale/de-AT/livehttpheaders/";
+const X_LOCALE4 =  "locale/es-ES/livehttpheaders/";
 
 var err = initInstall(X_MSG, X_NAME, X_VER);
 logComment("initInstall: " + err);
 logComment("Installation started...");
-
 resetError();
-addFile(X_NAME, X_JAR_FILE, getFolder(X_CHROME), "");
+
+if (confirm("Do you wish to install LiveHTTPHeaders to your profile ?\n\n"+
+            "Click OK to install in your profile.\n\n"+
+            "Click Cancel to install it globally.")) {
+  var chromeFolder = getFolder("Profile", "chrome");
+  var componentDir = getFolder("Profile", "components");
+  var iconFolder = getFolder(getFolder("Profile", "icons"), "default");
+} else {
+  var chromeFolder = getFolder("Chrome");
+  var componentDir = getFolder("Components");
+  var iconFolder = getFolder(getFolder("Chrome", "icons"), "default");
+}
+
+addFile(X_NAME, "chrome/" + X_JAR_FILE, chromeFolder, "");
 err = getLastError();
 if (err == SUCCESS || err == REBOOT_NEEDED) {
-  addFile(X_NAME_COM, X_COM_FILE, getFolder(X_COMPONENTS), "");
+  addFile(X_NAME_COM, "components/" + X_COM_FILE, componentDir, "");
 }
 if (err == SUCCESS || err == REBOOT_NEEDED) {
-  var iconfolder = getFolder(getFolder(X_CHROME,"icons"), "default");
-  addFile(X_NAME, "LiveHTTPHeaders.xpm", iconfolder, "");
-  addFile(X_NAME, "LiveHTTPHeaders.ico", iconfolder, "");
+  addFile(X_NAME, "defaults/LiveHTTPHeaders.xpm", iconFolder, "");
+  addFile(X_NAME, "defaults/LiveHTTPHeaders.ico", iconFolder, "");
 }
 if (err == SUCCESS || err == REBOOT_NEEDED) {
-  registerChrome(DELAYED_CHROME | CONTENT, getFolder(X_CHROME, X_JAR_FILE), X_CONTENT);
-  registerChrome(DELAYED_CHROME | SKIN, getFolder(X_CHROME, X_JAR_FILE), X_SKIN);
-  registerChrome(DELAYED_CHROME | LOCALE, getFolder(X_CHROME, X_JAR_FILE), X_LOCALE1);
-  registerChrome(DELAYED_CHROME | LOCALE, getFolder(X_CHROME, X_JAR_FILE), X_LOCALE2);
+  registerChrome(PROFILE_CHROME | CONTENT, getFolder(chromeFolder, X_JAR_FILE), X_CONTENT);
+  registerChrome(PROFILE_CHROME | SKIN, getFolder(chromeFolder, X_JAR_FILE), X_SKIN);
+  registerChrome(PROFILE_CHROME | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE1);
+  registerChrome(PROFILE_CHROME | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE2);
+  registerChrome(PROFILE_CHROME | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE3);
+  registerChrome(PROFILE_CHROME | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE4);
 }
 err = getLastError();
 if (err == SUCCESS || err == REBOOT_NEEDED) {
@@ -44,11 +57,11 @@ if (err == SUCCESS || err == REBOOT_NEEDED) {
   }
 } else {
   cancelInstall();
-  if (err == ACCESS_DENIED) {
+  if (err == -202) {
     alert("You need to have write permissions to the chrome directory and subfolders:\n" + 
-          getFolder(X_CHROME) + " and to the components directory:\n" +
-          getFolder(X_COMPONENTS));
-  } else if (err == USER_CANCELLED) {
+          chromeFolder + " and to the components directory:\n" +
+          componentDir);
+  } else if (err == -210) {
     alert("Installation cancelled by user");
   }else {
     alert("An unknown error occured.  Error code: " + err + "\n" + 

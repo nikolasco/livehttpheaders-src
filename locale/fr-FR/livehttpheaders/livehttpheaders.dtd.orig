@@ -8,19 +8,19 @@
 <!ENTITY livehttpheaders.menu.view              "Affichage" >
 <!ENTITY livehttpheaders.menu.post              "Données POST" >
 
-<!ENTITY livehttpheaders.tabs.headers           "En-têtes" >
+<!ENTITY livehttpheaders.tabs.headers           "Entêtes" >
 <!ENTITY livehttpheaders.tabs.config            "Configuration" >
 <!ENTITY livehttpheaders.tabs.about             "A propos" >
 
 <!ENTITY livehttpheaders.config.usetab          "Ouvrir LiveHTTPHeaders dans un onglet">
 <!ENTITY livehttpheaders.config.usetab.tips     "Détermine si LiveHTTPHeaders doit s'ouvrir dans une nouvelle fenêtre ou bien dans un onglet.">
 <!ENTITY livehttpheaders.config.usestyle        "Utiliser la feuille de style">
-<!ENTITY livehttpheaders.config.usestyle.tips   "Note: dû à un bogue, cette fonction peut prendre 100 pourcent du processeur.">
+<!ENTITY livehttpheaders.config.usestyle.tips   "Note: dû à un 'bug', cette fonction peut prendre 100 pourcent du processeur.">
 <!ENTITY livehttpheaders.config.post		"POST:" >
 <!ENTITY livehttpheaders.config.usefilter	"Filtrer les URLs avec une expression régulière" >
-<!ENTITY livehttpheaders.config.usefilter.tips	"Le filtre s'applique sur l'URL demandée et non pas sur les en-têtes." >
-<!ENTITY livehttpheaders.config.useexclude	"Exclure les URLs avec une expression régulière" >
-<!ENTITY livehttpheaders.config.useexclude.tips	"Le filtre s'applique sur l'URL demandée et non pas sur les en-têtes eux-mêmes." >
+<!ENTITY livehttpheaders.config.usefilter.tips	"Le filtre s'applique sur l'URL demandé et non pas sur les entêtes elles-mêmes." >
+<!ENTITY livehttpheaders.config.useexclude	"Exclude les URLs avec une expression régulière" >
+<!ENTITY livehttpheaders.config.useexclude.tips	"Le filtre s'applique sur l'URL demandé et non pas sur les entêtes elles-mêmes." >
 <!ENTITY livehttpheaders.config.addsidebar	"Ajouter LiveHTTPHeaders à la barre latérale">
 <!ENTITY livehttpheaders.config.addsidebar.tips	"Ce bouton ajoute LiveHTTPHeaders à votre barre latérale.  Pour voir votre barre latérale, appuyer sur F9.">
 <!ENTITY livehttpheaders.config.addsidebar.added " a été ajouté avec succès à votre barre latérale.">
@@ -34,10 +34,10 @@
 <!ENTITY livehttpheaders.about.homepageurl      "http://livehttpheaders.mozdev.org" >
 <!ENTITY livehttpheaders.about.author           "Auteur" >
 <!ENTITY livehttpheaders.about.thanks           "Merci aux personnes suivantes" >
-<!ENTITY livehttpheaders.about.suggestions      "Toutes les personnes qui ont fait des suggestions">
+<!ENTITY livehttpheaders.about.suggestions      "Toutes les personnes qui ont faites des suggestions">
 
-<!ENTITY livehttpheaders.live.title		"En-têtes HTTP en direct" >
-<!ENTITY livehttpheaders.live.headers		"En-têtes HTTP" >
+<!ENTITY livehttpheaders.live.title		"Entêtes HTTP en direct" >
+<!ENTITY livehttpheaders.live.headers		"Entêtes HTTP" >
 <!ENTITY livehttpheaders.live.clear		"Effacer" >
 <!ENTITY livehttpheaders.live.close		"Fermer" >
 <!ENTITY livehttpheaders.live.capture		"Capturer" >
@@ -46,9 +46,9 @@
 <!ENTITY livehttpheaders.live.selectall		"Sélectionner tout" >
 <!ENTITY livehttpheaders.live.saveall           "Enregistrer tout..." >
 <!ENTITY livehttpheaders.live.replay            "Rejouer..." >
-<!ENTITY livehttpheaders.live.replay.tips       "Cliquer sur une URL afin de pouvoir la rejouer..." >
+<!ENTITY livehttpheaders.live.replay.tips       "Cliquer sur un URL afin de pouvoir le rejouer..." >
 
-<!ENTITY livehttpheaders.live.post.tips		"Configurer l'affichage des données POST" >
+<!ENTITY livehttpheaders.live.post.tips		"Configure l'affichage des données POST" >
 <!ENTITY livehttpheaders.live.post.none		"aucun" >
 <!ENTITY livehttpheaders.live.post.none.tips	"Ne pas afficher les données POST" >
 <!ENTITY livehttpheaders.live.post.fast		"rapide" >
@@ -62,7 +62,7 @@
 <!ENTITY livehttpheaders.replay.method          "Méthode" >
 <!ENTITY livehttpheaders.replay.url             "URL" >
 <!ENTITY livehttpheaders.replay.version         "Version" >
-<!ENTITY livehttpheaders.replay.headers         "En-têtes HTTP" >
+<!ENTITY livehttpheaders.replay.headers         "Entêtes HTTP" >
 <!ENTITY livehttpheaders.replay.post            "Envoyer du contenu POST ?" >
 <!ENTITY livehttpheaders.replay.replay          "Rejouer" >
 

@@ -1,0 +1,14 @@
+<!ENTITY livehttpheaders.pageinfo.tab		"Cabeceras" >
+<!ENTITY livehttpheaders.pageinfo.accesskey	"h" >
+<!ENTITY livehttpheaders.pageinfo.request	"Cabeceras de petición" >
+<!ENTITY livehttpheaders.pageinfo.response	"Cabeceras de respuesta" >
+<!ENTITY livehttpheaders.pageinfo.name		"Nombre" >
+<!ENTITY livehttpheaders.pageinfo.value		"Valor" >
+<!ENTITY livehttpheaders.pageinfo.saveas         "Guardar como..." >
+<!ENTITY livehttpheaders.pageinfo.fromcache	"Nota: las cabeceras son de la caché." >
+<!ENTITY livehttpheaders.pageinfo.fromcache.t1	"Las cabeceras de petición podrian no ser la reales ya que no están cacheadas sino regeneradas." >
+<!ENTITY livehttpheaders.pageinfo.fromcache.t2	"Las cabeceras de respuesta deberían ser las que recibieron originalmente de la red." >
+<!ENTITY livehttpheaders.pageinfo.fromnetwork	"Nota: las cabeceras proceden de la red." >
+<!ENTITY livehttpheaders.pageinfo.fromnetwork.t1 "Las cabeceras de petición son aquellas que se enviaron por la red." >
+<!ENTITY livehttpheaders.pageinfo.fromnetwork.t2 "Las cabeceras de respuesta son aquellas que se recibieron por la red." >
+

@@ -2,3 +2,4 @@ content,install,url,resource:/chrome/livehttpheaders/content/
 skin,install,url,resource:/chrome/livehttpheaders/skin/
 locale,install,url,resource:/chrome/livehttpheaders/locale/en-US/livehttpheaders/
 locale,install,url,resource:/chrome/livehttpheaders/locale/fr-FR/livehttpheaders/
+locale,install,url,resource:/chrome/livehttpheaders/locale/de-DE/livehttpheaders/

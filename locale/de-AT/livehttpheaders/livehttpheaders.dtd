@@ -1,0 +1,66 @@
+<!ENTITY livehttpheaders.menu.file		"Datei" >
+<!ENTITY livehttpheaders.menu.close		"Schliessen" >
+<!ENTITY livehttpheaders.menu.saveselection	"Auswahl speichern..." >
+<!ENTITY livehttpheaders.menu.saveall		"Alles speichern..." >
+<!ENTITY livehttpheaders.menu.edit		"Bearbeiten" >
+<!ENTITY livehttpheaders.menu.copy		"Kopieren" >
+<!ENTITY livehttpheaders.menu.selectall		"Alles auswählen" >
+<!ENTITY livehttpheaders.menu.view		"Anzeigen" >
+<!ENTITY livehttpheaders.menu.post		"Sende Daten" >
+
+<!ENTITY livehttpheaders.tabs.headers           "Header" >
+<!ENTITY livehttpheaders.tabs.config            "Konfiguration" >
+<!ENTITY livehttpheaders.tabs.about             "Über" >
+
+<!ENTITY livehttpheaders.config.usetab          "LiveHTTPHeaders in einem neuen Tab öffnen" >
+<!ENTITY livehttpheaders.config.usetab.tips     "LiveHTTPHeaders in einem neuen Tab oder in einem eigenen Fenster anzeigen." >
+<!ENTITY livehttpheaders.config.usestyle        "Style sheet benutzen" >
+<!ENTITY livehttpheaders.config.usestyle.tips   "Anmerkung: es existiert noch ein Fehler, der zu 100 Prozent CPU Auslastung führen kann." >
+<!ENTITY livehttpheaders.config.post            "POST:" >
+<!ENTITY livehttpheaders.config.usefilter       "URLs filtern mit RegExp" >
+<!ENTITY livehttpheaders.config.usefilter.tips  "Dieser Filter wirkt auf die URL und nicht auf jeden Header." >
+<!ENTITY livehttpheaders.config.useexclude       "URLs excluden mit RegExp" >
+<!ENTITY livehttpheaders.config.useexclude.tips  "Dieser Filter wirkt auf die URL und nicht auf jeden Header." >
+<!ENTITY livehttpheaders.config.addsidebar	"LiveHTTPHeaders der Sidebar hinzufügen">
+<!ENTITY livehttpheaders.config.addsidebar.tips	"Dieser Knopf fügt LiveHTTPHeaders in die Sidebar. F9 drüchen, um die Sidebar zu sehen.">
+<!ENTITY livehttpheaders.config.addsidebar.added " erfolgreich der Sidebar hinzugefügt.">
+<!ENTITY livehttpheaders.config.addsidebar.present " wurde bereits der Sidebar hinzugefügt.">
+
+<!ENTITY livehttpheaders.about.version          "Versions Information" >
+<!ENTITY livehttpheaders.about.versiontext      "LiveHTTPHeaders Version" >
+<!ENTITY livehttpheaders.about.currentversion   "0.9" >
+<!ENTITY livehttpheaders.about.checkforupdate   "Auf Update abfragen" >
+<!ENTITY livehttpheaders.about.homepage         "Homepage" >
+<!ENTITY livehttpheaders.about.homepageurl      "http://livehttpheaders.mozdev.org" >
+<!ENTITY livehttpheaders.about.author           "Author" >
+<!ENTITY livehttpheaders.about.thanks           "Dank an" >
+<!ENTITY livehttpheaders.about.suggestions      "Alle Personen, die Vorschläge gemacht haben">
+
+<!ENTITY livehttpheaders.live.title		"Live HTTP headers" >
+<!ENTITY livehttpheaders.live.headers		"HTTP Header" >
+<!ENTITY livehttpheaders.live.clear		"Löschen" >
+<!ENTITY livehttpheaders.live.close		"Schliessen" >
+<!ENTITY livehttpheaders.live.capture		"Mitschneiden" >
+<!ENTITY livehttpheaders.live.copy		"Kopieren" >
+<!ENTITY livehttpheaders.live.selectblock	"Block auswählen" >
+<!ENTITY livehttpheaders.live.selectall		"Alles auswählen" >
+<!ENTITY livehttpheaders.live.saveall		"Alles speichern..." >
+<!ENTITY livehttpheaders.live.replay		"Wiederholen..." >
+<!ENTITY livehttpheaders.live.replay.tips	"URL auswählen, um sie noch einmal abzufragen..." >
+
+<!ENTITY livehttpheaders.live.post.tips		"POST Inhalt Anzeige konfigurieren" >
+<!ENTITY livehttpheaders.live.post.none		"Kein" >
+<!ENTITY livehttpheaders.live.post.none.tips	"Zeigt keinen POST Inhalt" >
+<!ENTITY livehttpheaders.live.post.fast		"Schnell" >
+<!ENTITY livehttpheaders.live.post.fast.tips	"Holt POST Inhalt mit schnellem Code.  Funktioniert nicht mit Datei Upload.  Siehe bug #188328." >
+<!ENTITY livehttpheaders.live.post.slow		"Genau" >
+<!ENTITY livehttpheaders.live.post.slow.tips	"Langsam, funktioniert aber mit Datei Upload." >
+<!ENTITY livehttpheaders.live.post.max1k	"max 1k" >
+<!ENTITY livehttpheaders.live.post.max1k.tips	"Langsam, holt aber nur das erste 1k des POST Inhalts" >
+
+<!ENTITY livehttpheaders.replay.title		"Live HTTP Replay" >
+<!ENTITY livehttpheaders.replay.url		"URL" >
+<!ENTITY livehttpheaders.replay.headers		"HTTP Header" >
+<!ENTITY livehttpheaders.replay.post		"POST Inhalt senden?" >
+<!ENTITY livehttpheaders.replay.replay		"Wiederholen" >
+

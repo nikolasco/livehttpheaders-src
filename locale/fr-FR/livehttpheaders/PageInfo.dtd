@@ -1,14 +1,14 @@
-<!ENTITY livehttpheaders.pageinfo.tab		"Entêtes" >
+<!ENTITY livehttpheaders.pageinfo.tab		"En-têtes" >
 <!ENTITY livehttpheaders.pageinfo.accesskey	"E" >
 <!ENTITY livehttpheaders.pageinfo.request	"Requête" >
 <!ENTITY livehttpheaders.pageinfo.response	"Réponse" >
 <!ENTITY livehttpheaders.pageinfo.name		"Nom" >
 <!ENTITY livehttpheaders.pageinfo.value		"Valeur" >
 <!ENTITY livehttpheaders.pageinfo.saveas         "Enregistrer sous..." >
-<!ENTITY livehttpheaders.pageinfo.fromcache      "Note: les entêtes proviennent de la cache." >
-<!ENTITY livehttpheaders.pageinfo.fromcache.t1	"Les entêtes 'request' pourraient être erronées (non conservées dans la cache)." >
-<!ENTITY livehttpheaders.pageinfo.fromcache.t2	"Les entêtes 'response' devraient être celles reçues originalement du réseau." >
-<!ENTITY livehttpheaders.pageinfo.fromnetwork    "Note: les entêtes proviennent du réseau." >
-<!ENTITY livehttpheaders.pageinfo.fromnetwork.t1	"Les entêtes 'request' sont celles envoyées sur le réseau." >
-<!ENTITY livehttpheaders.pageinfo.fromnetwork.t2	"Les entêtes 'response' sont celles reçues du réseau." >
+<!ENTITY livehttpheaders.pageinfo.fromcache      "Note: les en-têtes proviennent du cache." >
+<!ENTITY livehttpheaders.pageinfo.fromcache.t1	"Les en-têtes 'request' pourraient être erronés (non conservés dans le cache)." >
+<!ENTITY livehttpheaders.pageinfo.fromcache.t2	"Les en-têtes 'response' devraient être ceux reçus originalement du réseau." >
+<!ENTITY livehttpheaders.pageinfo.fromnetwork    "Note: les en-têtes proviennent du réseau." >
+<!ENTITY livehttpheaders.pageinfo.fromnetwork.t1	"Les en-têtes 'request' sont ceux envoyés sur le réseau." >
+<!ENTITY livehttpheaders.pageinfo.fromnetwork.t2	"Les en-têtes 'response' sont ceux reçus du réseau." >
 
