@@ -1,7 +1,7 @@
 const X_MSG = 	   "Install Live HTTP Header";
 const X_NAME =     "/livehttpheaders";
 const X_NAME_COM = "/livehttpheaders_com";
-const X_VER  =     "0.10";
+const X_VER  =     "0.11";
 const X_JAR_FILE = "livehttpheaders.jar";
 const X_COM_FILE = "nsHeaderInfo.js";
 
