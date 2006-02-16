@@ -37,7 +37,6 @@ function startHeaderInfoLive() {
 function stopHeaderInfoLive() {
   removeFromListener(oHeaderInfoLive)
   oHeaderInfoLive.stop();
-  delete oHeaderInfoLive;
   oHeaderInfoLive = null;
 }
 
@@ -552,6 +551,9 @@ HeaderInfoLive.prototype =
         var mis = Components.classes[MIME_STREAM_CID];
         post = mis.createInstance(nsIMIMEInputStream);
         post.setData(tmp);
+        post.addContentLength = true;
+        if ('Content-Type' in req)
+          post.addHeader('Content-Type', req['Content-Type']);
 
         //post.QueryInterface(Components.interfaces.nsIInputStream);
         //dumpall("POST",post,2);
@@ -897,7 +899,8 @@ HeaderInfoVisitor.prototype =
       },
       readLine: function() {
         var line = "";
-        var size = this.stream.available();
+        var size = 0;
+        try { size = this.stream.available(); } catch (ex) { size = 0; }
         for (var i=0; i<size; i++) {
           var c = this.stream.read(1);
           if (c == '\r') {
@@ -934,7 +937,8 @@ HeaderInfoVisitor.prototype =
           this.visitPostHeaders(null);
         }
 
-        var size = this.stream.available();
+        var size = 0;
+        try { size = this.stream.available(); } catch(ex) { size = 0; }
         if (max && max >= 0 && max<size) size = max;
 
         var postString = "";
@@ -945,7 +949,9 @@ HeaderInfoVisitor.prototype =
               break;
             case this.FAST:
               //Get the content in one shot
-              postString = this.stream.read(size);
+              if (size>0) {
+                postString = this.stream.read(size);
+              }
               break;
             case this.SLOW:
               //Must read octet by octet because of a bug in nsIMultiplexStream.cpp

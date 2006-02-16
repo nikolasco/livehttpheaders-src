@@ -1,7 +1,7 @@
 const X_MSG = 	   "Install Live HTTP Header";
 const X_NAME =     "/livehttpheaders";
 const X_NAME_COM = "/livehttpheaders_com";
-const X_VER  =     "0.11";
+const X_VER  =     "0.12";
 const X_JAR_FILE = "livehttpheaders.jar";
 const X_COM_FILE = "nsHeaderInfo.js";
 
@@ -11,6 +11,7 @@ const X_LOCALE1 =  "locale/en-US/livehttpheaders/";
 const X_LOCALE2 =  "locale/fr-FR/livehttpheaders/";
 const X_LOCALE3 =  "locale/de-AT/livehttpheaders/";
 const X_LOCALE4 =  "locale/es-ES/livehttpheaders/";
+const X_LOCALE5 =  "locale/cs-CZ/livehttpheaders/";
 
 var err = initInstall(X_MSG, X_NAME, X_VER);
 logComment("initInstall: " + err);
@@ -47,6 +48,7 @@ if (err == SUCCESS || err == REBOOT_NEEDED) {
   registerChrome(chromeBase | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE2);
   registerChrome(chromeBase | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE3);
   registerChrome(chromeBase | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE4);
+  registerChrome(chromeBase | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE5);
 }
 err = getLastError();
 if (err == SUCCESS || err == REBOOT_NEEDED) {

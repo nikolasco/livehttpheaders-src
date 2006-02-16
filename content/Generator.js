@@ -22,6 +22,7 @@
 //  **** END LICENSE BLOCK ****
 
 var oGenerator;
+
 function startGenerator() {
   oGenerator = MakeGenerator();
   oGenerator.start();
@@ -32,8 +33,8 @@ function startGenerator() {
 function stopGenerator() {
   oHeaderInfoLive.removeObserver(oGenerator)
   oGenerator.stop();
-  delete oGenerator;
   oGenerator = null;
+  delete oGenerator;
 }
 
 function MakeGenerator() {

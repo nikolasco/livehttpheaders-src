@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2" />
+	<meta http-equiv="Content-language" content="cs" />
+	<title>Nepodařilo se správně zaregistrovat komponentu nsheaderinfo</title>
+</head>
+<body>
+<p>Pro správnou funkci Hlaviček HTTP v panelu informací prohlížeče Mozilla, či Mozilla Firebird je potřeba registorvat komponentu nsheaderinfo.<br/> Tato komponenta se nachází v souboru mozilla/components/nsheaderinfo.js.</p>
+<p>Registrace komponenty měla proběhnout automaticky při instalaci, bohužel se tak nestalo. Proveďte prosím následující kroky, které umožní prohlížeči nalézt a registorvat tuto komponentu.</p>
+<ul>
+	<li>Smažte soubor <code><b>mozilla/components/compreg.dat</b></code></li>
+	<li>Smažte soubor <code><b>mozilla/components/xpti.dat</b></code></li>
+</ul>
+<p>Tyto dva soubory by se měli automaticky obnovit po restartu balíku Mozilla, či prohlížeče Mozilla Firebird.</p>
+</body>
+</html>

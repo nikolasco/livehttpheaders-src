@@ -1,5 +1,10 @@
 /*-------------------------------------------------------*/
 
+/* Set text color for the whole tree - just to be safe */
+treechildren {
+  color: #000000;
+}
+
 /* The URL line (first line of each block) */
 treechildren:-moz-tree-cell(URL) {
   background-image: url(img/URL.png); 

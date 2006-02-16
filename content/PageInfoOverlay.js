@@ -27,11 +27,19 @@ function makeHeaderInfoTab() {
   flag = 1;
 
   // Look to see if the minimum requirement is there
-  if (theDocument && 'defaultView' in theDocument) {
+  if (theDocument && 'defaultView' in theDocument && 'controllers' in theDocument.defaultView) {
     loc = theDocument.location.protocol;
-    if ('headers' in theDocument.defaultView) {
-      const headers = theDocument.defaultView.headers;
+    var controller = theDocument.defaultView.controllers.getControllerForCommand('livehttpheaders');
 
+    // The controller might be wrapped multiple times
+    while (controller && !('headers' in controller))
+      controller = controller.wrappedJSObject;
+
+    var headers = null;
+    if (controller && controller.url == theDocument.defaultView.location.href)
+      headers = controller.headers;
+
+    if (headers) {
       //dumpall("theWindow",theWindow,2);
       //dumpall("theDocument",theDocument,2);
       //dumpall("opener",window.opener,2);

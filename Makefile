@@ -2,7 +2,7 @@ LOCALE=locale/*/livehttpheaders
 CONTENT=content
 SKIN=skin
 
-all:	clean jar xpi download
+all:	clean jar xpi download root
 
 jar:
 	zip tmp/chrome/livehttpheaders.jar \
@@ -28,7 +28,7 @@ jar:
         ${LOCALE}/generator-help.xul \
         ${SKIN}/contents.rdf \
         ${SKIN}/livehttpheaders.css \
-        ${SKIN}/LiveHTTPHeaders.jpg \
+        ${SKIN}/img/Logo_32.png \
         ${SKIN}/favicon.ico \
         ${SKIN}/img/*
 
@@ -61,4 +61,9 @@ clean:
 	rm -fr tmp
 	mkdir -p tmp tmp/chrome tmp/components tmp/defaults/preferences
 
+root:
+	cp tmp/chrome/livehttpheaders.jar /root/.mozilla/firefox/s6oo8y1y.default/extensions/{8f8fe09b-0bd3-4470-bc1b-8cad42b8203a}/chrome/
+	cp tmp/components/nsHeaderInfo.js /root/.mozilla/firefox/s6oo8y1y.default/extensions/{8f8fe09b-0bd3-4470-bc1b-8cad42b8203a}/components/
+	cp tmp/chrome/livehttpheaders.jar /usr/lib/mozilla/chrome/
+	cp tmp/components/nsHeaderInfo.js /usr/lib/mozilla/components/
 

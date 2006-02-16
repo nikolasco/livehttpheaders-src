@@ -1,0 +1,13 @@
+<!ENTITY livehttpheaders.pageinfo.tab		"Hlavičky" >
+<!ENTITY livehttpheaders.pageinfo.accesskey	"h" >
+<!ENTITY livehttpheaders.pageinfo.request	"Hlavičky požadavku" >
+<!ENTITY livehttpheaders.pageinfo.response	"Hlavičky odpovědi" >
+<!ENTITY livehttpheaders.pageinfo.name		"Jméno" >
+<!ENTITY livehttpheaders.pageinfo.value		"Hodnota" >
+<!ENTITY livehttpheaders.pageinfo.saveas         "Uložit jako..." >
+<!ENTITY livehttpheaders.pageinfo.fromcache	"Poznámka: Hlavičky jsou brány z vyrovnávací paměti.">
+<!ENTITY livehttpheaders.pageinfo.fromcache.t1	"Hlavičky odpovědí jsou brány z vyrovnávací paměti, měli by odpovídat původním.">
+<!ENTITY livehttpheaders.pageinfo.fromcache.t2	"Hlavičky požadavků nemusí odpovídat původně zaslaným, byly znovu vygenerovány.">
+<!ENTITY livehttpheaders.pageinfo.fromnetwork	"Poznámka: Hlavičky jsou brány přímo z požadavku">
+<!ENTITY livehttpheaders.pageinfo.fromnetwork.t1 "Hlavičky požadavků odpovídají požadavkům zaslaným serveru v síti Internet.">
+<!ENTITY livehttpheaders.pageinfo.fromnetwork.t2 "Hlavičky odpovědí odpovídají odpovědím přijatých od serveru v síti Internet.">

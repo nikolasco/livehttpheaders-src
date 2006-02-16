@@ -1,0 +1,28 @@
+<!ENTITY livehttpheaders.tabs.generator         "Generátor" >
+<!ENTITY generator.title                        "Seznam generátoru" >
+<!ENTITY generator.capture                      "Zachytávat" >
+<!ENTITY generator.label.show                   "Zobrazit" >
+<!ENTITY generator.label.request                "Požadavek" >
+
+<!ENTITY generator.option.redirect              "přesměrování" >
+<!ENTITY generator.option.invalid               "chybné" >
+<!ENTITY generator.option.image                 "obrázky" >
+<!ENTITY generator.option.css                   "CSS" >
+<!ENTITY generator.option.skipped               "vynecháno" >
+<!ENTITY generator.option.request               "požadavek" >
+
+<!ENTITY generator.popup.redirect
+         "Zobrazit všechny přesměrované požadavky, ne jen ten první" >
+<!ENTITY generator.popup.invalid 
+         "Zobrazit chybné požadavky (Chybový kód odpovědi 4xx, 5xx)" >
+<!ENTITY generator.popup.image 
+         "Zobrazit požadavky na obrázky" >
+<!ENTITY generator.popup.css
+         "Zobrazit požadavky na CSS" >
+<!ENTITY generator.popup.skipped
+         "Zobrazit všechny požadavky, které nepatří do předchozích voleb" >
+<!ENTITY generator.popup.request
+         "Zobrazit požadavek i tehdy, když Mozilla odpovídá z vyrovnávací paměti." >
+
+<!ENTITY generator.button.help                  "Nápověda" >
+<!ENTITY generator.help.title                   "Nápověda generátoru" >

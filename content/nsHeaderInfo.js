@@ -66,7 +66,10 @@ var nsHeaderInfo = {
           aRequest.QueryInterface(Components.interfaces.nsIMultiPartChannel);
           aRequest = aRequest.baseChannel.QueryInterface(Components.interfaces.nsIHttpChannel);
         }
-        aProg.DOMWindow.headers = new HeaderInfoVisitor(aRequest).getHeaders();
+
+        var controller = new FakeController(new HeaderInfoVisitor(aRequest).getHeaders());
+        controller.install(aProg.DOMWindow);
+
         // We are done with the listener, release it
         aProg.removeProgressListener(this);
       } catch (ex) {}
@@ -251,7 +254,8 @@ HeaderInfoVisitor.prototype =
 
   readLine : function(stream) {
     var line = "";
-    var size = stream.available();
+    var size = 0;
+    try { size = stream.available(); } catch(ex) { size = 0; }
     for (var i=0; i<size; i++) {
       var c = stream.read(1);
       if (c == '\r') {
@@ -345,6 +349,34 @@ HeaderInfoVisitor.prototype =
   }
 }
 
+
+function FakeController(oHeaders)
+{
+  this.headers = oHeaders;
+  this.wrappedJSObject = this;
+}
+FakeController.prototype = {
+  headers: null,
+  url: null,
+  isCommandEnabled: function(command)
+  {
+    return false;
+  },
+  supportsCommand: function(command)
+  {
+    return (command == 'livehttpheaders');
+  },
+  install: function(oWindow)
+  {
+    // Remove any previously installed controllers first
+    var controller;
+    while (controller = oWindow.controllers.getControllerForCommand('livehttpheaders'))
+      oWindow.controllers.removeController(controller);
+
+    this.url = oWindow.location.href;
+    oWindow.controllers.appendController(this);
+  }
+}
 
 /*
  * Objects

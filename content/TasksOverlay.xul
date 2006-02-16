@@ -31,19 +31,19 @@
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
   <html:script>
     <![CDATA[
-      function getBoolPref(name, value) {
-        try {
-          var pref = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
-          pref = pref.getBranch("extensions.livehttpheaders.");
-          if (pref.prefHasUserValue(name)) {
-            value = pref.getBoolPref(name);
-          } else {
-            pref.setBoolPref(name, value);
-          }
-        } catch (ex) { alert(ex); }
-        return value;
-      }
       function openLiveHTTPHeaders() {
+        var getBoolPref = function (name, value) {
+          try {
+            var pref = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
+            pref = pref.getBranch("extensions.livehttpheaders.");
+            if (pref.prefHasUserValue(name)) {
+              value = pref.getBoolPref(name);
+            } else {
+              pref.setBoolPref(name, value);
+            }
+          } catch (ex) { alert(ex); }
+          return value;
+        }
         var usetab = getBoolPref("tab", false);
         if (usetab) {
           // Open LiveHTTPHeaders in a new tab

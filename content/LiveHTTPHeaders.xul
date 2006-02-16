@@ -27,15 +27,17 @@
 <?xml-stylesheet href="chrome://livehttpheaders/skin/livehttpheaders.css" type="text/css"?>
 <?xul-overlay    href="chrome://livehttpheaders/content/Generator.xul"?>
 <!DOCTYPE window SYSTEM "chrome://livehttpheaders/locale/livehttpheaders.dtd" >
-<window title="&livehttpheaders.live.title;"
+<dialog title="&livehttpheaders.live.title;"
   id="LiveHTTPHeaders"
   windowtype="global:LiveHTTPHeaders"
+  buttons="cancel"
   xmlns:html="http://www.w3.org/1999/xhtml"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   width="750"
   height="500"
   onload="startHeaderInfoLive()"
-  onunload="stopHeaderInfoLive()">
+  onunload="stopHeaderInfoLive()"
+  ondialogaccept="return false">
 <script type="application/x-javascript" src="chrome://global/content/dialogOverlay.js" />
 <script type="application/x-javascript" src="chrome://livehttpheaders/content/LiveHTTPHeaders.js" />
 <script type="application/x-javascript" src="chrome://livehttpheaders/content/headerinfo.js" />
@@ -210,6 +212,7 @@
     <groupbox orient="vertical" style="overflow:-moz-scrollbars-vertical;" flex="1">
       <caption label="&livehttpheaders.about.thanks;"/>
       <label value="&livehttpheaders.about.suggestions;" />
+      <label value="Alex" />
       <label value="Bernardo A. de la Ossa Pérez" />
       <label value="Christopher Cook" />
       <label value="Daniel Brooks" />
@@ -218,28 +221,34 @@
       <label value="François Constantineau" />
       <label value="Grégoire Lejeune" />
       <label value="Henrik Gemal" />
+      <label value="Joshua Hewitt" />
       <label value="Macarie Neculai" />
       <label value="Mandeep Singh" />
       <label value="Mathieu Hautot" />
+      <label value="Michal Kec" />
+      <label value="Mook" />
       <label value="Nathan Fain" />
+      <label value="Nikolas Coukouma" />
+      <label value="Nils Maier" />
       <label value="Paul Lacourse" />
+      <label value="Pavel Franc" />
       <label value="Richard Marti" />
       <label value="Richard Mlynarik" />
       <label value="Stefan Trcek" />
       <label value="Sven Anders" />
       <label value="Todd Knarr" />
+      <label value="Wladimir Palant" />
       <label value="Wojtek Meler" />
     </groupbox>
     
     <spacer flex="1"/>
     <hbox>
       <spacer flex="1" />
-      <button label="&livehttpheaders.live.close;"
-              disabled="false" oncommand="window.close();"/>
+      <button dlgtype="cancel" label="&livehttpheaders.live.close;"/>
     </hbox>
   </vbox>
   </tabpanel>
 
 </tabpanels>
 </tabbox>
-</window>
+</dialog>

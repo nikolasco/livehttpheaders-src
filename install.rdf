@@ -5,7 +5,7 @@
 
   <Description about="urn:mozilla:install-manifest">
     <em:id>{8f8fe09b-0bd3-4470-bc1b-8cad42b8203a}</em:id>
-    <em:version>0.11</em:version>
+    <em:version>0.12</em:version>
     
     <!-- Target Application this extension can install into, 
          with minimum and maximum supported versions. --> 
@@ -25,8 +25,9 @@
     <!--em:updateURL>http://www.cosmicat.com/extensions/update.php?id=%ITEM_ID%&amp;version=%ITEM_VERSION%</em:updateURL-->
 
     <!-- Front End Integration Hooks (used by Extension Manager)-->
-    <em:iconURL>chrome://livehttpheaders/skin/LiveHTTPHeaders.jpg</em:iconURL>
+    <em:iconURL>chrome://livehttpheaders/skin/img/Logo_32.png</em:iconURL>
     <em:optionsURL>chrome://livehttpheaders/content/LiveHTTPHeaders.xul</em:optionsURL>
+    <em:contributor>Alex</em:contributor>
     <em:contributor>Bernardo A. de la Ossa Pérez</em:contributor>
     <em:contributor>Christopher Cook</em:contributor>
     <em:contributor>Daniel Brooks</em:contributor>
@@ -35,16 +36,23 @@
     <em:contributor>François Constantineau</em:contributor>
     <em:contributor>Grégoire Lejeune</em:contributor>
     <em:contributor>Henrik Gemal</em:contributor>
+    <em:contributor>Joshua Hewitt</em:contributor>
     <em:contributor>Macarie Neculai</em:contributor>
     <em:contributor>Mandeep Singh</em:contributor>
     <em:contributor>Mathieu Hautot</em:contributor>
+    <em:contributor>Michal Kec</em:contributor>
+    <em:contributor>Mook</em:contributor>
     <em:contributor>Nathan Fain</em:contributor>
+    <em:contributor>Nikolas Coukouma</em:contributor>
+    <em:contributor>Nils Maier</em:contributor>
     <em:contributor>Paul Lacourse</em:contributor>
+    <em:contributor>Pavel Franc</em:contributor>
     <em:contributor>Richard Marti</em:contributor>
     <em:contributor>Richard Mlynarik</em:contributor>
     <em:contributor>Stefan Trcek</em:contributor>
     <em:contributor>Sven Anders</em:contributor>
     <em:contributor>Todd Knarr</em:contributor>
+    <em:contributor>Wladimir Palant</em:contributor>
     <em:contributor>Wojtek Meler</em:contributor>
     <!--em:aboutURL></em:aboutURL-->
 
@@ -56,6 +64,7 @@
         <em:locale>locale/fr-FR/livehttpheaders/</em:locale>
         <em:locale>locale/de-AT/livehttpheaders/</em:locale>
         <em:locale>locale/es-ES/livehttpheaders/</em:locale>
+        <em:locale>locale/cs-CZ/livehttpheaders/</em:locale>
         <em:skin>skin/</em:skin>
       </Description>
     </em:file>
