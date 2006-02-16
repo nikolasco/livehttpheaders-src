@@ -27,7 +27,7 @@
     <!-- Front End Integration Hooks (used by Extension Manager)-->
     <em:iconURL>chrome://livehttpheaders/skin/img/Logo_32.png</em:iconURL>
     <em:optionsURL>chrome://livehttpheaders/content/LiveHTTPHeaders.xul</em:optionsURL>
-    <em:contributor>Alex</em:contributor>
+    <em:contributor>Alex Pleiner</em:contributor>
     <em:contributor>Bernardo A. de la Ossa Pérez</em:contributor>
     <em:contributor>Christopher Cook</em:contributor>
     <em:contributor>Daniel Brooks</em:contributor>
@@ -39,6 +39,7 @@
     <em:contributor>Joshua Hewitt</em:contributor>
     <em:contributor>Macarie Neculai</em:contributor>
     <em:contributor>Mandeep Singh</em:contributor>
+    <em:contributor>Manuel Garcia</em:contributor>
     <em:contributor>Mathieu Hautot</em:contributor>
     <em:contributor>Michal Kec</em:contributor>
     <em:contributor>Mook</em:contributor>

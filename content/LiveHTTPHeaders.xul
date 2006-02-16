@@ -212,7 +212,7 @@
     <groupbox orient="vertical" style="overflow:-moz-scrollbars-vertical;" flex="1">
       <caption label="&livehttpheaders.about.thanks;"/>
       <label value="&livehttpheaders.about.suggestions;" />
-      <label value="Alex" />
+      <label value="Alex Pleiner" />
       <label value="Bernardo A. de la Ossa Pérez" />
       <label value="Christopher Cook" />
       <label value="Daniel Brooks" />
@@ -224,6 +224,7 @@
       <label value="Joshua Hewitt" />
       <label value="Macarie Neculai" />
       <label value="Mandeep Singh" />
+      <label value="Manuel Garcia" />
       <label value="Mathieu Hautot" />
       <label value="Michal Kec" />
       <label value="Mook" />
