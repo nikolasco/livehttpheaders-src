@@ -287,7 +287,7 @@ HeaderInfoVisitor.prototype =
 
           // Now we can start to get the headers
           var line = this.readLine(stream);
-          while(line) {
+          while (line) {
             var tmp = line.split(/:\s?/);
             visitor.visitHeader(tmp[0],tmp[1]);
             line = this.readLine(stream);
@@ -369,12 +369,16 @@ FakeController.prototype = {
   install: function(oWindow)
   {
     // Remove any previously installed controllers first
+    var controllers = oWindow.controllers;
+    while (controllers.wrappedJSObject)
+      controllers = controllers.wrappedJSObject
+    var constroller = controllers.getControllerForCommand('livehttpheaders');
     var controller;
-    while (controller = oWindow.controllers.getControllerForCommand('livehttpheaders'))
-      oWindow.controllers.removeController(controller);
+    while (controller = controllers.getControllerForCommand('livehttpheaders'))
+      controllers.removeController(controller);
 
     this.url = oWindow.location.href;
-    oWindow.controllers.appendController(this);
+    controllers.appendController(this);
   }
 }
 
