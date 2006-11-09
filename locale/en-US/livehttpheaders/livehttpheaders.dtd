@@ -28,7 +28,7 @@
 
 <!ENTITY livehttpheaders.about.version          "Version information" >
 <!ENTITY livehttpheaders.about.versiontext      "LiveHTTPHeaders version" >
-<!ENTITY livehttpheaders.about.currentversion   "0.12" >
+<!ENTITY livehttpheaders.about.currentversion   "0.13.1" >
 <!ENTITY livehttpheaders.about.checkforupdate   "Check for update" >
 <!ENTITY livehttpheaders.about.homepage         "Home page" >
 <!ENTITY livehttpheaders.about.homepageurl      "http://livehttpheaders.mozdev.org" >
