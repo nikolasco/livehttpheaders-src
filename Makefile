@@ -36,6 +36,7 @@ xpi:
 	cp install.js tmp
 	cp install.rdf tmp
 	cp ${CONTENT}/nsHeaderInfo.js tmp/components
+	cp prefs.js tmp/defaults/preferences/
 	cp ${SKIN}/LiveHTTPHeaders.ico tmp/defaults
 	cp ${SKIN}/LiveHTTPHeaders.xpm tmp/defaults
 	cp TODO.txt tmp
