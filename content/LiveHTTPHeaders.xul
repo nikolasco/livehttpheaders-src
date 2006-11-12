@@ -43,7 +43,7 @@
 <script type="application/x-javascript" src="chrome://livehttpheaders/content/headerinfo.js" />
 <script type="application/x-javascript" src="chrome://livehttpheaders/content/addpanel.js"/>
 
-<html:LINK REL="SHORTCUT ICON" HREF="chrome://livehttpheaders/content/favicon.ico" />
+<html:link rel="icon" href="chrome://livehttpheaders/skin/favicon.ico" />
 
   <popupset id="popupset">
     <popup id="headerinfo-context">
