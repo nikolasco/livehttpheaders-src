@@ -12,6 +12,9 @@ const X_LOCALE2 =  "locale/fr-FR/livehttpheaders/";
 const X_LOCALE3 =  "locale/de-AT/livehttpheaders/";
 const X_LOCALE4 =  "locale/es-ES/livehttpheaders/";
 const X_LOCALE5 =  "locale/cs-CZ/livehttpheaders/";
+const X_LOCALE6 =  "locale/nl-NL/livehttpheaders/";
+const X_LOCALE7 =  "locale/ru-RU/livehttpheaders/";
+const X_LOCALE8 =  "locale/da-DK/livehttpheaders/";
 
 var err = initInstall(X_MSG, X_NAME, X_VER);
 logComment("initInstall: " + err);
@@ -49,6 +52,9 @@ if (err == SUCCESS || err == REBOOT_NEEDED) {
   registerChrome(chromeBase | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE3);
   registerChrome(chromeBase | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE4);
   registerChrome(chromeBase | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE5);
+  registerChrome(chromeBase | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE6);
+  registerChrome(chromeBase | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE7);
+  registerChrome(chromeBase | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE8);
 }
 err = getLastError();
 if (err == SUCCESS || err == REBOOT_NEEDED) {

@@ -1,0 +1,19 @@
+<!ENTITY livehttpheaders.tabs.generator "Generator">
+<!ENTITY generator.title "Generatorlijst">
+<!ENTITY generator.capture "Vangen">
+<!ENTITY generator.label.show "Weergeven">
+<!ENTITY generator.label.request "Aanvragen">
+<!ENTITY generator.option.redirect "doorsturingen">
+<!ENTITY generator.option.invalid "ongeldig">
+<!ENTITY generator.option.image "afbeeldingen">
+<!ENTITY generator.option.css "CSS">
+<!ENTITY generator.option.skipped "overgeslagen">
+<!ENTITY generator.option.request "aanvraag">
+<!ENTITY generator.popup.redirect "Alle doorgestuurde aanvragen weergeven, en niet alleen de eerste">
+<!ENTITY generator.popup.invalid "Ongeldige aanvragen weergeven (Responscode 4xx, 5xx)">
+<!ENTITY generator.popup.image "Afbeeldingen weergeven">
+<!ENTITY generator.popup.css "CSS aanvragen weergeven">
+<!ENTITY generator.popup.skipped "Alle aanvragen die door de overige opties worden overgeslagen weergeven">
+<!ENTITY generator.popup.request "Gebruikersaanvraag weergeven, zelfs als Mozilla vanuit de cache aantwoordt">
+<!ENTITY generator.button.help "Help">
+<!ENTITY generator.help.title "Generator help">

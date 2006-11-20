@@ -1,0 +1,59 @@
+<!ENTITY livehttpheaders.menu.file "Bestand">
+<!ENTITY livehttpheaders.menu.close "Sluiten">
+<!ENTITY livehttpheaders.menu.saveselection "Selectie opslaan...">
+<!ENTITY livehttpheaders.menu.saveall "Alles opslaan...">
+<!ENTITY livehttpheaders.menu.edit "Wijzigen">
+<!ENTITY livehttpheaders.menu.copy "Kopiëren">
+<!ENTITY livehttpheaders.menu.selectall "Alles selecteren">
+<!ENTITY livehttpheaders.menu.view "Bekijken">
+<!ENTITY livehttpheaders.menu.post "POSTDATA">
+<!ENTITY livehttpheaders.tabs.headers "Headers">
+<!ENTITY livehttpheaders.tabs.config "Configureren">
+<!ENTITY livehttpheaders.tabs.about "Over">
+<!ENTITY livehttpheaders.config.usetab "LiveHTTPHeaders in nieuw tabblad openen">
+<!ENTITY livehttpheaders.config.usetab.tips "Moet LiveHTTPHeaders worden weergegeven in een nieuw tabblad of een nieuw venster?">
+<!ENTITY livehttpheaders.config.usestyle "Stylesheet gebruiken">
+<!ENTITY livehttpheaders.config.usestyle.tips "Opmerking: Er is momenteel een programmafout die ervoor kan zorgen dat deze optie 100 procent CPU gebruik opeist.">
+<!ENTITY livehttpheaders.config.post "POST:">
+<!ENTITY livehttpheaders.config.usefilter "URL&apos;s filteren met reguliere expressie">
+<!ENTITY livehttpheaders.config.usefilter.tips "Dit filter is van toepassing op een URL en niet op alle headers.">
+<!ENTITY livehttpheaders.config.useexclude "URL&apos;s uitsluiten met reguliere expressie">
+<!ENTITY livehttpheaders.config.useexclude.tips "Deze uitsluiting is van toepassing op een URL en niet op alle headers.">
+<!ENTITY livehttpheaders.config.addsidebar "LiveHTTPHeaders aan zijbalk toevoegen">
+<!ENTITY livehttpheaders.config.addsidebar.tips "Deze knop voegt LiveHTTPHeaders toe aan uw zijbalk. Druk op F9 om uw zijbalk te zien.">
+<!ENTITY livehttpheaders.config.addsidebar.added "succesvol toegevoegd aan uw zijbalk.">
+<!ENTITY livehttpheaders.config.addsidebar.present "bestaat al in uw zijbalk.">
+<!ENTITY livehttpheaders.about.version "Versie-informatie">
+<!ENTITY livehttpheaders.about.versiontext "LiveHTTPHeaders versie">
+<!ENTITY livehttpheaders.about.currentversion "0.13.1">
+<!ENTITY livehttpheaders.about.checkforupdate "Zoeken naar update">
+<!ENTITY livehttpheaders.about.homepage "Homepage">
+<!ENTITY livehttpheaders.about.homepageurl "http://livehttpheaders.mozdev.org">
+<!ENTITY livehttpheaders.about.author "Schrijver">
+<!ENTITY livehttpheaders.about.thanks "Dankzegging aan">
+<!ENTITY livehttpheaders.about.suggestions "Iedereen die suggesties heeft gedaan">
+<!ENTITY livehttpheaders.live.title "Live HTTP Headers">
+<!ENTITY livehttpheaders.live.headers "HTTP Headers">
+<!ENTITY livehttpheaders.live.clear "Wissen">
+<!ENTITY livehttpheaders.live.close "Sluiten">
+<!ENTITY livehttpheaders.live.capture "Vangen">
+<!ENTITY livehttpheaders.live.copy "Kopiëren">
+<!ENTITY livehttpheaders.live.selectblock "Blok selecteren">
+<!ENTITY livehttpheaders.live.selectall "Alles selecteren">
+<!ENTITY livehttpheaders.live.saveall "Alles opslaan...">
+<!ENTITY livehttpheaders.live.replay "Vernieuwen...">
+<!ENTITY livehttpheaders.live.replay.tips "Selecteer een URL om deze te vernieuwen...">
+<!ENTITY livehttpheaders.live.post.tips "POST inhoud weergave configureren">
+<!ENTITY livehttpheaders.live.post.none "geen">
+<!ENTITY livehttpheaders.live.post.none.tips "Geen POST inhoud weergeven">
+<!ENTITY livehttpheaders.live.post.fast "snel">
+<!ENTITY livehttpheaders.live.post.fast.tips "POST inhoud met snelle code ophalen. Geen gebruik maken van bestandsupload. Zie bug #188328.">
+<!ENTITY livehttpheaders.live.post.slow "nauwkeurig">
+<!ENTITY livehttpheaders.live.post.slow.tips "Langzaam, maar werkt met bestandsupload.">
+<!ENTITY livehttpheaders.live.post.max1k "max. 1k">
+<!ENTITY livehttpheaders.live.post.max1k.tips "Langzaam, maar haalt slechts de eerste 1k POST inhoud op.">
+<!ENTITY livehttpheaders.replay.title "Live HTTP vernieuwen">
+<!ENTITY livehttpheaders.replay.url "URL">
+<!ENTITY livehttpheaders.replay.headers "HTTP headers">
+<!ENTITY livehttpheaders.replay.post "POST inhoud verzenden?">
+<!ENTITY livehttpheaders.replay.replay "Vernieuwen">

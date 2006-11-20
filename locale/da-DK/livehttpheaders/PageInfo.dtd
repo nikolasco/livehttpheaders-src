@@ -1,0 +1,13 @@
+<!ENTITY livehttpheaders.pageinfo.tab "Headere">
+<!ENTITY livehttpheaders.pageinfo.accesskey "h">
+<!ENTITY livehttpheaders.pageinfo.request "Request Headers">
+<!ENTITY livehttpheaders.pageinfo.response "Response Headers">
+<!ENTITY livehttpheaders.pageinfo.name "Navn">
+<!ENTITY livehttpheaders.pageinfo.value "Værdi">
+<!ENTITY livehttpheaders.pageinfo.saveas "Gem som...">
+<!ENTITY livehttpheaders.pageinfo.fromcache "Bemærk: Headere er fra mellemlageret.">
+<!ENTITY livehttpheaders.pageinfo.fromcache.t1 "Request headers may not be the real ones are they aren&apos;t cached but regenerated.">
+<!ENTITY livehttpheaders.pageinfo.fromcache.t2 "Response headers skulle være dem der oprindeligt blev modtaget fra netværket.">
+<!ENTITY livehttpheaders.pageinfo.fromnetwork "Bemærk: headere er fra netværk.">
+<!ENTITY livehttpheaders.pageinfo.fromnetwork.t1 "Request headers er dem der er sendt fra netværket.">
+<!ENTITY livehttpheaders.pageinfo.fromnetwork.t2 "Response headers er dem der er modtaget fra netværket.">

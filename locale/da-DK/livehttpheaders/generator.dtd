@@ -1,0 +1,19 @@
+<!ENTITY livehttpheaders.tabs.generator "Generator">
+<!ENTITY generator.title "Generatorliste">
+<!ENTITY generator.capture "Opfang">
+<!ENTITY generator.label.show "Vis">
+<!ENTITY generator.label.request "Forespørgsel">
+<!ENTITY generator.option.redirect "viderestilling">
+<!ENTITY generator.option.invalid "ugyldig">
+<!ENTITY generator.option.image "billeder">
+<!ENTITY generator.option.css "CSS">
+<!ENTITY generator.option.skipped "sprunget over">
+<!ENTITY generator.option.request "forespørgsel">
+<!ENTITY generator.popup.redirect "Vis enhver omdirigeret forespørgsel, ikke kun den første">
+<!ENTITY generator.popup.invalid "Vis ugyldige forespørgsler (Svarkode 4xx, 5xx)">
+<!ENTITY generator.popup.image "Vis billeder">
+<!ENTITY generator.popup.css "Vis CSS-forespørgsler">
+<!ENTITY generator.popup.skipped "Vis alle forespørgsler der er sprunget over af de andre indstillinger">
+<!ENTITY generator.popup.request "Vis brugerens forespørgsel, selv hvis Mozillas svar kommer fra et mellemlager">
+<!ENTITY generator.button.help "Hjælp">
+<!ENTITY generator.help.title "Generator hjælp">

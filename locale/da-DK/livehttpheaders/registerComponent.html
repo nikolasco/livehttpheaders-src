@@ -1,0 +1,26 @@
+﻿<HTML>
+<HEAD>
+<TITLE>nsHeaderInfo komponenten er ikke registreret korrekt</TITLE>
+</HEAD>
+<BODY>
+For at kunne vise headers informationer i Sideinformations-fanebladet i
+Mozilla eller Firebird skal nsHeaderInfo komponenten være registreret.<br>
+Denne komponent findes i filen Mozilla/Components/nsHeaderInfo.js.<p>
+
+Registrering skulle havde været udført af LiveHTTPHeaders installationen.<br>
+Dette virker dog ikke altid.<br>
+Fløge disse trin for at lade Mozilla eller Firebird finde og registrere
+komponenten:<br>
+<ul>
+<li>Slet filen <code><b>Mozilla/Components/compreg.dat</b></code></li>
+<li>Slet filen <code><b>Mozilla/Components/xpti.dat</b></code></li>
+</ul>
+Disse 2 filer skulle automatisk blive genskabt af Mozilla ellerr Firebird
+næste gang programmet genstartes.<p>
+
+<b>Bemærk</b>: hvis du installerede LiveHTTPHeaders i din <b>profil</b>, er der
+en kopi af nsHeadersInfo.js filen i din profile/components mappe.
+Du skal kopiere denne til Mozilla/Components mappen først og derefter følge
+ovenstående direktiver.<br>
+</BODY>
+</HTML>

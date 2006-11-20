@@ -1,0 +1,19 @@
+<!ENTITY livehttpheaders.tabs.generator "Генератор">
+<!ENTITY generator.title "Список запросов">
+<!ENTITY generator.capture "Фиксировать">
+<!ENTITY generator.label.show "Показывать">
+<!ENTITY generator.label.request "Запрос">
+<!ENTITY generator.option.redirect "Редиректы">
+<!ENTITY generator.option.invalid "Ошибочные">
+<!ENTITY generator.option.image "Изображения">
+<!ENTITY generator.option.css "CSS">
+<!ENTITY generator.option.skipped "Пропущенные">
+<!ENTITY generator.option.request "Показывать все запросы">
+<!ENTITY generator.popup.redirect "Показывать любые перенаправленные запросы, не только первый.">
+<!ENTITY generator.popup.invalid "Показывать ошибочные запросы (коды ответа 4хх, 5хх)">
+<!ENTITY generator.popup.image "Показывать запросы рисунков">
+<!ENTITY generator.popup.css "Показывать запросы CSS">
+<!ENTITY generator.popup.skipped "Показывать любые запросы, отклонённые другими опциями">
+<!ENTITY generator.popup.request "Показывать запросы пользователя, даже если Mozilla берёт страницу из кеша.">
+<!ENTITY generator.button.help "Помощь">
+<!ENTITY generator.help.title "Помощь по Генератору">

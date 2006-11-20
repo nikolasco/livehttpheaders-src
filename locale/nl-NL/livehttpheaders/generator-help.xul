@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+<?xml-stylesheet href="chrome://livehttpheaders/skin/livehttpheaders.css" type="text/css"?>
+<!DOCTYPE window [
+  <!ENTITY % generatorHelpDTD SYSTEM "chrome://livehttpheaders/locale/generator.dtd" >
+  %generatorHelpDTD;
+  <!ENTITY space "<xul:box width='5px' />" >
+]>
+<window title="&generator.button.help;"
+  id="GeneratorHelp"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  width="500"
+  height="500"
+>
+
+<!--
+It is not clear to me why space will be dropped at same points in the
+following document.  Thus the hack with %space; .
+-->
+
+
+<h1>Het Generator hulpmiddel</h1>
+
+<p>
+Het&space;<b>Generator</b>&space;hulpmiddel
+is een uitbreiding op&space;<b>LiveHTTPHeaders</b>.
+Het kan worden gebruikt om belastingstest hulpmiddelen te voeden zoals&space;
+<a href="http://httpd.apache.org/test/flood/" target="to-browser">Apache-Flood</a>
+&space;of andere hulpmiddelen voor een soort <i>web based unit tests</i>.
+</p>
+<p>
+Het idee is om de met Mozilla bezochte pagina's te bemonsteren
+in een simpel regel-gebaseerd ASCII bestand, en
+om dit bestand om te vormen voor het aangewezen belastingstest-hulpmiddel
+met behulp van een eigen extern script.
+Dit betekent: maak een testplan door een browser te gebruiken in plaats van deze te coderen.
+Natuurlijk kan het resulterende testplan verder worden aangekleed.
+</p>
+<p>
+<b>FOUTEN</b>:
+Momenteel worden doorgeleide aanvragen niet gekoppeld.
+Dit resulteert in filterfouten zoals hieronder beschreven.
+</p>
+
+
+<h2>Optielijst</h2>
+
+<dl>
+
+  <dt>&generator.option.redirect;</dt>
+  <dd>&generator.popup.redirect;.
+    <br/>
+    Gewoonlijk zult u dit niet willen controleren,
+    althans als uw zijde doorsturen ondersteunt.
+  </dd>
+
+  <dt>&generator.option.invalid;</dt>
+  <dd>&generator.popup.invalid;.
+    <br/>
+    Deze codes geven client en server fouten aan; zie&space;
+    <a href="http://www.faqs.org/rfcs/rfc2616.html" target="to-browser">RFC 2616</a>.
+    <br/>
+    <b>FOUT</b>: Dit werkt niet correct als aanvragen worden doorgestuurd.
+  </dd>
+
+  <dt>&generator.option.image;</dt>
+  <dd>&generator.popup.image;.
+    <br/>
+    <b>FOUT</b>: Dit werkt niet correct als aanvragen worden doorgestuurd.
+  </dd>
+
+  <dt>&generator.option.css;</dt>
+  <dd>&generator.popup.css;.
+    <br/>
+    <b>FOUT</b>: Dit werkt niet correct als aanvragen worden doorgestuurd.
+  </dd>
+
+  <dt>&generator.option.skipped;</dt>
+  <dd>&generator.popup.skipped;.
+    <br/>
+    Deze aanvragen worden weergegeven in het commentaarformulier in de vorm van
+&space;<b>#iets#</b>&space;aan het begin van
+    de regel en kunnen eenvoudig achteraf gefilterd worden.
+  </dd>
+
+  <dt>&generator.option.request;</dt>
+  <dd>&generator.popup.request;.
+    <br/>
+    De filters zijn momenteel verbonden aan HTTP antwoorden,
+    dus we zijn geïnteresseerd in HTTP antwoorden.
+    Mozilla raadpleegt echter soms de interne cache,
+    zelfs als alle caches uit staan en gewist zijn.
+    In dit geval is er dus geen antwoord.
+    <br/>
+    <b>Caveat</b>:
+    Deze optie wordt alrijd weergegeven in het commentaarformulier en
+    wordt niet beïnvloed door de &generator.option.skipped; optie.
+  </dd>
+
+</dl>
+
+
+<h2>Opmaak</h2>
+
+Alle aanvragen worden weergegeven in een enkele regel,
+in de volgende opmaak:
+<pre>
+[commentaar] methode url [gegevens]
+</pre>
+De elementen binnen een regel zijn gescheiden door een spatie.
+Beschrijving van de elementen:
+<dl>
+<dt>commentaar</dt><dd>
+Commentaar wordt weergegeven als&space;<i>&generator.option.skipped;</i>&space;of&space;<i>&generator.option.request;</i>&space;is aangevinkt.
+De opmaak is&space;<code>#iets#</code>,
+waarin&space;<i>iets</i>&space;de categorie van de aanvraag aanduidt.
+</dd>
+<dt>methode</dt><dd>
+  De HTTP methode, meestal GET of POST
+</dd>
+<dt>url</dt><dd>
+  De aangevraagde URL.
+  <br/><b>Opmerking</b>:
+  Deze kan beginnen met&space;<code>http://</code>&space;of niet.
+  Dit hangt af van uw browser en of er een proxy wordt gebruikt.
+</dd>
+<dt>gegevens</dt><dd>
+  Voor de methode POST is er een aanvullend gegevens-segment.
+  Dit wordt gecodeerd als&space;<code>opt1&amp;opt2&amp;...</code>
+</dd>
+</dl>
+
+
+<h2>Schrijver</h2>
+
+Stefan Trcek, ABAS Software AG
+
+
+<h2>Licentie</h2>
+
+<p>
+  Copyright(c) 2004&space;<a href="http://www.abas.de" target="to-browser">ABAS Software AG</a><br/>
+  gebaseerd op LiveHTTPHeaders Copyright(c) 2002-2003 Daniel Savard.
+</p>
+<p>
+  Dit programma is freeware; u mag het verder verspreiden en/of aanpassen onder
+  de voorwaarden van de GNU General Public License zoals gepubliceerd door de Free
+  Software Foundation; dit kan versie 2 van de Licentie zijn, of (optioneel) 
+  elke latere versie.
+</p>
+
+</window>
+
+</window>

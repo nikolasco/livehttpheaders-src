@@ -1,0 +1,13 @@
+<!ENTITY livehttpheaders.pageinfo.tab "Headers">
+<!ENTITY livehttpheaders.pageinfo.accesskey "H">
+<!ENTITY livehttpheaders.pageinfo.request "Aanvraagheaders">
+<!ENTITY livehttpheaders.pageinfo.response "Responsheaders">
+<!ENTITY livehttpheaders.pageinfo.name "Naam">
+<!ENTITY livehttpheaders.pageinfo.value "Waarde">
+<!ENTITY livehttpheaders.pageinfo.saveas "Opslaan als...">
+<!ENTITY livehttpheaders.pageinfo.fromcache "Opmerking: headers komen uit de cache.">
+<!ENTITY livehttpheaders.pageinfo.fromcache.t1 "Aanvraagheaders zijn mogelijk niet de echte aangezien ze niet in de cache worden opgeslagen maar opnieuw worden aangemaakt.">
+<!ENTITY livehttpheaders.pageinfo.fromcache.t2 "Responsheaders zouden de headers moeten zijn die oorspronkelijk van het netwerk worden ontvangen.">
+<!ENTITY livehttpheaders.pageinfo.fromnetwork "Opmerking: headers komen van het netwerk.">
+<!ENTITY livehttpheaders.pageinfo.fromnetwork.t1 "Aanvraagheaders zijn de headers die het netwerk op worden verzonden.">
+<!ENTITY livehttpheaders.pageinfo.fromnetwork.t2 "Responsheaders zijn de headers die van het netwerk worden ontvangen.">

@@ -1,0 +1,13 @@
+<!ENTITY livehttpheaders.pageinfo.tab "Заголовки">
+<!ENTITY livehttpheaders.pageinfo.accesskey "З">
+<!ENTITY livehttpheaders.pageinfo.request "Заголовки запроса">
+<!ENTITY livehttpheaders.pageinfo.response "Заголовки ответа">
+<!ENTITY livehttpheaders.pageinfo.name "Имя">
+<!ENTITY livehttpheaders.pageinfo.value "Значение">
+<!ENTITY livehttpheaders.pageinfo.saveas "Сохранить как...">
+<!ENTITY livehttpheaders.pageinfo.fromcache "Примечание: заголовки из кеша.">
+<!ENTITY livehttpheaders.pageinfo.fromcache.t1 "Запрошенные заголовки могут быть неверными, так как они не были кешированны но восстановлены.">
+<!ENTITY livehttpheaders.pageinfo.fromcache.t2 "Ответные заголовки должны быть получены прямо из сети.">
+<!ENTITY livehttpheaders.pageinfo.fromnetwork "Примечание: заголовки из сети.">
+<!ENTITY livehttpheaders.pageinfo.fromnetwork.t1 "Заголовки запроса отправлены в сеть.">
+<!ENTITY livehttpheaders.pageinfo.fromnetwork.t2 "Заголовки ответа получены из сети.">

@@ -1,0 +1,59 @@
+<!ENTITY livehttpheaders.menu.file "Fil">
+<!ENTITY livehttpheaders.menu.close "Luk">
+<!ENTITY livehttpheaders.menu.saveselection "Gem valgte...">
+<!ENTITY livehttpheaders.menu.saveall "Gem alle...">
+<!ENTITY livehttpheaders.menu.edit "Rediger">
+<!ENTITY livehttpheaders.menu.copy "Kopier">
+<!ENTITY livehttpheaders.menu.selectall "Vælg alle">
+<!ENTITY livehttpheaders.menu.view "Vis">
+<!ENTITY livehttpheaders.menu.post "Post-data">
+<!ENTITY livehttpheaders.tabs.headers "Headere">
+<!ENTITY livehttpheaders.tabs.config "Konfiguration">
+<!ENTITY livehttpheaders.tabs.about "Om">
+<!ENTITY livehttpheaders.config.usetab "Åbn LiveHTTPHeaders i et nyt faneblad">
+<!ENTITY livehttpheaders.config.usetab.tips "Skal LiveHTTPHeaders vises i et nyt faneblad eller i et vindue.">
+<!ENTITY livehttpheaders.config.usestyle "Brug stilark">
+<!ENTITY livehttpheaders.config.usestyle.tips "Bemærk: Der er i øjeblikket en fejl der gør at denne indstilling bruger 100&#37; CPU.">
+<!ENTITY livehttpheaders.config.post "POST:">
+<!ENTITY livehttpheaders.config.usefilter "Filtrér URLer med regexp">
+<!ENTITY livehttpheaders.config.usefilter.tips "Dette filter gælder for URL og ikke for hver header.">
+<!ENTITY livehttpheaders.config.useexclude "Ekskludér URLer med regexp">
+<!ENTITY livehttpheaders.config.useexclude.tips "Denne undtagelse gælder for URL og ikke for hver header.">
+<!ENTITY livehttpheaders.config.addsidebar "Tilføj LiveHTTPHeaders til sidebjælke">
+<!ENTITY livehttpheaders.config.addsidebar.tips "Denne knap tilføjer LiveHTTPHeaders til din sidebjælke. For at se din sidebjælke, tryk F9.">
+<!ENTITY livehttpheaders.config.addsidebar.added "korrekt tilføjet til din sidebjælke.">
+<!ENTITY livehttpheaders.config.addsidebar.present "findes allerede i din sidebjælke.">
+<!ENTITY livehttpheaders.about.version "Versionsinformation">
+<!ENTITY livehttpheaders.about.versiontext "LiveHTTPHeaders version">
+<!ENTITY livehttpheaders.about.currentversion "0.13.1">
+<!ENTITY livehttpheaders.about.checkforupdate "Se efter opdateringer">
+<!ENTITY livehttpheaders.about.homepage "Hjemmeside">
+<!ENTITY livehttpheaders.about.homepageurl "http://livehttpheaders.mozdev.org">
+<!ENTITY livehttpheaders.about.author "Forfatter">
+<!ENTITY livehttpheaders.about.thanks "Tak til">
+<!ENTITY livehttpheaders.about.suggestions "Alle der kom med forslag">
+<!ENTITY livehttpheaders.live.title "Live HTTP headers">
+<!ENTITY livehttpheaders.live.headers "HTTP Headers">
+<!ENTITY livehttpheaders.live.clear "Ryd">
+<!ENTITY livehttpheaders.live.close "Luk">
+<!ENTITY livehttpheaders.live.capture "Opfang">
+<!ENTITY livehttpheaders.live.copy "Kopier">
+<!ENTITY livehttpheaders.live.selectblock "Vælg blok">
+<!ENTITY livehttpheaders.live.selectall "Vælg alt">
+<!ENTITY livehttpheaders.live.saveall "Gem alle...">
+<!ENTITY livehttpheaders.live.replay "Genafspil...">
+<!ENTITY livehttpheaders.live.replay.tips "Vælg en URL for at kunne genafspille den...">
+<!ENTITY livehttpheaders.live.post.tips "Konfigurer POST indholdsvisning">
+<!ENTITY livehttpheaders.live.post.none "intet">
+<!ENTITY livehttpheaders.live.post.none.tips "Vis ikke noget POST-indhold">
+<!ENTITY livehttpheaders.live.post.fast "hurtigt">
+<!ENTITY livehttpheaders.live.post.fast.tips "Hent POST-indhold med hurtig kode. Virker ikke med filupload. Se fejl #188328.">
+<!ENTITY livehttpheaders.live.post.slow "præcist">
+<!ENTITY livehttpheaders.live.post.slow.tips "Langsom men virker med filupload.">
+<!ENTITY livehttpheaders.live.post.max1k "max 1k">
+<!ENTITY livehttpheaders.live.post.max1k.tips "Langsom men vil kun hente første 1k af POST-indhold">
+<!ENTITY livehttpheaders.replay.title "Live HTTP genafspilning">
+<!ENTITY livehttpheaders.replay.url "URL">
+<!ENTITY livehttpheaders.replay.headers "HTTP Headers">
+<!ENTITY livehttpheaders.replay.post "Send POST indhold?">
+<!ENTITY livehttpheaders.replay.replay "Genafspil">

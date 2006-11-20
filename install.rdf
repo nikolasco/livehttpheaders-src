@@ -75,6 +75,9 @@
         <em:locale>locale/de-AT/livehttpheaders/</em:locale>
         <em:locale>locale/es-ES/livehttpheaders/</em:locale>
         <em:locale>locale/cs-CZ/livehttpheaders/</em:locale>
+        <em:locale>locale/nl-NL/livehttpheaders/</em:locale>
+        <em:locale>locale/ru-RU/livehttpheaders/</em:locale>
+        <em:locale>locale/da-DK/livehttpheaders/</em:locale>
         <em:skin>skin/</em:skin>
       </Description>
     </em:file>

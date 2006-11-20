@@ -1,0 +1,156 @@
+﻿<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+<?xml-stylesheet href="chrome://livehttpheaders/skin/livehttpheaders.css" type="text/css"?>
+<!DOCTYPE window [
+  <!ENTITY % generatorHelpDTD SYSTEM "chrome://livehttpheaders/locale/generator.dtd" >
+  %generatorHelpDTD;
+  <!ENTITY space "<xul:box width='5px' />" >
+]>
+<window title="&generator.button.help;"
+  id="GeneratorHelp"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  width="500"
+  height="500"
+>
+
+<!--
+It is not clear to me why space will be dropped at same points in the
+following document.  Thus the hack with %space; .
+-->
+
+
+<h1>Generator-værktøjet</h1>
+
+<p>
+&space;<b>Generator</b>&space; værktøjet
+er en udvidelse til &space;<b>LiveHTTPHeaders</b>.
+Det kan bruges til at føde belastningstestværktøjer såsom &space;
+<a href="http://httpd.apache.org/test/flood/" target="to-browser">Apache-Flood</a>
+&space; eller andre værktøjer tiltænkt som en slags <i>web baserede enhedstests</i>.
+</p>
+<p>
+Idéen er at sample sider besøgt med Mozilla
+i en simpel linjebaseret ASCII-fil og
+transformere denne fil til det designerede load test tool
+via dit eget eksterne script.
+Dette betyder: generere en test plan ved at bruge en browser i stedet for at kode en.
+Selvfølgelig kan den resulterende testplan tilpasses og udbygges yderligere.
+</p>
+<p>
+<b>Kendte fejl</b>:
+I øjeblikket linkes omdirigerede forespørgsler ikke sammen.
+Dette resulterer i filter fejl som nævnt i nedenstående tekst.
+</p>
+
+
+<h2>Liste over indstillinger</h2>
+
+<dl>
+
+  <dt>&generator.option.redirect;</dt>
+  <dd>&generator.popup.redirect;.
+    <br/>
+    You usually don't want to check it,
+    at least if your backend supports redirection.
+  </dd>
+
+  <dt>&generator.option.invalid;</dt>
+  <dd>&generator.popup.invalid;.
+    <br/>
+    These codes indicate client and server errors, see &space;
+    <a href="http://www.faqs.org/rfcs/rfc2616.html" target="to-browser">RFC 2616</a>.
+    <br/>
+    <b>BUG</b>: This won't work correctly if requests are redirected.
+  </dd>
+
+  <dt>&generator.option.image;</dt>
+  <dd>&generator.popup.image;.
+    <br/>
+    <b>BUG</b>: This won't work correctly if requests are redirected.
+  </dd>
+
+  <dt>&generator.option.css;</dt>
+  <dd>&generator.popup.css;.
+    <br/>
+    <b>BUG</b>: This won't work correctly if requests are redirected.
+  </dd>
+
+  <dt>&generator.option.skipped;</dt>
+  <dd>&generator.popup.skipped;.
+    <br/>
+    These requests display in a commentary form written as
+    &space;<b>#somewhat#</b>&space; at the beginning
+    of the line and can easily be filtered afterwards.
+  </dd>
+
+  <dt>&generator.option.request;</dt>
+  <dd>&generator.popup.request;.
+    <br/>
+    The filters are currently attached to HTTP responses,
+    so we are interested in HTTP responses.
+    However, Mozilla sometimes consults its internal cache,
+    even if all caches are off and cleared.
+    So in this case there is no response.
+    <br/>
+    <b>Caveat</b>:
+    This option always displays in the commentary form and
+    is not affected by the &generator.option.skipped; option.
+  </dd>
+
+</dl>
+
+
+<h2>Format</h2>
+
+All request display in a single line each,
+which displays in the following format:
+<pre>
+[comment] method url [data]
+</pre>
+The elements within a line are separated by white space.
+Description of elements:
+<dl>
+<dt>comment</dt><dd>
+Comments will be displayed if
+&space;<i>&generator.option.skipped;</i>&space; or
+&space;<i>&generator.option.request;</i>&space; are checked.
+The format is &space;<code>#somewhat#</code>,
+where &space;<i>somewhat</i>&space; designates the category of this request.
+</dd>
+<dt>method</dt><dd>
+  The HTTP method, usually GET or POST
+</dd>
+<dt>url</dt><dd>
+  The URL requested.
+  <br/><b>Note</b>:
+  It may start with &space;<code>http://</code>&space; or may not.
+  This depends upon your browser and whether a proxy is used.
+</dd>
+<dt>data</dt><dd>
+  For method POST there is an additional data segment.
+  It is coded as &space; <code>opt1&amp;opt2&amp;...</code>
+</dd>
+</dl>
+
+
+<h2>Forfatter</h2>
+
+Stefan Trcek, ABAS Software AG
+
+
+<h2>Licence</h2>
+
+<p>
+  Copyright(c) 2004 &space;<a href="http://www.abas.de" target="to-browser">ABAS Software AG</a><br/>
+  baseret på LiveHTTPHeaders Copyright(c) 2002-2003 Daniel Savard.
+</p>
+<p>
+  Dette program er frit software; du kan redistribuere det og/eller modificere det under
+  betingelserne i GNU General Public License som udgivet af Free
+  Software Foundation; enten version 2 af Licensen, eller (efter dit ønske)
+  enhver senere version.
+</p>
+
+</window>

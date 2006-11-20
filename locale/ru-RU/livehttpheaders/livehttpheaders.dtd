@@ -1,0 +1,59 @@
+<!ENTITY livehttpheaders.menu.file "Файл">
+<!ENTITY livehttpheaders.menu.close "Закрыть">
+<!ENTITY livehttpheaders.menu.saveselection "Сохранить выбранное...">
+<!ENTITY livehttpheaders.menu.saveall "Сохранить всё...">
+<!ENTITY livehttpheaders.menu.edit "Редактировать">
+<!ENTITY livehttpheaders.menu.copy "Копировать">
+<!ENTITY livehttpheaders.menu.selectall "Выбрать всё">
+<!ENTITY livehttpheaders.menu.view "Просмотр">
+<!ENTITY livehttpheaders.menu.post "Post Data">
+<!ENTITY livehttpheaders.tabs.headers "Заголовки">
+<!ENTITY livehttpheaders.tabs.config "Настройка">
+<!ENTITY livehttpheaders.tabs.about "О расширении">
+<!ENTITY livehttpheaders.config.usetab "Открывать LiveHTTPHeaders в новой вкладке">
+<!ENTITY livehttpheaders.config.usetab.tips "Должен ли LiveHTTPHeaders открывать себя в новой вкладке или новом окне">
+<!ENTITY livehttpheaders.config.usestyle "Ипользовать таблицу стилей">
+<!ENTITY livehttpheaders.config.usestyle.tips "Заметка: есть ошибка, приводящая к тому, что включение этой опции приводит к 100&#37; загрузке процессора">
+<!ENTITY livehttpheaders.config.post "POST:">
+<!ENTITY livehttpheaders.config.usefilter "Фильтровать URL посредством RegEx">
+<!ENTITY livehttpheaders.config.usefilter.tips "Этот фильтр применяется  к URL и не ко всем заголовкам">
+<!ENTITY livehttpheaders.config.useexclude "Исключить URL посредством RegEx (регулярные выражения)">
+<!ENTITY livehttpheaders.config.useexclude.tips "Эти исключения применяются к URL и не ко всем заголовкам">
+<!ENTITY livehttpheaders.config.addsidebar "Добавить LiveHTTPHeaders в боковую панель">
+<!ENTITY livehttpheaders.config.addsidebar.tips "Эта кнопка Добавит LiveHTTPHeaders в вашу боковую панель. Чтобы просмотреть её, нажмите F9">
+<!ENTITY livehttpheaders.config.addsidebar.added "Успешно добавлено в боковую панель">
+<!ENTITY livehttpheaders.config.addsidebar.present "Уже есть в вашей боковой панели">
+<!ENTITY livehttpheaders.about.version "Информация о версии">
+<!ENTITY livehttpheaders.about.versiontext "Версия LiveHTTPHeaders">
+<!ENTITY livehttpheaders.about.currentversion "0.13.1">
+<!ENTITY livehttpheaders.about.checkforupdate "Проверить обновления">
+<!ENTITY livehttpheaders.about.homepage "Домашняя страничка">
+<!ENTITY livehttpheaders.about.homepageurl "http://livehttpheaders.mozdev.org">
+<!ENTITY livehttpheaders.about.author "Автор">
+<!ENTITY livehttpheaders.about.thanks "Благодарности">
+<!ENTITY livehttpheaders.about.suggestions "Все люди, участвовавшие в проекте">
+<!ENTITY livehttpheaders.live.title "Просмотр HTTP заголовков">
+<!ENTITY livehttpheaders.live.headers "HTTP Заголовки">
+<!ENTITY livehttpheaders.live.clear "Очистить">
+<!ENTITY livehttpheaders.live.close "Закрыть">
+<!ENTITY livehttpheaders.live.capture "Фиксировать">
+<!ENTITY livehttpheaders.live.copy "Копировать">
+<!ENTITY livehttpheaders.live.selectblock "Выбрать блок">
+<!ENTITY livehttpheaders.live.selectall "Выбрать всё">
+<!ENTITY livehttpheaders.live.saveall "Сохранить всё...">
+<!ENTITY livehttpheaders.live.replay "Повтор">
+<!ENTITY livehttpheaders.live.replay.tips "Выберите URL, чтобы повторить запрос...">
+<!ENTITY livehttpheaders.live.post.tips "Выбор способа отображения содержимого POST-запросов">
+<!ENTITY livehttpheaders.live.post.none "Ничего">
+<!ENTITY livehttpheaders.live.post.none.tips "Вообще не показывать содержимое POST-запросов">
+<!ENTITY livehttpheaders.live.post.fast "быстрый">
+<!ENTITY livehttpheaders.live.post.fast.tips "Получать содержимое POST-запросов быстрым методом. Не работает с выкачкой файлов. Смотрите баг #188328">
+<!ENTITY livehttpheaders.live.post.slow "Тщательный">
+<!ENTITY livehttpheaders.live.post.slow.tips "Медленно, зато работает с выкачкой файлов">
+<!ENTITY livehttpheaders.live.post.max1k "Максимум 1к">
+<!ENTITY livehttpheaders.live.post.max1k.tips "Медленно, но полуает только первый килобайт содержимого POST-запросов">
+<!ENTITY livehttpheaders.replay.title "Live HTTP Replay">
+<!ENTITY livehttpheaders.replay.url "URL">
+<!ENTITY livehttpheaders.replay.headers "HTTP Headers">
+<!ENTITY livehttpheaders.replay.post "Послать POST ?">
+<!ENTITY livehttpheaders.replay.replay "Повтор">
