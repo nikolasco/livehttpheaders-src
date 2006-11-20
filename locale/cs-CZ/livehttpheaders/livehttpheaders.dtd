@@ -1,65 +1,59 @@
-<!ENTITY livehttpheaders.menu.file			"Soubor">
-<!ENTITY livehttpheaders.menu.close			"Zavřít">
-<!ENTITY livehttpheaders.menu.saveselection	"Uložit výběr...">
-<!ENTITY livehttpheaders.menu.saveall		"Uložit vše...">
-<!ENTITY livehttpheaders.menu.edit			"Úpravy">
-<!ENTITY livehttpheaders.menu.copy			"Kopírovat">
-<!ENTITY livehttpheaders.menu.selectall		"Vybrat vše">
-<!ENTITY livehttpheaders.menu.view			"Zobrazit">
-<!ENTITY livehttpheaders.menu.post			"Odeslat data">
-
-<!ENTITY livehttpheaders.tabs.headers           "Hlavičky">
-<!ENTITY livehttpheaders.tabs.config            "Nastavení">
-<!ENTITY livehttpheaders.tabs.about             "O programu">
-
-<!ENTITY livehttpheaders.config.usetab          "Otevírat LiveHTTPHeaders v novém panelu">
-<!ENTITY livehttpheaders.config.usetab.tips     "Zobrazit LiveHTTPHeaders v novém panelu nebo novém okně.">
-<!ENTITY livehttpheaders.config.usestyle        "Použít soubor se styly">
-<!ENTITY livehttpheaders.config.usestyle.tips   "Poznámka: Je známa chyby, která může zapříčinit 100 procent zatížení CPU">
-<!ENTITY livehttpheaders.config.post            "POST:">
-<!ENTITY livehttpheaders.config.usefilter       "Filtrovat URL pomocí reg.výrazů">
-<!ENTITY livehttpheaders.config.usefilter.tips  "Tento filtr je aplikován na adresu URL, nikoliv na každou hlavičku.">
-<!ENTITY livehttpheaders.config.useexclude       "Vyjmout URL pomocí reg.výrazů" >
-<!ENTITY livehttpheaders.config.useexclude.tips  "Toto vyjmutí je aplikováno na URL a nikoliv na hlavičky." >
-<!ENTITY livehttpheaders.config.addsidebar	"Přidat LiveHTTPHeaders do postranní lišty">
-<!ENTITY livehttpheaders.config.addsidebar.tips	"Přidá LiveHTTPHeaders do postranní lišty. Pro zobrazení LiveHTTPHeaders v postranní liště stiskněte F9.">
+<!ENTITY livehttpheaders.menu.file "Soubor">
+<!ENTITY livehttpheaders.menu.close "Zavřít">
+<!ENTITY livehttpheaders.menu.saveselection "Uložit výběr...">
+<!ENTITY livehttpheaders.menu.saveall "Uložit vše...">
+<!ENTITY livehttpheaders.menu.edit "Úpravy">
+<!ENTITY livehttpheaders.menu.copy "Kopírovat">
+<!ENTITY livehttpheaders.menu.selectall "Vybrat vše">
+<!ENTITY livehttpheaders.menu.view "Zobrazit">
+<!ENTITY livehttpheaders.menu.post "Odeslat data">
+<!ENTITY livehttpheaders.tabs.headers "Hlavičky">
+<!ENTITY livehttpheaders.tabs.config "Nastavení">
+<!ENTITY livehttpheaders.tabs.about "O programu">
+<!ENTITY livehttpheaders.config.usetab "Otevírat LiveHTTPHeaders v novém panelu">
+<!ENTITY livehttpheaders.config.usetab.tips "Zobrazit LiveHTTPHeaders v novém panelu nebo novém okně.">
+<!ENTITY livehttpheaders.config.usestyle "Použít soubor se styly">
+<!ENTITY livehttpheaders.config.usestyle.tips "Poznámka: Je známa chyby, která může zapříčinit 100 procent zatížení CPU">
+<!ENTITY livehttpheaders.config.post "POST:">
+<!ENTITY livehttpheaders.config.usefilter "Filtrovat URL pomocí reg.výrazů">
+<!ENTITY livehttpheaders.config.usefilter.tips "Tento filtr je aplikován na adresu URL, nikoliv na každou hlavičku.">
+<!ENTITY livehttpheaders.config.useexclude "Vyjmout URL pomocí reg.výrazů">
+<!ENTITY livehttpheaders.config.useexclude.tips "Toto vyjmutí je aplikováno na URL a nikoliv na hlavičky.">
+<!ENTITY livehttpheaders.config.addsidebar "Přidat LiveHTTPHeaders do postranní lišty">
+<!ENTITY livehttpheaders.config.addsidebar.tips "Přidá LiveHTTPHeaders do postranní lišty. Pro zobrazení LiveHTTPHeaders v postranní liště stiskněte F9.">
 <!ENTITY livehttpheaders.config.addsidebar.added " úspěšně přidán do postranní lišty.">
 <!ENTITY livehttpheaders.config.addsidebar.present " již existuje v postranní liště.">
-
-<!ENTITY livehttpheaders.about.version          "Informace o verzi">
-<!ENTITY livehttpheaders.about.versiontext      "Verze LiveHTTPHeaders">
-<!ENTITY livehttpheaders.about.currentversion   "0.11">
-<!ENTITY livehttpheaders.about.checkforupdate   "Kontrola nové verze">
-<!ENTITY livehttpheaders.about.homepage         "Domovská stránka">
-<!ENTITY livehttpheaders.about.homepageurl      "http://livehttpheaders.mozdev.org">
-<!ENTITY livehttpheaders.about.author           "Autor">
-<!ENTITY livehttpheaders.about.thanks           "Poděkování">
-<!ENTITY livehttpheaders.about.suggestions      "Všem lidem, kteří přispěli radou či nápadem">
-
-<!ENTITY livehttpheaders.live.title			"Hlavičky HTTP">
-<!ENTITY livehttpheaders.live.headers		"Hlavičky HTTP">
-<!ENTITY livehttpheaders.live.clear			"Smazat">
-<!ENTITY livehttpheaders.live.close			"Zavřít">
-<!ENTITY livehttpheaders.live.capture		"Zachytávat">
-<!ENTITY livehttpheaders.live.copy			"Kopírovat">
-<!ENTITY livehttpheaders.live.selectblock	"Vybrat blok">
-<!ENTITY livehttpheaders.live.selectall		"Vybrat vše">
-<!ENTITY livehttpheaders.live.saveall		"Uložit vše...">
-<!ENTITY livehttpheaders.live.replay		"Odpovědět...">
-<!ENTITY livehttpheaders.live.replay.tips	"Zvolit adresu pro zaslání odpovědi ...">
-
-<!ENTITY livehttpheaders.live.post.tips			"Nastavit zachytávání dat odeslaných metodou POST.">
-<!ENTITY livehttpheaders.live.post.none			"Žádné">
-<!ENTITY livehttpheaders.live.post.none.tips	"Nezachytávat žádná data odeslaná metodou POST.">
-<!ENTITY livehttpheaders.live.post.fast			"Rychlé">
-<!ENTITY livehttpheaders.live.post.fast.tips	"Rychlé zachytávání dat odeslaných metodou POST. Nefunguje s nahráváním souborů - chyba #188328.">
-<!ENTITY livehttpheaders.live.post.slow			"Přesné">
-<!ENTITY livehttpheaders.live.post.slow.tips	"Přesné zachytávání dat odeslaných metodou POST.">
-<!ENTITY livehttpheaders.live.post.max1k		"Max 1KiB">
-<!ENTITY livehttpheaders.live.post.max1k.tips	"Přesné zachytávání dat odeslaných metodou POST do maxima 1 KiB.">
-
-<!ENTITY livehttpheaders.replay.title		"Hlavičky HTTP - Odpověd">
-<!ENTITY livehttpheaders.replay.url			"URL">
-<!ENTITY livehttpheaders.replay.headers		"Hlavička HTTP">
-<!ENTITY livehttpheaders.replay.post		"Odeslat obsah metodou POST ?">
-<!ENTITY livehttpheaders.replay.replay		"Odpovědět">
+<!ENTITY livehttpheaders.about.version "Informace o verzi">
+<!ENTITY livehttpheaders.about.versiontext "Verze LiveHTTPHeaders">
+<!ENTITY livehttpheaders.about.currentversion "0.11">
+<!ENTITY livehttpheaders.about.checkforupdate "Kontrola nové verze">
+<!ENTITY livehttpheaders.about.homepage "Domovská stránka">
+<!ENTITY livehttpheaders.about.homepageurl "http://livehttpheaders.mozdev.org">
+<!ENTITY livehttpheaders.about.author "Autor">
+<!ENTITY livehttpheaders.about.thanks "Poděkování">
+<!ENTITY livehttpheaders.about.suggestions "Všem lidem, kteří přispěli radou či nápadem">
+<!ENTITY livehttpheaders.live.title "Hlavičky HTTP">
+<!ENTITY livehttpheaders.live.headers "Hlavičky HTTP">
+<!ENTITY livehttpheaders.live.clear "Smazat">
+<!ENTITY livehttpheaders.live.close "Zavřít">
+<!ENTITY livehttpheaders.live.capture "Zachytávat">
+<!ENTITY livehttpheaders.live.copy "Kopírovat">
+<!ENTITY livehttpheaders.live.selectblock "Vybrat blok">
+<!ENTITY livehttpheaders.live.selectall "Vybrat vše">
+<!ENTITY livehttpheaders.live.saveall "Uložit vše...">
+<!ENTITY livehttpheaders.live.replay "Odpovědět...">
+<!ENTITY livehttpheaders.live.replay.tips "Zvolit adresu pro zaslání odpovědi ...">
+<!ENTITY livehttpheaders.live.post.tips "Nastavit zachytávání dat odeslaných metodou POST.">
+<!ENTITY livehttpheaders.live.post.none "Žádné">
+<!ENTITY livehttpheaders.live.post.none.tips "Nezachytávat žádná data odeslaná metodou POST.">
+<!ENTITY livehttpheaders.live.post.fast "Rychlé">
+<!ENTITY livehttpheaders.live.post.fast.tips "Rychlé zachytávání dat odeslaných metodou POST. Nefunguje s nahráváním souborů - chyba #188328.">
+<!ENTITY livehttpheaders.live.post.slow "Přesné">
+<!ENTITY livehttpheaders.live.post.slow.tips "Přesné zachytávání dat odeslaných metodou POST.">
+<!ENTITY livehttpheaders.live.post.max1k "Max 1KiB">
+<!ENTITY livehttpheaders.live.post.max1k.tips "Přesné zachytávání dat odeslaných metodou POST do maxima 1 KiB.">
+<!ENTITY livehttpheaders.replay.title "Hlavičky HTTP - Odpověd">
+<!ENTITY livehttpheaders.replay.url "URL">
+<!ENTITY livehttpheaders.replay.headers "Hlavička HTTP">
+<!ENTITY livehttpheaders.replay.post "Odeslat obsah metodou POST ?">
+<!ENTITY livehttpheaders.replay.replay "Odpovědět">

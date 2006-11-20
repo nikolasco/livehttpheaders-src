@@ -1,28 +1,19 @@
-<!ENTITY livehttpheaders.tabs.generator         "Générateur" >
-<!ENTITY generator.title                        "Liste des requêtes" >
-<!ENTITY generator.capture                      "Capturer" >
-<!ENTITY generator.label.show                   "Voir" >
-<!ENTITY generator.label.request                "Requêtes" >
-
-<!ENTITY generator.option.redirect              "redirections" >
-<!ENTITY generator.option.invalid               "invalides" >
-<!ENTITY generator.option.image                 "images" >
-<!ENTITY generator.option.css                   "CSS" >
-<!ENTITY generator.option.skipped               "autres" >
-<!ENTITY generator.option.request               "requêtes" >
-
-<!ENTITY generator.popup.redirect
-         "Affiche toutes les requêtes et non pas seulement la première" >
-<!ENTITY generator.popup.invalid 
-         "Affiche les requêtes invalides (Code de réponse 4xx, 5xx)" >
-<!ENTITY generator.popup.image 
-         "Affiche les requêtes pour les images" >
-<!ENTITY generator.popup.css
-         "Affiche les requêtes pour les feuilles de styles (CSS)" >
-<!ENTITY generator.popup.skipped
-         "Affiche les requêtes qui ont été omises par les autres options" >
-<!ENTITY generator.popup.request
-         "Affiche les requêtes qui proviennent de la cache de Mozilla (aucun accès réseau)" >
-
-<!ENTITY generator.button.help                  "Aide" >
-<!ENTITY generator.help.title                   "Aide sur le Générateur" >
+<!ENTITY livehttpheaders.tabs.generator "Générateur">
+<!ENTITY generator.title "Liste des requêtes">
+<!ENTITY generator.capture "Capturer">
+<!ENTITY generator.label.show "Voir">
+<!ENTITY generator.label.request "Requêtes">
+<!ENTITY generator.option.redirect "redirections">
+<!ENTITY generator.option.invalid "invalides">
+<!ENTITY generator.option.image "images">
+<!ENTITY generator.option.css "CSS">
+<!ENTITY generator.option.skipped "autres">
+<!ENTITY generator.option.request "requêtes">
+<!ENTITY generator.popup.redirect "Affiche toutes les requêtes et non pas seulement la première">
+<!ENTITY generator.popup.invalid "Affiche les requêtes invalides (Code de réponse 4xx, 5xx)">
+<!ENTITY generator.popup.image "Affiche les requêtes pour les images">
+<!ENTITY generator.popup.css "Affiche les requêtes pour les feuilles de styles (CSS)">
+<!ENTITY generator.popup.skipped "Affiche les requêtes qui ont été omises par les autres options">
+<!ENTITY generator.popup.request "Affiche les requêtes qui proviennent de la cache de Mozilla (aucun accès réseau)">
+<!ENTITY generator.button.help "Aide">
+<!ENTITY generator.help.title "Aide sur le Générateur">

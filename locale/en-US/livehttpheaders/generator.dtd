@@ -1,28 +1,19 @@
-<!ENTITY livehttpheaders.tabs.generator         "Generator" >
-<!ENTITY generator.title                        "Generator List" >
-<!ENTITY generator.capture                      "Capture" >
-<!ENTITY generator.label.show                   "Show" >
-<!ENTITY generator.label.request                "Request" >
-
-<!ENTITY generator.option.redirect              "redirects" >
-<!ENTITY generator.option.invalid               "invalid" >
-<!ENTITY generator.option.image                 "images" >
-<!ENTITY generator.option.css                   "CSS" >
-<!ENTITY generator.option.skipped               "skipped" >
-<!ENTITY generator.option.request               "request" >
-
-<!ENTITY generator.popup.redirect
-         "Show any redirected requests, not only the first one" >
-<!ENTITY generator.popup.invalid 
-         "Show invalid requests (Response code 4xx, 5xx)" >
-<!ENTITY generator.popup.image 
-         "Show images" >
-<!ENTITY generator.popup.css
-         "Show CSS requests" >
-<!ENTITY generator.popup.skipped
-         "Show all requests that have been skipped by the other options" >
-<!ENTITY generator.popup.request
-         "Show the users request, even if Mozilla responds from within a cache" >
-
-<!ENTITY generator.button.help                  "Help" >
-<!ENTITY generator.help.title                   "Generator Help" >
+<!ENTITY livehttpheaders.tabs.generator "Generator">
+<!ENTITY generator.title "Generator List">
+<!ENTITY generator.capture "Capture">
+<!ENTITY generator.label.show "Show">
+<!ENTITY generator.label.request "Request">
+<!ENTITY generator.option.redirect "redirects">
+<!ENTITY generator.option.invalid "invalid">
+<!ENTITY generator.option.image "images">
+<!ENTITY generator.option.css "CSS">
+<!ENTITY generator.option.skipped "skipped">
+<!ENTITY generator.option.request "request">
+<!ENTITY generator.popup.redirect "Show any redirected requests, not only the first one">
+<!ENTITY generator.popup.invalid "Show invalid requests (Response code 4xx, 5xx)">
+<!ENTITY generator.popup.image "Show images">
+<!ENTITY generator.popup.css "Show CSS requests">
+<!ENTITY generator.popup.skipped "Show all requests that have been skipped by the other options">
+<!ENTITY generator.popup.request "Show the users request, even if Mozilla responds from within a cache">
+<!ENTITY generator.button.help "Help">
+<!ENTITY generator.help.title "Generator Help">

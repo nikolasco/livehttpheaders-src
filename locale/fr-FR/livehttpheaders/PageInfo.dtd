@@ -1,14 +1,13 @@
-<!ENTITY livehttpheaders.pageinfo.tab		"En-têtes" >
-<!ENTITY livehttpheaders.pageinfo.accesskey	"E" >
-<!ENTITY livehttpheaders.pageinfo.request	"Requête" >
-<!ENTITY livehttpheaders.pageinfo.response	"Réponse" >
-<!ENTITY livehttpheaders.pageinfo.name		"Nom" >
-<!ENTITY livehttpheaders.pageinfo.value		"Valeur" >
-<!ENTITY livehttpheaders.pageinfo.saveas         "Enregistrer sous..." >
-<!ENTITY livehttpheaders.pageinfo.fromcache      "Note: les en-têtes proviennent du cache." >
-<!ENTITY livehttpheaders.pageinfo.fromcache.t1	"Les en-têtes 'request' pourraient être erronés (non conservés dans le cache)." >
-<!ENTITY livehttpheaders.pageinfo.fromcache.t2	"Les en-têtes 'response' devraient être ceux reçus originalement du réseau." >
-<!ENTITY livehttpheaders.pageinfo.fromnetwork    "Note: les en-têtes proviennent du réseau." >
-<!ENTITY livehttpheaders.pageinfo.fromnetwork.t1	"Les en-têtes 'request' sont ceux envoyés sur le réseau." >
-<!ENTITY livehttpheaders.pageinfo.fromnetwork.t2	"Les en-têtes 'response' sont ceux reçus du réseau." >
-
+<!ENTITY livehttpheaders.pageinfo.tab "En-têtes">
+<!ENTITY livehttpheaders.pageinfo.accesskey "E">
+<!ENTITY livehttpheaders.pageinfo.request "Requête">
+<!ENTITY livehttpheaders.pageinfo.response "Réponse">
+<!ENTITY livehttpheaders.pageinfo.name "Nom">
+<!ENTITY livehttpheaders.pageinfo.value "Valeur">
+<!ENTITY livehttpheaders.pageinfo.saveas "Enregistrer sous...">
+<!ENTITY livehttpheaders.pageinfo.fromcache "Note: les en-têtes proviennent du cache.">
+<!ENTITY livehttpheaders.pageinfo.fromcache.t1 "Les en-têtes &apos;request&apos; pourraient être erronés (non conservés dans le cache).">
+<!ENTITY livehttpheaders.pageinfo.fromcache.t2 "Les en-têtes &apos;response&apos; devraient être ceux reçus originalement du réseau.">
+<!ENTITY livehttpheaders.pageinfo.fromnetwork "Note: les en-têtes proviennent du réseau.">
+<!ENTITY livehttpheaders.pageinfo.fromnetwork.t1 "Les en-têtes &apos;request&apos; sont ceux envoyés sur le réseau.">
+<!ENTITY livehttpheaders.pageinfo.fromnetwork.t2 "Les en-têtes &apos;response&apos; sont ceux reçus du réseau.">

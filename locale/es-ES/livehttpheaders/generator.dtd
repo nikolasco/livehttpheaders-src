@@ -1,28 +1,19 @@
-<!ENTITY livehttpheaders.tabs.generator         "Generador" >
-<!ENTITY generator.title                        "Lista del Generador" >
-<!ENTITY generator.capture                      "Capturar" >
-<!ENTITY generator.label.show                   "Mostrar" >
-<!ENTITY generator.label.request                "Petición" >
-
-<!ENTITY generator.option.redirect              "redirecciones" >
-<!ENTITY generator.option.invalid               "inválidos" >
-<!ENTITY generator.option.image                 "imágenes" >
-<!ENTITY generator.option.css                   "CSS" >
-<!ENTITY generator.option.skipped               "saltados" >
-<!ENTITY generator.option.request               "petición" >
-
-<!ENTITY generator.popup.redirect
-         "Mostrar preticiones redirigidas, no solo la primera" >
-<!ENTITY generator.popup.invalid 
-         "Mostrar peticiones inválidas (Código de respuesta 4xx, 5xx)" >
-<!ENTITY generator.popup.image 
-         "Mostrar imágenes" >
-<!ENTITY generator.popup.css
-         "Mostrar peticiones de CSS" >
-<!ENTITY generator.popup.skipped
-         "Mostrar todas las peticiones que han sido saltadas por las otras opciones" >
-<!ENTITY generator.popup.request
-         "Mostrar las peticiones del usuario, incluso si Mozilla responde desde la caché" >
-
-<!ENTITY generator.button.help                  "Ayuda" >
-<!ENTITY generator.help.title                   "Ayuda de Generador" >
+<!ENTITY livehttpheaders.tabs.generator "Generador">
+<!ENTITY generator.title "Lista del Generador">
+<!ENTITY generator.capture "Capturar">
+<!ENTITY generator.label.show "Mostrar">
+<!ENTITY generator.label.request "Petición">
+<!ENTITY generator.option.redirect "redirecciones">
+<!ENTITY generator.option.invalid "inválidos">
+<!ENTITY generator.option.image "imágenes">
+<!ENTITY generator.option.css "CSS">
+<!ENTITY generator.option.skipped "saltados">
+<!ENTITY generator.option.request "petición">
+<!ENTITY generator.popup.redirect "Mostrar preticiones redirigidas, no solo la primera">
+<!ENTITY generator.popup.invalid "Mostrar peticiones inválidas (Código de respuesta 4xx, 5xx)">
+<!ENTITY generator.popup.image "Mostrar imágenes">
+<!ENTITY generator.popup.css "Mostrar peticiones de CSS">
+<!ENTITY generator.popup.skipped "Mostrar todas las peticiones que han sido saltadas por las otras opciones">
+<!ENTITY generator.popup.request "Mostrar las peticiones del usuario, incluso si Mozilla responde desde la caché">
+<!ENTITY generator.button.help "Ayuda">
+<!ENTITY generator.help.title "Ayuda de Generador">

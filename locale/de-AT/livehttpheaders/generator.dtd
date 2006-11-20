@@ -1,28 +1,19 @@
-<!ENTITY livehttpheaders.tabs.generator         "Generator" >
-<!ENTITY generator.title                        "Generator Liste" >
-<!ENTITY generator.capture                      "Mitschnitt" >
-<!ENTITY generator.label.show                   "Anzeigen" >
-<!ENTITY generator.label.request                "Anfragen" >
-
-<!ENTITY generator.option.redirect              "Umleitungen" >
-<!ENTITY generator.option.invalid               "Fehlerhaft" >
-<!ENTITY generator.option.image                 "Bilder" >
-<!ENTITY generator.option.css                   "CSS" >
-<!ENTITY generator.option.skipped               "Andere" >
-<!ENTITY generator.option.request               "Anfragen" >
-
-<!ENTITY generator.popup.redirect
-         "Zeigt alle Umleitungsanfragen, nicht nur die Erste" >
-<!ENTITY generator.popup.invalid 
-         "Fehlerhafte Anfragen zeigen (Antwortcodes 4xx, 5xx)" >
-<!ENTITY generator.popup.image 
-         "Bilder zeigen" >
-<!ENTITY generator.popup.css
-         "CSS Anfragen zeigen" >
-<!ENTITY generator.popup.skipped
-         "Zeigt alle Anfragen, die von den anderen Optionen übersprungen wurden" >
-<!ENTITY generator.popup.request
-         "Zeigt die User Anfragen, auch wenn Mozilla aus dem Cache antwortet" >
-
-<!ENTITY generator.button.help                  "Hilfe" >
-<!ENTITY generator.help.title                   "Generator Hilfe" >
+<!ENTITY livehttpheaders.tabs.generator "Generator">
+<!ENTITY generator.title "Generator Liste">
+<!ENTITY generator.capture "Mitschnitt">
+<!ENTITY generator.label.show "Anzeigen">
+<!ENTITY generator.label.request "Anfragen">
+<!ENTITY generator.option.redirect "Umleitungen">
+<!ENTITY generator.option.invalid "Fehlerhaft">
+<!ENTITY generator.option.image "Bilder">
+<!ENTITY generator.option.css "CSS">
+<!ENTITY generator.option.skipped "Übersprungene">
+<!ENTITY generator.option.request "Anfragen">
+<!ENTITY generator.popup.redirect "Zeigt alle Umleitungsanfragen, nicht nur die Erste">
+<!ENTITY generator.popup.invalid "Fehlerhafte Anfragen zeigen (Antwortcodes 4xx, 5xx)">
+<!ENTITY generator.popup.image "Bilder zeigen">
+<!ENTITY generator.popup.css "CSS Anfragen zeigen">
+<!ENTITY generator.popup.skipped "Zeigt alle Anfragen, die von den anderen Optionen übersprungen wurden">
+<!ENTITY generator.popup.request "Zeigt die User Anfragen, auch wenn Mozilla aus dem Cache antwortet">
+<!ENTITY generator.button.help "Hilfe">
+<!ENTITY generator.help.title "Generator Hilfe">
