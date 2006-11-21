@@ -30,7 +30,7 @@
 <!ENTITY livehttpheaders.about.homepage "Homepage">
 <!ENTITY livehttpheaders.about.homepageurl "http://livehttpheaders.mozdev.org">
 <!ENTITY livehttpheaders.about.author "Schrijver">
-<!ENTITY livehttpheaders.about.thanks "Dankzegging aan">
+<!ENTITY livehttpheaders.about.thanks "Met dank aan">
 <!ENTITY livehttpheaders.about.suggestions "Iedereen die suggesties heeft gedaan">
 <!ENTITY livehttpheaders.live.title "Live HTTP Headers">
 <!ENTITY livehttpheaders.live.headers "HTTP Headers">

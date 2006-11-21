@@ -10,4 +10,4 @@
 <!ENTITY livehttpheaders.pageinfo.fromcache.t2 "Die Antwort Header sollten die sein, die aus dem Netzwerk empfangenen wurden.">
 <!ENTITY livehttpheaders.pageinfo.fromnetwork "Bemerkung: Die Header sind aus dem Netzwerk.">
 <!ENTITY livehttpheaders.pageinfo.fromnetwork.t1 "Die Anfrage Header sind die, die ins Netzwerk gesendet werden.">
-<!ENTITY livehttpheaders.pageinfo.fromnetwork.t2 "Die Antwort Header sind die, die vom Netzwerk kommen.">
+<!ENTITY livehttpheaders.pageinfo.fromnetwork.t2 "Die Antwort Header kommen vom Netzwerk.">
