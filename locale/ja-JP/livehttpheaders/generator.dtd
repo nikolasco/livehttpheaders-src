@@ -1,0 +1,19 @@
+<!ENTITY livehttpheaders.tabs.generator "ジェネレータ">
+<!ENTITY generator.title "ジェネレータリスト">
+<!ENTITY generator.capture "キャプチャ">
+<!ENTITY generator.label.show "表示">
+<!ENTITY generator.label.request "リクエスト">
+<!ENTITY generator.option.redirect "リダイレクト">
+<!ENTITY generator.option.invalid "エラー">
+<!ENTITY generator.option.image "画像">
+<!ENTITY generator.option.css "CSS">
+<!ENTITY generator.option.skipped "省略リクエスト">
+<!ENTITY generator.option.request "全リクエスト">
+<!ENTITY generator.popup.redirect "最初のリダイレクトだけではなく、すべてのリダイレクトされたリクエストを表示">
+<!ENTITY generator.popup.invalid "エラーを起こしたリクエストを表示(ステータスコード 4xx、5xx)">
+<!ENTITY generator.popup.image "画像へのリクエストを表示">
+<!ENTITY generator.popup.css "CSS へのリクエストを表示">
+<!ENTITY generator.popup.skipped "他の設定により省略されたすべてのリクエストを表示">
+<!ENTITY generator.popup.request "キャッシュから読み込まれた場合もあわせ、すべてのリクエストを表示">
+<!ENTITY generator.button.help "ヘルプ">
+<!ENTITY generator.help.title "ジェネレータのヘルプ">

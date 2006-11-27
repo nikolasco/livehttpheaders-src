@@ -1,0 +1,59 @@
+<!ENTITY livehttpheaders.menu.file "ファイル">
+<!ENTITY livehttpheaders.menu.close "閉じる">
+<!ENTITY livehttpheaders.menu.saveselection "選択範囲を保存...">
+<!ENTITY livehttpheaders.menu.saveall "すべてを保存...">
+<!ENTITY livehttpheaders.menu.edit "編集">
+<!ENTITY livehttpheaders.menu.copy "コピー">
+<!ENTITY livehttpheaders.menu.selectall "すべて選択">
+<!ENTITY livehttpheaders.menu.view "表示">
+<!ENTITY livehttpheaders.menu.post "POST データ">
+<!ENTITY livehttpheaders.tabs.headers "ヘッダ">
+<!ENTITY livehttpheaders.tabs.config "設定">
+<!ENTITY livehttpheaders.tabs.about "About">
+<!ENTITY livehttpheaders.config.usetab "新しいタブに LiveHTTPHeaders を開く">
+<!ENTITY livehttpheaders.config.usetab.tips "新しいタブあるいはウィンドウに LiveHTTPHeaders を表示する">
+<!ENTITY livehttpheaders.config.usestyle "スタイルシートを使用する">
+<!ENTITY livehttpheaders.config.usestyle.tips "メモ: 現在この設定にすると CPU 使用率が 100&#037; になることがあります">
+<!ENTITY livehttpheaders.config.post "POST:">
+<!ENTITY livehttpheaders.config.usefilter "正規表現による URL フィルタ">
+<!ENTITY livehttpheaders.config.usefilter.tips "このフィルタは各ヘッダではなく、URL に適用されます">
+<!ENTITY livehttpheaders.config.useexclude "正規表現による URL 除外">
+<!ENTITY livehttpheaders.config.useexclude.tips "この除外は各ヘッダではなく、URL に適用されます">
+<!ENTITY livehttpheaders.config.addsidebar "サイドバーに LiveHTTPHeaders を追加する">
+<!ENTITY livehttpheaders.config.addsidebar.tips "サイドバーに LiveHTTPHeaders を追加します。F9 を押すとサイドバーを表示します。">
+<!ENTITY livehttpheaders.config.addsidebar.added " サイドバーに追加しました">
+<!ENTITY livehttpheaders.config.addsidebar.present " すでにサイドバーに追加されています">
+<!ENTITY livehttpheaders.about.version "バージョン情報">
+<!ENTITY livehttpheaders.about.versiontext "LiveHTTPHeaders バージョン">
+<!ENTITY livehttpheaders.about.currentversion "0.13.1">
+<!ENTITY livehttpheaders.about.checkforupdate "更新を確認">
+<!ENTITY livehttpheaders.about.homepage "サイトを表示">
+<!ENTITY livehttpheaders.about.homepageurl "http://livehttpheaders.mozdev.org">
+<!ENTITY livehttpheaders.about.author "作成者">
+<!ENTITY livehttpheaders.about.thanks "謝辞">
+<!ENTITY livehttpheaders.about.suggestions "提案をしていただいたすべての人たち">
+<!ENTITY livehttpheaders.live.title "Live HTTP headers">
+<!ENTITY livehttpheaders.live.headers "HTTP ヘッダ">
+<!ENTITY livehttpheaders.live.clear "消去">
+<!ENTITY livehttpheaders.live.close "閉じる">
+<!ENTITY livehttpheaders.live.capture "キャプチャ">
+<!ENTITY livehttpheaders.live.copy "コピー">
+<!ENTITY livehttpheaders.live.selectblock "ブロックを選択">
+<!ENTITY livehttpheaders.live.selectall "すべてを選択">
+<!ENTITY livehttpheaders.live.saveall "すべてを保存...">
+<!ENTITY livehttpheaders.live.replay "リプレイ...">
+<!ENTITY livehttpheaders.live.replay.tips "URL を選択した場合リプレイができます...">
+<!ENTITY livehttpheaders.live.post.tips "POST の内容の表示設定">
+<!ENTITY livehttpheaders.live.post.none "なし">
+<!ENTITY livehttpheaders.live.post.none.tips "POST の内容を表示しません。">
+<!ENTITY livehttpheaders.live.post.fast "高速">
+<!ENTITY livehttpheaders.live.post.fast.tips "POST の内容を高速に取得します。ファイルのアップロード時には動作しません。参照 bug #188328">
+<!ENTITY livehttpheaders.live.post.slow "精密">
+<!ENTITY livehttpheaders.live.post.slow.tips "POST の内容を低速に取得しますが、ファイルのアップロード時にも動作します。">
+<!ENTITY livehttpheaders.live.post.max1k "最大1k">
+<!ENTITY livehttpheaders.live.post.max1k.tips "POST の内容を低速に取得しますが、最初の 1k バイトのみになります。">
+<!ENTITY livehttpheaders.replay.title "ライブ HTTP リプレイ">
+<!ENTITY livehttpheaders.replay.url "URL">
+<!ENTITY livehttpheaders.replay.headers "HTTP ヘッダ">
+<!ENTITY livehttpheaders.replay.post "POST の内容を送信？">
+<!ENTITY livehttpheaders.replay.replay "リプレイ">

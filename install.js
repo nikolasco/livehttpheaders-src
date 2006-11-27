@@ -8,7 +8,7 @@ const X_COM_FILE = "nsHeaderInfo.js";
 const X_CONTENT =  "content/";
 const X_SKIN = 	   "skin/";
 const X_LOCALES =  ["en-US", "fr-FR", "de-AT", "es-ES", "cs-CZ", "nl-NL",
-      "ru-RU", "ru-RU", "da-DK"];
+      "ru-RU", "ru-RU", "da-DK", "ja-JP"];
 
 var err = initInstall(X_MSG, X_NAME, X_VER);
 logComment("initInstall: " + err);

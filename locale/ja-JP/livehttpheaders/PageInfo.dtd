@@ -1,0 +1,13 @@
+<!ENTITY livehttpheaders.pageinfo.tab "ヘッダ">
+<!ENTITY livehttpheaders.pageinfo.accesskey "h">
+<!ENTITY livehttpheaders.pageinfo.request "リクエストヘッダ">
+<!ENTITY livehttpheaders.pageinfo.response "レスポンスヘッダ">
+<!ENTITY livehttpheaders.pageinfo.name "名前">
+<!ENTITY livehttpheaders.pageinfo.value "内容">
+<!ENTITY livehttpheaders.pageinfo.saveas "名前を付けて保存...">
+<!ENTITY livehttpheaders.pageinfo.fromcache "メモ: キャッシュに保存されたデータからヘッダを取得しています">
+<!ENTITY livehttpheaders.pageinfo.fromcache.t1 "リクエストヘッダは正しくない可能性があります。キャッシュされておらず、再生成もされません。">
+<!ENTITY livehttpheaders.pageinfo.fromcache.t2 "レスポンスヘッダはネットワークから本来受信したものかもしれません。">
+<!ENTITY livehttpheaders.pageinfo.fromnetwork "メモ: ネットワークからヘッダを取得しています">
+<!ENTITY livehttpheaders.pageinfo.fromnetwork.t1 "リクエストヘッダはネットワークへ送信したものです。">
+<!ENTITY livehttpheaders.pageinfo.fromnetwork.t2 "リクエストヘッダはネットワークから受信したものです。">

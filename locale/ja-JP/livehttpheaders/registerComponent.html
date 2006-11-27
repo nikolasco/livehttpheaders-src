@@ -1,0 +1,26 @@
+<html lang="ja">
+<head>
+<title>nsHeaderInfo コンポーネントが正しく登録されていません</title>
+</head>
+<body>
+<p><b>翻訳者注</b>: Firefox 2.0 および LiveHTTPHeaders 0.13.1 では、
+キャッシュに保存されたページの場合、ページ情報のヘッダのタブで HTTP ヘッダが
+表示されずこのページが表示されることがあります。LiveHTTPHeaders の<b>バグ</b>と
+思われますのでご注意ください。<br>また、以下に書かれている文章は、
+プロファイルにインストールしたときのComponents ディレクトリの場所が
+異なるなどかなり古い内容となっております。</p>
+<p>ページの情報でヘッダのタブを表示するために、nsHeaderInfo コンポーネントを
+登録しなければなりません。<br>このコンポーネントファイルは、
+(インストールディレクトリ)/Components/nsHeaderInfo.js にあります。</p>
+<p>コンポーネントの登録は LiveHTTPHeaders をインストールしたときに行れますが、
+正しく登録されないことがあります。<br>コンポーネントを登録するために、以下の作業を行ってください:</p>
+<ul>
+<li><code><b>(インストールディレクトリ)/Components/compreg.dat</b></code> を削除</li>
+<li><code><b>(インストールディレクトリ)/Components/xpti.dat</b></code> を削除</li>
+</ul>
+<p>この２つのファイルは、ブラウザの再起動時に自動的に再生成されます。</p>
+<p><b>メモ</b>: LiveHTTPHeaders を<b>プロファイル</b>にインストールした場合は、
+profile/components ディレクトリに nsHeadersInfo.js がコピーされています。
+その場合、作業を行う前に nsHeadersInfo.js を(インストールディレクトリ)/Components にコピーしなければなりません。</p>
+</body>
+</html>
