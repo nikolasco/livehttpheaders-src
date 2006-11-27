@@ -20,11 +20,9 @@
 //  Place, Suite 330, Boston, MA 02111-1307 USA
 //  **** END LICENSE BLOCK ****
 
-var flag = 0;
-function makeHeaderInfoTab() {
-  // Only call this function once
-  if (flag) return;
-  flag = 1;
+
+function getHeaderInfo() {
+  var headers = null;
 
   // Look to see if the minimum requirement is there
   if (theDocument && 'defaultView' in theDocument && 'controllers' in theDocument.defaultView) {
@@ -38,86 +36,90 @@ function makeHeaderInfoTab() {
     while (controller && !('headers' in controller))
       controller = controller.wrappedJSObject;
 
-    var headers = null;
     if (controller && controller.url == theDocument.defaultView.location.href)
       headers = controller.headers;
-
-    if (headers) {
-      //dumpall("theWindow",theWindow,2);
-      //dumpall("theDocument",theDocument,2);
-      //dumpall("opener",window.opener,2);
-
-      // Get references to the trees to populate
-      var requestheaders = new pageInfoTreeView(["headerinfo-request-name","headerinfo-request-value"], COPYCOL_META_CONTENT);
-      var responseheaders = new pageInfoTreeView(["headerinfo-response-name","headerinfo-response-value"], COPYCOL_META_CONTENT);
-      var requestTree = document.getElementById("headerinfo-request-tree");
-      var responseTree = document.getElementById("headerinfo-response-tree");
-  
-      requestTree.treeBoxObject.view = requestheaders;
-      responseTree.treeBoxObject.view = responseheaders;
-
-      // Show source of the requests
-      var source = (headers.isFromCache ? "fromcache" : "fromnetwork");
-      source = document.getElementById("headerinfo-request-" + source);
-      source.hidden = false;
-
-      // Populate the trees
-      var i;
-      requestheaders.addRow(["REQUEST",headers.request]);
-      for (i in headers.requestHeaders) {
-        requestheaders.addRow([i,headers.requestHeaders[i]]);
-      }
-      requestheaders.rowCountChanged(0, length);
-      requestheaders.enablehScroll("headerinfo-request-scroll","headerinfo-request-value");
-
-      responseheaders.addRow(["RESPONSE", headers.response]);
-      for (i in headers.responseHeaders) {
-        // Server can send some headers multiple times...  
-        // Try to detect this and present them in the 'good' way.
-        var multi = headers.responseHeaders[i].split('\n');
-        for (var o in multi) {
-         responseheaders.addRow([i, multi[o]]);
-        }
-      }
-      responseheaders.rowCountChanged(0, length);
-      responseheaders.enablehScroll("headerinfo-response-scroll","headerinfo-response-value");
-    } else if (loc=='http:' || loc=='https:') {
-      // If we are here, it must be because the nsHeaderInfo component wasn't registered
-      document.getElementById("headerinfoCNR").hidden = false;
-      document.getElementById("headerinfoDeck").selectedIndex = 1;
-    }
   }
+  return headers;
 }
 
-function saveHeaderInfoTab(title) {
-  
-  // Look to see if the minimum requirement is there
-  if (theDocument && 'defaultView' in theDocument && 'headers' in theDocument.defaultView) {
-    const headers = theDocument.defaultView.headers;
+var flag = 0;
+function makeHeaderInfoTab() {
+  // Only call this function once
+  if (flag) return;
+  flag = 1;
+  const headers = getHeaderInfo();
+  if (headers) {
+    //dumpall("theWindow",theWindow,2);
+    //dumpall("theDocument",theDocument,2);
+    //dumpall("opener",window.opener,2);
 
-    // First, the URL
-    var txt = theDocument.location + "\n";
+    // Get references to the trees to populate
+    var requestheaders = new pageInfoTreeView(["headerinfo-request-name","headerinfo-request-value"], COPYCOL_META_CONTENT);
+    var responseheaders = new pageInfoTreeView(["headerinfo-response-name","headerinfo-response-value"], COPYCOL_META_CONTENT);
+    var requestTree = document.getElementById("headerinfo-request-tree");
+    var responseTree = document.getElementById("headerinfo-response-tree");
 
-    // Now, the request and the request headers
-    txt += "\n" + headers.request + "\n";
+    requestTree.treeBoxObject.view = requestheaders;
+    responseTree.treeBoxObject.view = responseheaders;
+
+    // Show source of the requests
+    var source = (headers.isFromCache ? "fromcache" : "fromnetwork");
+    source = document.getElementById("headerinfo-request-" + source);
+    source.hidden = false;
+
+    // Populate the trees
+    var i;
+    requestheaders.addRow(["REQUEST",headers.request]);
     for (i in headers.requestHeaders) {
-      txt += i + ": " + headers.requestHeaders[i] + "\n";
+      requestheaders.addRow([i,headers.requestHeaders[i]]);
     }
- 
-    // Finaly, the response and its headers
-    txt += "\n" + headers.response + "\n";
+    requestheaders.rowCountChanged(0, length);
+    requestheaders.enablehScroll("headerinfo-request-scroll","headerinfo-request-value");
+
+    responseheaders.addRow(["RESPONSE", headers.response]);
     for (i in headers.responseHeaders) {
       // Server can send some headers multiple times...  
       // Try to detect this and present them in the 'good' way.
       var multi = headers.responseHeaders[i].split('\n');
       for (var o in multi) {
-        txt += i + ": " + multi[o] + "\n";
+       responseheaders.addRow([i, multi[o]]);
       }
     }
-
-    // Now save the generated headers to a file
-    saveAs(txt,title);
+    responseheaders.rowCountChanged(0, length);
+    responseheaders.enablehScroll("headerinfo-response-scroll","headerinfo-response-value");
+  } else if (loc=='http:' || loc=='https:') {
+    // If we are here, it must be because the nsHeaderInfo component wasn't registered
+    document.getElementById("headerinfoCNR").hidden = false;
+    document.getElementById("headerinfoDeck").selectedIndex = 1;
   }
+}
+
+function saveHeaderInfoTab(title) {
+  
+  const headers = getHeaderInfo();
+
+  // First, the URL
+  var txt = theDocument.location + "\n";
+
+  // Now, the request and the request headers
+  txt += "\n" + headers.request + "\n";
+  for (i in headers.requestHeaders) {
+    txt += i + ": " + headers.requestHeaders[i] + "\n";
+  }
+ 
+  // Finaly, the response and its headers
+  txt += "\n" + headers.response + "\n";
+  for (i in headers.responseHeaders) {
+    // Server can send some headers multiple times...  
+    // Try to detect this and present them in the 'good' way.
+    var multi = headers.responseHeaders[i].split('\n');
+    for (var o in multi) {
+      txt += i + ": " + multi[o] + "\n";
+    }
+  }
+
+  // Now save the generated headers to a file
+  saveAs(txt,title);
 }
 
 // Add an link to a horizontal scrollbar on a TreeView class

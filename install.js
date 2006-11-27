@@ -7,14 +7,8 @@ const X_COM_FILE = "nsHeaderInfo.js";
 
 const X_CONTENT =  "content/";
 const X_SKIN = 	   "skin/";
-const X_LOCALE1 =  "locale/en-US/livehttpheaders/";
-const X_LOCALE2 =  "locale/fr-FR/livehttpheaders/";
-const X_LOCALE3 =  "locale/de-AT/livehttpheaders/";
-const X_LOCALE4 =  "locale/es-ES/livehttpheaders/";
-const X_LOCALE5 =  "locale/cs-CZ/livehttpheaders/";
-const X_LOCALE6 =  "locale/nl-NL/livehttpheaders/";
-const X_LOCALE7 =  "locale/ru-RU/livehttpheaders/";
-const X_LOCALE8 =  "locale/da-DK/livehttpheaders/";
+const X_LOCALES =  ["en-US", "fr-FR", "de-AT", "es-ES", "cs-CZ", "nl-NL",
+      "ru-RU", "ru-RU", "da-DK"];
 
 var err = initInstall(X_MSG, X_NAME, X_VER);
 logComment("initInstall: " + err);
@@ -47,14 +41,10 @@ if (err == SUCCESS || err == REBOOT_NEEDED) {
 if (err == SUCCESS || err == REBOOT_NEEDED) {
   registerChrome(chromeBase | CONTENT, getFolder(chromeFolder, X_JAR_FILE), X_CONTENT);
   registerChrome(chromeBase | SKIN, getFolder(chromeFolder, X_JAR_FILE), X_SKIN);
-  registerChrome(chromeBase | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE1);
-  registerChrome(chromeBase | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE2);
-  registerChrome(chromeBase | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE3);
-  registerChrome(chromeBase | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE4);
-  registerChrome(chromeBase | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE5);
-  registerChrome(chromeBase | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE6);
-  registerChrome(chromeBase | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE7);
-  registerChrome(chromeBase | LOCALE, getFolder(chromeFolder, X_JAR_FILE), X_LOCALE8);
+  for(var i = 0; i < X_LOCALES.length; i++) {
+    registerChrome(chromeBase | LOCALE, getFolder(chromeFolder, X_JAR_FILE),
+    "locale/" + X_LOCALES[i] + "/livehttpheaders/");
+  }
 }
 err = getLastError();
 if (err == SUCCESS || err == REBOOT_NEEDED) {
