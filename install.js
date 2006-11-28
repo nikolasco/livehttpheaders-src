@@ -66,7 +66,7 @@ if (err == SUCCESS || err == REBOOT_NEEDED) {
   }else {
     alert("An unknown error occured.  Error code: " + err + "\n" + 
           "Look at the following URL for a description of the error code:\n" +
-          "http://developer.netscape.com/docs/manuals/xpinstall/err.html");
+          "http://developer.mozilla.org/en/docs/XPInstall_API_Reference:Return_Codes");
   }
 }
 
