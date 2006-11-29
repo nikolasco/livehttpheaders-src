@@ -26,31 +26,24 @@ following document.  Thus the hack with %space; .
 <p>
 Das &space;<b>Generator</b>&space; Werkzeug
 ist eine Erweiterung für &space;<b>LiveHTTPHeaders</b>.
-Es kann benutzt werden, um Lasttest Werkzeuge wie &space;
+Es kann benutzt werden, um Lasttest-Werkzeuge wie &space;
 <a href="http://httpd.apache.org/test/flood/" target="to-browser">Apache-Flood</a>
-&space; oder Werkzeuge in der Art von <i>Webbasierten Testern</i> zu füttern.
+&space; oder Werkzeuge in der Art von <i>webbasierten Testern</i> zu füttern.
 </p>
 <p>
-Die Idee ist, die von Mozilla besuchten Seiten in einer
-Zeilenbasierten ASCII-Datei aufzuzeichnen und
-diese Datei durch ein von ihnen geschriebenen Script
-in das zu ihrem Lasttest Werkzeug passenden Format
-zu wandeln.
-Das bedeutet: Einen Testplan mit einem Browser generieren, 
-anstelle von selber programmieren.
+Die Idee ist, die von Mozilla besuchten Seiten in einer zeilenbasierten ASCII-Datei aufzuzeichnen und
+diese Datei durch ein von ihnen geschriebenen Script in das zu ihrem Lasttest-Werkzeug passenden Format
+zu wandeln. Das bedeutet: Einen Testplan mit einem Browser generieren, anstelle von selber programmieren.
 Natürlich kann der resultierende Testplan noch weiter verfeinert werden.
 </p>
 <p>
 <b>Fehler</b>:
-Umgeleitete Anfragen werden nicht zusammengefügt.
-Daraus resultieren Filterfehler, wie im Text weiter unten bemerkt wird.
+Umgeleitete Anfragen werden nicht zusammengefügt. Daraus resultieren Filterfehler, wie im Text weiter unten bemerkt wird.
 </p>
-
 
 <h2>Optionen Liste</h2>
 
 <dl>
-
   <dt>&generator.option.redirect;</dt>
   <dd>&generator.popup.redirect;.
     <br/>
@@ -82,27 +75,22 @@ Daraus resultieren Filterfehler, wie im Text weiter unten bemerkt wird.
   <dt>&generator.option.skipped;</dt>
   <dd>&generator.popup.skipped;.
     <br/>
-    Diese Option zeigt die Anfragen als Kommentare mit
-    &space;<b>#...#</b>&space; am Zeilenanfang,
+    Diese Option zeigt die Anfragen als Kommentare mit &space;<b>#...#</b>&space; am Zeilenanfang,
     damit sie danach einfacher gefiltert werden können.
   </dd>
 
   <dt>&generator.option.request;</dt>
   <dd>&generator.popup.request;.
     <br/>
-    Die Filter werden auf die HTTP Antworten angewendet,
-    also interessieren uns die HTTP Antworten.
-    Jedoch konsultiert Mozilla seinen Cache, auch
-    wenn dieser ausgeschaltet und leer ist.
+    Die Filter werden auf die HTTP Antworten angewendet, also interessieren uns die HTTP Antworten.
+    Jedoch konsultiert Mozilla seinen Cache, auch wenn dieser ausgeschaltet und leer ist.
     Diese Option ermöglicht es, diese Antworten trotzdem anzuzeigen.
     <br/>
     <b>Warnung</b>:
     Diese Option wird immer als Kommentar angezeigt und
     wird nicht von der Option &generator.option.skipped; beeinflusst.
   </dd>
-
 </dl>
-
 
 <h2>Format</h2>
 
@@ -110,8 +98,7 @@ Alle Anfragen werden auf eine einzigen Zeile in folgendem Format angezeigt:
 <pre>
 [Kommentar] Methode URL [Daten]
 </pre>
-Die Elemente der Zeile werden durch ein Leerzeichen getrennt.
-Beschreibung der Elemente:
+Die Elemente der Zeile werden durch ein Leerzeichen getrennt. Beschreibung der Elemente:
 <dl>
 <dt>Kommentar</dt><dd>
 Kommentare werden angezeigt, wenn
@@ -135,10 +122,23 @@ wobei &space;<i>Name</i>&space; die Anfrage Kategorie ist (Bild, CSS usw.).
 </dd>
 </dl>
 
-
-<h2>Author</h2>
+<h2>Autor</h2>
 
 Stefan Trcek, ABAS Software AG
+
+<h2>Lizenz</h2>
+
+<p>
+  Copyright(c) 2004 &space;<a href="http://www.abas.de" target="to-browser">ABAS Software AG</a><br/>
+  basierend auf LiveHTTPHeaders Copyright(c) 2002-2003 Daniel Savard.
+</p>
+<p>
+  Diese Programm ist freie Software. Sie können sie weiter verbreiten und/oder modifizieren unter
+  den Bedingungen der GNU General Public License, veröffentlicht durch die Free
+  Software Foundation. Sie können, je nach Wunsch, die Lizenz der Version 2 oder später verwenden.
+</p>
+
+</window>
 
 
 <h2>Lizenz</h2>
