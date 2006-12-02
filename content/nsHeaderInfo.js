@@ -292,9 +292,9 @@ HeaderInfoVisitor.prototype =
             visitor.visitHeader(tmp[0],tmp[1]);
             line = this.readLine(stream);
           }
-        } catch (ex) {} 
-        // Need to close the stream after use
-        finally { this.oHttp.uploadStream.close(); stream.close(); }
+        } catch (ex) {}
+        // The main request should take care of closing the stream,
+        // not this listener
       }
     } catch (e) {}
   },
