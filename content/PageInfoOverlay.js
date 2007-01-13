@@ -26,11 +26,11 @@ function getHeaderInfo() {
 
   // Look to see if the minimum requirement is there
   if (theDocument && 'defaultView' in theDocument && 'controllers' in theDocument.defaultView) {
-    var loc = theDocument.location.protocol;
     var controllers = theDocument.defaultView.controllers
     while (controllers.wrappedJSObject)
       controllers = controllers.wrappedJSObject
     var controller = controllers.getControllerForCommand('livehttpheaders');
+    if (!controller) return false;
 
     // The controller might be wrapped multiple times
     while (controller && !('headers' in controller))
@@ -47,6 +47,7 @@ function makeHeaderInfoTab() {
   // Only call this function once
   if (flag) return;
   flag = 1;
+  var loc = theDocument.location.protocol;
   const headers = getHeaderInfo();
   if (headers) {
     //dumpall("theWindow",theWindow,2);

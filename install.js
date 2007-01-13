@@ -20,24 +20,25 @@ if (confirm("Do you wish to install LiveHTTPHeaders to your profile ?\n\n"+
             "Click Cancel to install it globally.")) {
   var chromeBase = PROFILE_CHROME;
   var chromeFolder = getFolder("Profile", "chrome");
-  var componentDir = getFolder("Profile", "components");
-  var iconFolder = getFolder(getFolder("Profile", "icons"), "default");
 } else {
   var chromeBase = DELAYED_CHROME;
   var chromeFolder = getFolder("Chrome");
-  var componentDir = getFolder("Components");
-  var iconFolder = getFolder(getFolder("Chrome", "icons"), "default");
 }
+var componentDir = getFolder("Components");
+var iconFolder = getFolder(getFolder("Chrome", "icons"), "default");
 
 addFile(X_NAME, "chrome/" + X_JAR_FILE, chromeFolder, "");
+// It's okay if this fails; the component and icons aren't critical to the
+// functioning of most of the extension
 err = getLastError();
 if (err == SUCCESS || err == REBOOT_NEEDED) {
   addFile(X_NAME_COM, "components/" + X_COM_FILE, componentDir, "");
-}
-if (err == SUCCESS || err == REBOOT_NEEDED) {
   addFile(X_NAME, "defaults/LiveHTTPHeaders.xpm", iconFolder, "");
   addFile(X_NAME, "defaults/LiveHTTPHeaders.ico", iconFolder, "");
+  resetError();
 }
+
+err = getLastError();
 if (err == SUCCESS || err == REBOOT_NEEDED) {
   registerChrome(chromeBase | CONTENT, getFolder(chromeFolder, X_JAR_FILE), X_CONTENT);
   registerChrome(chromeBase | SKIN, getFolder(chromeFolder, X_JAR_FILE), X_SKIN);
@@ -59,8 +60,7 @@ if (err == SUCCESS || err == REBOOT_NEEDED) {
   cancelInstall();
   if (err == -202) {
     alert("You need to have write permissions to the chrome directory and subfolders:\n" + 
-          chromeFolder + " and to the components directory:\n" +
-          componentDir);
+          chromeFolder);
   } else if (err == -210) {
     alert("Installation cancelled by user");
   }else {
