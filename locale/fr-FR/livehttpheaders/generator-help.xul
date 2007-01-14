@@ -21,10 +21,10 @@ following document.  Thus the hack with %space; .
 -->
 
 
-<h1>Aide sur l'outil Generator</h1>
+<h1>L'outil Générateur</h1>
 
 <p>
-L'outil &space;<b>Generator</b>&space;
+L'outil &space;<b>Générateur</b>&space;
 est une extension à &space;<b>LiveHTTPHeaders</b>.
 Il peut être utilisé pour générer un jeu d'essai pour des programmes comme &space;
 <a href="http://httpd.apache.org/test/flood/" target="to-browser">Apache-Flood</a>
@@ -36,7 +36,7 @@ dans un fichier au format ASCII.  Ensuite, il suffira de modifier ce fichier afi
 Ainsi, au lieu de coder vous même le jeu d'essai, il suffit de laisser le fureteur ramasser les pages à mesure que vous furetez dans le site à tester.
 </p>
 <p>
-<b>BOGUES</b>:
+<b>BOGUES</b>&#160;:
 Les redirections ne sont pas liées entre elles.  Ceci cause un problème avec les filtres (voir ci-dessous pour de plus amples explications).
 </p>
 
@@ -58,20 +58,20 @@ Les redirections ne sont pas liées entre elles.  Ceci cause un problème avec l
     Ces codes indiquent les erreurs clients et / ou serveurs.  Voir le  &space;
     <a href="http://www.faqs.org/rfcs/rfc2616.html" target="to-browser">RFC 2616</a>.
     <br/>
-    <b>BOGUE</b>: Ne fonctionne pas correctement lorsque les requêtes sont redirigées.
+    <b>BOGUE</b>&#160;: Ne fonctionne pas correctement lorsque les requêtes sont redirigées.
   </dd>
 
   <dt>&generator.option.image;</dt>
   <dd>&generator.popup.image;.
     <br/>
-    <b>BOGUE</b>: Ne fonctionne pas correctement lorsque les requêtes sont rediri
+    <b>BOGUE</b>&#160;: Ne fonctionne pas correctement lorsque les requêtes sont rediri
 gées.
   </dd>
 
   <dt>&generator.option.css;</dt>
   <dd>&generator.popup.css;.
     <br/>
-    <b>BOGUE</b>: Ne fonctionne pas correctement lorsque les requêtes sont rediri
+    <b>BOGUE</b>&#160;: Ne fonctionne pas correctement lorsque les requêtes sont rediri
 gées.
   </dd>
 
@@ -86,13 +86,13 @@ gées.
   <dt>&generator.option.request;</dt>
   <dd>&generator.popup.request;.
     <br/>
-    Les filtres ci-dessus sont présentement attachés aux réponses HTTP reçues 
+    Les filtres ci-dessus sont actuellement attachés aux réponses HTTP reçues 
     à partir d'Internet.
     Cependant, lorsque possible, Mozilla récupère certaines pages à partir
     de sa cache plutôt que sur l'Internet.  Cette option permet d'afficher
     les requêtes provenant de la cache en plus de celles provenant d'Internet.
     <br/>
-    <b>Limitation</b>:
+    <b>Limitation</b>&#160;:
     Cette option affiche toujours un commentaire &space;<b>#...#</b>&space;
     et n'est pas affectée par l'option &generator.option.skipped;.
   </dd>
@@ -102,33 +102,33 @@ gées.
 
 <h2>Format</h2>
 
-Toutes les requêtes sont affichées sur une seule ligne dans le format suivant:
+Toutes les requêtes sont affichées sur une seule ligne dans le format suivant&#160;:
 <pre>
 [commentaire] méthode URL [données]
 </pre>
 Les éléments d'une ligne sont séparés par des espaces.
-Description des éléments:
+Description des éléments&#160;:
 <dl>
 <dt>commentaire</dt><dd>
-Les commentaires sont affichés si:
+Les commentaires sont affichés si&#160;:
 &space;<i>&generator.option.skipped;</i>&space; et / ou
 &space;<i>&generator.option.request;</i>&space; sont cochés.
 Le format est &space;<code>#nom#</code>,
 où &space;<i>nom</i>&space; est fonction du type de requête (image, css, etc).
 </dd>
 <dt>méthode</dt><dd>
-  La méthode utilisée dans la requête HTTP: habituellement GET ou POST.
+  La méthode utilisée dans la requête HTTP&#160;: habituellement GET ou POST.
 </dd>
 <dt>URL</dt><dd>
   L'URL demandé.
-  <br/><b>Note</b>:
+  <br/><b>Note</b>&#160;:
   L'URL peut commencer par &space;<code>http://</code>&space; ou non.
   Ceci dépend si Mozilla est configuré pour utiliser ou non les proxies.
 </dd>
 <dt>données</dt><dd>
   Pour les requêtes utilisant la méthode POST, ce champ optionnel contient les
   données transmises en mode POST.
-  Ces données sont codées comme suit: &space; <code>opt1&amp;opt2&amp;...</code>
+  Ces données sont codées comme suit&#160;: &space; <code>opt1&amp;opt2&amp;...</code>
 </dd>
 </dl>
 

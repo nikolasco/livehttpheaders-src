@@ -1,8 +1,8 @@
 <!ENTITY livehttpheaders.menu.file "Fichier">
 <!ENTITY livehttpheaders.menu.close "Fermer">
-<!ENTITY livehttpheaders.menu.saveselection "Enregistrer la sélection...">
-<!ENTITY livehttpheaders.menu.saveall "Enregistrer tout...">
-<!ENTITY livehttpheaders.menu.edit "Edition">
+<!ENTITY livehttpheaders.menu.saveselection "Enregistrer la sélection…">
+<!ENTITY livehttpheaders.menu.saveall "Enregistrer tout…">
+<!ENTITY livehttpheaders.menu.edit "Édition">
 <!ENTITY livehttpheaders.menu.copy "Copier">
 <!ENTITY livehttpheaders.menu.selectall "Sélectionner tout">
 <!ENTITY livehttpheaders.menu.view "Affichage">
@@ -10,24 +10,24 @@
 <!ENTITY livehttpheaders.tabs.headers "En-têtes">
 <!ENTITY livehttpheaders.tabs.config "Configuration">
 <!ENTITY livehttpheaders.tabs.about "A propos">
-<!ENTITY livehttpheaders.config.usetab "Ouvrir LiveHTTPHeaders dans un onglet">
+<!ENTITY livehttpheaders.config.usetab "Ouvrir LiveHTTPHeaders dans un nouvel onglet">
 <!ENTITY livehttpheaders.config.usetab.tips "Détermine si LiveHTTPHeaders doit s&apos;ouvrir dans une nouvelle fenêtre ou bien dans un onglet.">
 <!ENTITY livehttpheaders.config.usestyle "Utiliser la feuille de style">
-<!ENTITY livehttpheaders.config.usestyle.tips "Note: dû à un bogue, cette fonction peut prendre 100 pourcent du processeur.">
-<!ENTITY livehttpheaders.config.post "POST:">
+<!ENTITY livehttpheaders.config.usestyle.tips "Note&#160;: en raison d&apos;un bogue, cette fonction peut utiliser 100&#37; du processeur.">
+<!ENTITY livehttpheaders.config.post "POST&#160;:">
 <!ENTITY livehttpheaders.config.usefilter "Filtrer les URLs avec une expression régulière">
 <!ENTITY livehttpheaders.config.usefilter.tips "Le filtre s&apos;applique sur l&apos;URL demandée et non pas sur les en-têtes.">
 <!ENTITY livehttpheaders.config.useexclude "Exclure les URLs avec une expression régulière">
-<!ENTITY livehttpheaders.config.useexclude.tips "Le filtre s&apos;applique sur l&apos;URL demandée et non pas sur les en-têtes eux-mêmes.">
-<!ENTITY livehttpheaders.config.addsidebar "Ajouter LiveHTTPHeaders à la barre latérale">
-<!ENTITY livehttpheaders.config.addsidebar.tips "Ce bouton ajoute LiveHTTPHeaders à votre barre latérale.  Pour voir votre barre latérale, appuyer sur F9.">
-<!ENTITY livehttpheaders.config.addsidebar.added " a été ajouté avec succès à votre barre latérale.">
-<!ENTITY livehttpheaders.config.addsidebar.present " existe déjà dans votre barre latérale.">
+<!ENTITY livehttpheaders.config.useexclude.tips "Le filtre s&apos;applique sur l&apos;URL demandée et non pas sur les en-têtes.">
+<!ENTITY livehttpheaders.config.addsidebar "Ajouter LiveHTTPHeaders au panneau latéral">
+<!ENTITY livehttpheaders.config.addsidebar.tips "Ce bouton ajoute LiveHTTPHeaders au panneau latéral. Pour voir votre panneau latéral, appuyez sur F9.">
+<!ENTITY livehttpheaders.config.addsidebar.added "a été ajouté avec succès à votre panneau latéral.">
+<!ENTITY livehttpheaders.config.addsidebar.present "existe déjà dans votre panneau latéral.">
 <!ENTITY livehttpheaders.about.version "Information sur la version">
-<!ENTITY livehttpheaders.about.versiontext "LiveHTTPHeaders version ">
+<!ENTITY livehttpheaders.about.versiontext "LiveHTTPHeaders version">
 <!ENTITY livehttpheaders.about.currentversion "0.13.1">
 <!ENTITY livehttpheaders.about.checkforupdate "Vérifier s&apos;il existe une nouvelle version">
-<!ENTITY livehttpheaders.about.homepage "Page principale">
+<!ENTITY livehttpheaders.about.homepage "Page d&apos;accueil">
 <!ENTITY livehttpheaders.about.homepageurl "http://livehttpheaders.mozdev.org">
 <!ENTITY livehttpheaders.about.author "Auteur">
 <!ENTITY livehttpheaders.about.thanks "Merci aux personnes suivantes">
@@ -40,20 +40,20 @@
 <!ENTITY livehttpheaders.live.copy "Copier">
 <!ENTITY livehttpheaders.live.selectblock "Sélectionner le bloc">
 <!ENTITY livehttpheaders.live.selectall "Sélectionner tout">
-<!ENTITY livehttpheaders.live.saveall "Enregistrer tout...">
-<!ENTITY livehttpheaders.live.replay "Rejouer...">
-<!ENTITY livehttpheaders.live.replay.tips "Cliquer sur une URL afin de pouvoir la rejouer...">
+<!ENTITY livehttpheaders.live.saveall "Enregistrer tout…">
+<!ENTITY livehttpheaders.live.replay "Rejouer…">
+<!ENTITY livehttpheaders.live.replay.tips "Sélectionner une adresse afin de pouvoir la rejouer…">
 <!ENTITY livehttpheaders.live.post.tips "Configurer l&apos;affichage des données POST">
-<!ENTITY livehttpheaders.live.post.none "aucun">
+<!ENTITY livehttpheaders.live.post.none "Aucun">
 <!ENTITY livehttpheaders.live.post.none.tips "Ne pas afficher les données POST">
-<!ENTITY livehttpheaders.live.post.fast "rapide">
-<!ENTITY livehttpheaders.live.post.fast.tips "Afficher les données avec un code rapide mais qui ne supporte pas le transfert de fichier (file upload). Voir le bogue #188328.">
-<!ENTITY livehttpheaders.live.post.slow "fiable">
-<!ENTITY livehttpheaders.live.post.slow.tips "Afficher les données avec un code lent mais qui fonctionne dans tous les cas.">
-<!ENTITY livehttpheaders.live.post.max1k "max 1K">
-<!ENTITY livehttpheaders.live.post.max1k.tips "Identique au choix &apos;fiable&apos; mais n&apos;affiche que le premier kilo-octet de données">
-<!ENTITY livehttpheaders.replay.title "Live HTTP Replay">
+<!ENTITY livehttpheaders.live.post.fast "Rapide">
+<!ENTITY livehttpheaders.live.post.fast.tips "Affichage POST rapide. Ne supporte pas le transfert de fichiers.">
+<!ENTITY livehttpheaders.live.post.slow "Fiable">
+<!ENTITY livehttpheaders.live.post.slow.tips "Affichage lent. Fonctionne dans tous les cas.">
+<!ENTITY livehttpheaders.live.post.max1k "Max 1K">
+<!ENTITY livehttpheaders.live.post.max1k.tips "Identique au choix &apos;fiable&apos; mais n&apos;affiche que le premier Ko.">
+<!ENTITY livehttpheaders.replay.title "Rejouer les entêtes HTTP">
 <!ENTITY livehttpheaders.replay.url "URL">
 <!ENTITY livehttpheaders.replay.headers "En-têtes HTTP">
-<!ENTITY livehttpheaders.replay.post "Envoyer du contenu POST ?">
+<!ENTITY livehttpheaders.replay.post "Contenu POST à envoyer">
 <!ENTITY livehttpheaders.replay.replay "Rejouer">

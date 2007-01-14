@@ -14,6 +14,6 @@
 <!ENTITY generator.popup.image "Affiche les requêtes pour les images">
 <!ENTITY generator.popup.css "Affiche les requêtes pour les feuilles de styles (CSS)">
 <!ENTITY generator.popup.skipped "Affiche les requêtes qui ont été omises par les autres options">
-<!ENTITY generator.popup.request "Affiche les requêtes qui proviennent de la cache de Mozilla (aucun accès réseau)">
+<!ENTITY generator.popup.request "Afficher les requêtes même si elles proviennent du cache">
 <!ENTITY generator.button.help "Aide">
 <!ENTITY generator.help.title "Aide sur le Générateur">

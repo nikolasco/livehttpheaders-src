@@ -1,26 +1,18 @@
-<HTML>
-<HEAD>
-<TITLE>Le composant nsHeaderInfo n'est pas enregistr&eacute; correctement</TITLE>
-</HEAD>
-<BODY>
-Afin que les informations des en-t&ecirc;tes soient disponibles dans l'onglet PageInfo de Mozilla/Firebird, il est n&eacute;cessaire d'enregistrer le composant nsHeaderInfo.  Ce composant se trouve dans le fichier Mozilla/Components/nsHeaderInfo.js.<P>
-Normalement, ceci est fait automatiquement lors de l'installation de LiveHTTPHeaders.  Cependant, il arrive que l'enregistrement ne fonctionne pas.  Voici donc la proc&eacute;dure &agrave; suivre afin de forcer Mozilla/Firebird &agrave; trouver et enregistrer le composant.
-<UL>
-<LI>Supprimer le fichier <code><b>Mozilla/Components/compreg.dat</b></code></LI>
-<LI>Supprimer le fichier <code><b>Mozilla/Components/xpti.dat</b></code></LI>
-</UL>
-Ces deux fichiers devraient &ecirc;tre recr&eacute;&eacute;s automatiquement lors du prochain d&eacute;marrage de Mozilla/Firebird.<p>
-<b>Note:</b>Si vous avez install&eacute; LiveHTTPHeaders dans votre <b>profile</b>, vous devez d'abord copier le fichier nsHeaderInfo.js qui se trouve dans profile/components dans Mozilla/components avant de suivre les directives ci-dessus.<br>
-</BODY>
-</HTML>
-<li>Delete the file <code><b>Mozilla/Components/xpti.dat</b></code></li>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="fr">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Le composant nsHeaderInfo n'est pas enregistr&eacute; correctement</title>
+	<style type="text/css">code, tt {color:#AA0000;}</style>
+</head>
+<body>
+<p>Afin que les informations des en-t&ecirc;tes soient disponibles dans un onglet de la fenêtre <tt>Informations sur la page</tt> de Mozilla ou Firefox, il est n&eacute;cessaire d'enregistrer le composant nsHeaderInfo. Ce composant se trouve dans le fichier Mozilla/Components/nsHeaderInfo.js.</p>
+<p>Normalement, ceci est fait automatiquement lors de l'installation de LiveHTTPHeaders. Cependant, il arrive que l'enregistrement ne fonctionne pas. Voici donc la proc&eacute;dure &agrave; suivre afin de forcer Mozilla/Firebird &agrave; trouver et enregistrer le composant.</p>
+<ul>
+	<li>Supprimer le fichier <code>Mozilla/Components/compreg.dat</code></li>
+	<li>Supprimer le fichier <code>Mozilla/Components/xpti.dat</code></li>
 </ul>
-These two files should be recreated automatically by Mozilla or Firebird
-when it is next started.<p>
-
-<b>Note</b>: if you installed LiveHTTPHeaders in you <b>profile</b>, there 
-is a copy of the nsHeadersInfo.js file in your profile/components directory.  
-You need to copy it in Mozilla/Components directory first and follow the 
-directive above after.<br>
-</BODY>
-</HTML>
+<p>Ces deux fichiers devraient &ecirc;tre recr&eacute;&eacute;s automatiquement lors du prochain d&eacute;marrage de Mozilla ou Firefox.<p>
+<p><span style="font-weight:bold">Note&nbsp;:</span> dans Mozilla, si vous avez install&eacute; LiveHTTPHeaders dans votre <em>profil</em>, vous devez d'abord copier le fichier nsHeaderInfo.js qui se trouve dans <code>profile/components</code> dans <code>Mozilla/components</code> avant de suivre les directives ci-dessus.</p>
+</body>
+</html>

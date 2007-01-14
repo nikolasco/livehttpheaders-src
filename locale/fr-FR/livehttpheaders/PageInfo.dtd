@@ -4,10 +4,10 @@
 <!ENTITY livehttpheaders.pageinfo.response "Réponse">
 <!ENTITY livehttpheaders.pageinfo.name "Nom">
 <!ENTITY livehttpheaders.pageinfo.value "Valeur">
-<!ENTITY livehttpheaders.pageinfo.saveas "Enregistrer sous...">
-<!ENTITY livehttpheaders.pageinfo.fromcache "Note: les en-têtes proviennent du cache.">
-<!ENTITY livehttpheaders.pageinfo.fromcache.t1 "Les en-têtes &apos;request&apos; pourraient être erronés (non conservés dans le cache).">
-<!ENTITY livehttpheaders.pageinfo.fromcache.t2 "Les en-têtes &apos;response&apos; devraient être ceux reçus originalement du réseau.">
+<!ENTITY livehttpheaders.pageinfo.saveas "Enregistrer sous…">
+<!ENTITY livehttpheaders.pageinfo.fromcache "Note&#160;: les en-têtes proviennent du cache.">
+<!ENTITY livehttpheaders.pageinfo.fromcache.t1 "Les en-têtes &apos;requête&apos; pourraient être erronés (ne sont pas conservés dans le cache mais générés à nouveau).">
+<!ENTITY livehttpheaders.pageinfo.fromcache.t2 "Les en-têtes &apos;réponse&apos; devraient être ceux reçus originalement du réseau.">
 <!ENTITY livehttpheaders.pageinfo.fromnetwork "Note: les en-têtes proviennent du réseau.">
 <!ENTITY livehttpheaders.pageinfo.fromnetwork.t1 "Les en-têtes &apos;request&apos; sont ceux envoyés sur le réseau.">
-<!ENTITY livehttpheaders.pageinfo.fromnetwork.t2 "Les en-têtes &apos;response&apos; sont ceux reçus du réseau.">
+<!ENTITY livehttpheaders.pageinfo.fromnetwork.t2 "Les en-têtes &apos;requête&apos; sont ceux reçus du réseau.">
