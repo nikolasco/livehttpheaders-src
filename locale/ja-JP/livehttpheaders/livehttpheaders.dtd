@@ -1,3 +1,4 @@
+<!ENTITY livehttpheaders.browser.sidebarkey "L">
 <!ENTITY livehttpheaders.menu.file "ファイル">
 <!ENTITY livehttpheaders.menu.close "閉じる">
 <!ENTITY livehttpheaders.menu.saveselection "選択範囲を保存...">

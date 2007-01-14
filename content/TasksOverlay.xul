@@ -81,8 +81,8 @@
                oncommand="toggleSidebar('viewLiveHTTPSidebar');"/>
   </broadcasterset>
   <keyset id="mainKeyset">
-  <key id="key_viewLiveHTTPSidebar" key="L" command="viewLiveHTTPSidebar" 
-       modifiers="alt"/>
+  <key id="key_viewLiveHTTPSidebar" key="&livehttpheaders.browser.sidebarkey;" command="viewLiveHTTPSidebar" 
+       modifiers="accel shift"/>
   </keyset>
   <menupopup id="viewSidebarMenu">
   <menuitem key="key_viewLiveHTTPSidebar" observes="viewLiveHTTPSidebar"/>
