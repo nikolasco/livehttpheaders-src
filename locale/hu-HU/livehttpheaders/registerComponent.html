@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="hu" lang="hu">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Nincs megfelelően regisztrálva a LiveHTTPHeaders kiterjesztés nsHeaderInfo komponense</title>
+</head>
+<body>
+<p>Ahhoz, hogy a Mozilla vagy a Firefox böngészőben az Oldal adatai ablaknál láthassa a fejlécadatokat, regisztrálni kell az nsHeaderInfo komponenst.<br />
+A komponensfájl megtalálhatja a következő helyen: Mozilla/Components/nsHeaderInfo.js.</p>
+
+<p>A regisztrációnak meg kellett volna történnie a LiveHTTPHeader kiterjesztés telepítésekor.<br />
+Habár, néha ez nem történik meg<br />
+Kövesse a következő lépéseket, hogy lehetővé tegye, hogy a Mozilla vagy a Firefox böngésző megtalálhassa, és regisztrálhassa a komponenst:<br />
+
+<ul>
+<li>Törölje a <code><b>Mozilla/Components/compreg.dat</b></code> fájlt</li>
+<li>Törölje a <code><b>Mozilla/Components/xpti.dat</b></code> fájlt</li>
+</ul>
+
+<p>Ezt a két fájlt a Mozilla vagy Firefox böngésző létre fogja hozni, amikor újraindítja a böngészőt.</p>
+
+<p><b>Megjegyzés</b>: Ha a LiveHTTPHeader kiterjesztést az ön saját <b>profil</b>-jába telepítette, van egy másolat a nsHeadersInfo.js fájlról a profile/components könyvtárában. Először másolja át a fájlt a Mozilla/Components mappába, és kövesse a fönti útmutatást.</p>
+</body>
+</html>

@@ -1,5 +1,33 @@
 /*-------------------------------------------------------*/
 
+/* This is to add a toolbar button */
+#livehttpheaders-toolbar-button
+{ 
+   list-style-image: url("chrome://livehttpheaders/skin/toolbar-button.png");
+   -moz-image-region: rect(0px 24px 24px 0px); 
+} 
+#livehttpheaders-toolbar-button:hover 
+{ 
+} 
+[iconsize="small"] #livehttpheaders-toolbar-button 
+{ 
+  list-style-image: url("chrome://livehttpheaders/skin/toolbar-button-16.png"); 
+  -moz-image-region: rect( 0px 16px 16px 0px); 
+} 
+[iconsize="small"] #livehttpheaders-toolbar-button:hover 
+{ 
+} 
+
+/*-------------------------------------------------------*/
+/* This is to add a pageInfo button */
+
+#headerInfoTab {
+   list-style-image: url("chrome://livehttpheaders/skin/img/Logo_32.png") !important;
+   -moz-image-region: rect(0px, 32px, 32px, 0px)
+}
+
+/*-------------------------------------------------------*/
+
 /* Set text color for the whole tree - just to be safe */
 treechildren {
   color: #000000;
@@ -25,12 +53,12 @@ treechildren:-moz-tree-cell(SingleRequest) {
 }
 
 /* The first line of a multi line request */
-treechildren:-moz-tree-cell(FirstRequest) { 
+treechildren:-moz-tree-cell(FirstRequest) {
   background-color: #DFE7EA;
 }
 
 /* The middles lines of a multi line request */
-treechildren:-moz-tree-cell(MidRequest) { 
+treechildren:-moz-tree-cell(MidRequest) {
   background-color: #DFE7EA;
   padding-left: 14px;
 }

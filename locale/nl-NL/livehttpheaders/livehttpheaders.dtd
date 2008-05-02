@@ -26,7 +26,7 @@
 <!ENTITY livehttpheaders.config.addsidebar.present "bestaat al in uw zijbalk.">
 <!ENTITY livehttpheaders.about.version "Versie-informatie">
 <!ENTITY livehttpheaders.about.versiontext "LiveHTTPHeaders versie">
-<!ENTITY livehttpheaders.about.currentversion "0.13.1">
+<!ENTITY livehttpheaders.about.currentversion "0.14">
 <!ENTITY livehttpheaders.about.checkforupdate "Zoeken naar update">
 <!ENTITY livehttpheaders.about.homepage "Homepage">
 <!ENTITY livehttpheaders.about.homepageurl "http://livehttpheaders.mozdev.org">

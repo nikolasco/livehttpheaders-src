@@ -52,7 +52,9 @@ function mySidebar() {
     this.rdf = Components.classes[RDF_CONTRACTID].getService(nsIRDFService);
     this.datasource_uri = getSidebarDatasourceURI(PANELS_RDF_FILE);
     this.resource = 'urn:sidebar:current-panel-list';
-    this.datasource = this.rdf.GetDataSource(this.datasource_uri);
+    try {
+        this.datasource = this.rdf.GetDataSource(this.datasource_uri);
+    } catch (ex) {}
 }
 
 mySidebar.prototype.nc = "http://home.netscape.com/NC-rdf#";

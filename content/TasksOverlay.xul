@@ -1,4 +1,6 @@
 <?xml version="1.0"?>
+<?xml-stylesheet type="text/css"
+  href="chrome://livehttpheaders/skin/livehttpheaders.css"?>
 <!--
   **** BEGIN LICENSE BLOCK ****
   Copyright(c) 2002-2003 Daniel Savard.
@@ -29,6 +31,8 @@
     xmlns:nc="http://home.netscape.com/NC-rdf#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script type="application/x-javascript"
+    src="chrome://livehttpheaders/content/overlay.js"/>
   <html:script>
     <![CDATA[
       function openLiveHTTPHeaders() {
@@ -63,11 +67,19 @@
 
   <!-- Mozilla XUL -->
   <menupopup id="toolsPopup">
-    <menuitem id="livehttpheaders.title" label="&livehttpheaders.live.title;" 
-              oncommand="openLiveHTTPHeaders();" />
+    <menuitem id="livehttpheaders_title" label="&livehttpheaders.live.title;" 
+              oncommand="window.openDialog('chrome://livehttpheaders/content/LiveHTTPHeaders.xul',
+                        'LiveHTTPHeaders','centerscreen,chrome,dialog,resizable');" />
   </menupopup>
- 
-  <!-- Phoenix XUL -->
+  <toolbarpalette id="BrowserToolbarPalette">
+  <toolbarbutton id="livehttpheaders-toolbar-button"
+    label="&livehttpheaders.live.title;"
+    tooltiptext="&livehttpheaders.live.title;"
+    oncommand="window.openDialog('chrome://livehttpheaders/content/LiveHTTPHeaders.xul','LiveHTTPHeaders',
+                                   'centerscreen,chrome,dialog,resizable');"
+	class="toolbarbutton-1 chromeclass-toolbar-additional"/>
+  </toolbarpalette>
+    <!-- Phoenix XUL -->
   <menupopup id="menu_ToolsPopup">
     <menuitem label="&livehttpheaders.live.title;" 
               oncommand="openLiveHTTPHeaders();" />

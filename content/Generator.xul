@@ -133,22 +133,22 @@
                     tooltiptext="&generator.popup.request;"
                     oncommand="oGenerator.showRequest(this.checked)" />
           <spacer flex="1"/>
-          <button label="&generator.button.help;"
+          <button icon="help" label="&generator.button.help;"
                   oncommand='window.open("chrome://livehttpheaders/locale/generator-help.xul", "generator_help", "resizable");' 
           />
         </vbox>
       </hbox>
 
       <hbox align="right" valign="middle">
-        <button label="&livehttpheaders.live.saveall;" id="generator-saveall"
+        <button icon="save" label="&livehttpheaders.live.saveall;" id="generator-saveall"
                 oncommand="oGenerator.saveAll();" observes="gen-datapresent" />
         <separator class="thin" flex="1" />
         <checkbox label="&generator.capture;" checked="true"
                   oncommand="oGenerator.setWebrobot(this.checked)" />
         <separator class="thin" flex="1" />
-        <button label="&livehttpheaders.live.clear;" id="generator-clear"
+        <button icon="clear" label="&livehttpheaders.live.clear;" id="generator-clear"
                 oncommand="oGenerator.clear();" observes="gen-datapresent" />
-        <button label="&livehttpheaders.live.close;"
+        <button icon="close" label="&livehttpheaders.live.close;"
                 disabled="false" oncommand="window.close();"/>
       </hbox>
 

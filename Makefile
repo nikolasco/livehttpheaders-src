@@ -1,5 +1,6 @@
 LOCALE=locale/*/livehttpheaders
 CONTENT=content
+ICONS=icons
 SKIN=skin
 
 all:	clean jar xpi download root
@@ -14,11 +15,14 @@ jar:
         ${CONTENT}/LiveHTTPReplay.js \
         ${CONTENT}/TasksOverlay.xul \
         ${CONTENT}/PageInfoOverlay.xul \
+        ${CONTENT}/PageInfoOverlay3.xul \
         ${CONTENT}/PageInfoOverlay.js \
-	${CONTENT}/LiveHTTPSideBar.xul \
+        ${CONTENT}/PageInfoOverlay3.js \
+		${CONTENT}/LiveHTTPSideBar.xul \
         ${CONTENT}/addpanel.js \
         ${CONTENT}/Generator.js \
         ${CONTENT}/Generator.xul \
+		${CONTENT}/overlay.js \
         ${LOCALE}/contents.rdf \
         ${LOCALE}/PageInfo.dtd \
         ${LOCALE}/livehttpheaders.dtd \
@@ -30,15 +34,19 @@ jar:
         ${SKIN}/livehttpheaders.css \
         ${SKIN}/img/Logo_32.png \
         ${SKIN}/favicon.ico \
+        ${SKIN}/toolbar-button-16.png \
+        ${SKIN}/toolbar-button.png \
         ${SKIN}/img/*
 
 xpi:
 	cp install.js tmp
 	cp install.rdf tmp
+	cp chrome.manifest tmp
 	cp ${CONTENT}/nsHeaderInfo.js tmp/components
 	cp prefs.js tmp/defaults/preferences/
-	cp ${SKIN}/LiveHTTPHeaders.ico tmp/defaults
-	cp ${SKIN}/LiveHTTPHeaders.xpm tmp/defaults
+	mkdir -p tmp/chrome/icons/default
+	cp ${ICONS}/default/LiveHTTPHeaders.ico tmp/chrome/icons/default
+	cp ${ICONS}/default/LiveHTTPHeaders.xpm tmp/chrome/icons/default
 	cp TODO.txt tmp
 	cd tmp ; zip -r livehttpheaders.xpi *
 

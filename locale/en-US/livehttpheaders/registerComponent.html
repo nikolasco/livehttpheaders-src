@@ -1,26 +1,38 @@
-<HTML>
-<HEAD>
-<TITLE>The nsHeaderInfo component isn't registered correctly</TITLE>
-</HEAD>
-<BODY>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>The nsHeaderInfo component isn't registered correctly</title>
+</head>
+<body>
+<p>
 To be able to display headers information in the PageInfo tab of
-Mozilla or Firebird the nsHeaderInfo component must be registered.<br>
-This component should be found in the file Mozilla/Components/nsHeaderInfo.js.<p>
-
-Registration should have been done by the LiveHTTPHeaders installation.<br>
-However this sometimes does not work.<br>
-Follow these steps to enable Mozilla or Firebird to find and register the
-component:<br>
+Mozilla or Firebird the nsHeaderInfo component must be registered.
+This component should be found in the file
+<code>Mozilla/Components/nsHeaderInfo.js</code>.
+</p>
+<p>
+Registration should have been done by the LiveHTTPHeaders
+installation. However this sometimes does not work.
+</p>
+<p>
+Follow these steps to enable Mozilla or Firebird to find and register
+the component:
+</p>
 <ul>
-<li>Delete the file <code><b>Mozilla/Components/compreg.dat</b></code></li>
-<li>Delete the file <code><b>Mozilla/Components/xpti.dat</b></code></li>
+<li>Delete the file <code>Mozilla/Components/compreg.dat</code></li>
+<li>Delete the file <code>Mozilla/Components/xpti.dat</code></li>
 </ul>
+<p>
 These two files should be recreated automatically by Mozilla or Firebird
-when it is next started.<p>
-
-<b>Note</b>: if you installed LiveHTTPHeaders in you <b>profile</b>, there 
-is a copy of the nsHeadersInfo.js file in your profile/components directory.  
-You need to copy it in Mozilla/Components directory first and follow the 
-directive above after.<br>
-</BODY>
-</HTML>
+when it is next started.
+</p>
+<p>
+<b>Note</b>: if you installed LiveHTTPHeaders in your <b>profile</b>,
+there is a copy of the nsHeadersInfo.js file in your
+&quot;<code>profile/components</code>&quot; directory.  You need to
+copy it in Mozilla/Components directory first and follow the directive
+above after.
+</p>
+</body>
+</html>

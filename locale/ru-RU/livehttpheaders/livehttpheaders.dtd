@@ -26,7 +26,7 @@
 <!ENTITY livehttpheaders.config.addsidebar.present "Уже есть в вашей боковой панели">
 <!ENTITY livehttpheaders.about.version "Информация о версии">
 <!ENTITY livehttpheaders.about.versiontext "Версия LiveHTTPHeaders">
-<!ENTITY livehttpheaders.about.currentversion "0.13.1">
+<!ENTITY livehttpheaders.about.currentversion "0.14">
 <!ENTITY livehttpheaders.about.checkforupdate "Проверить обновления">
 <!ENTITY livehttpheaders.about.homepage "Домашняя страничка">
 <!ENTITY livehttpheaders.about.homepageurl "http://livehttpheaders.mozdev.org">

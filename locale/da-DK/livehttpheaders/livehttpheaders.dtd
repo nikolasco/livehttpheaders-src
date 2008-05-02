@@ -26,7 +26,7 @@
 <!ENTITY livehttpheaders.config.addsidebar.present "findes allerede i din sidebjælke.">
 <!ENTITY livehttpheaders.about.version "Versionsinformation">
 <!ENTITY livehttpheaders.about.versiontext "LiveHTTPHeaders version">
-<!ENTITY livehttpheaders.about.currentversion "0.13.1">
+<!ENTITY livehttpheaders.about.currentversion "0.14">
 <!ENTITY livehttpheaders.about.checkforupdate "Se efter opdateringer">
 <!ENTITY livehttpheaders.about.homepage "Hjemmeside">
 <!ENTITY livehttpheaders.about.homepageurl "http://livehttpheaders.mozdev.org">

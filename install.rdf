@@ -5,7 +5,7 @@
 
   <Description about="urn:mozilla:install-manifest">
     <em:id>{8f8fe09b-0bd3-4470-bc1b-8cad42b8203a}</em:id>
-    <em:version>0.13.1</em:version>
+    <em:version>0.14</em:version>
     
     <!-- Target Application this extension can install into, 
          with minimum and maximum supported versions. --> 
@@ -14,7 +14,7 @@
       <Description>
         <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
         <em:minVersion>0.8</em:minVersion>
-        <em:maxVersion>2.0.0.*</em:maxVersion>
+        <em:maxVersion>3.0.*</em:maxVersion>
       </Description>
     </em:targetApplication>
     <!-- Flock -->
@@ -25,6 +25,14 @@
         <em:maxVersion>0.7.*</em:maxVersion>
       </Description>
     </em:targetApplication>
+    <!-- Seamonkey -->
+    <em:targetApplication>
+      <Description>
+        <em:id>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</em:id>
+        <em:minVersion>1.0</em:minVersion>
+        <em:maxVersion>2.0.*</em:maxVersion>
+      </Description>
+    </em:targetApplication>
     
     <!-- Front End MetaData -->
     <em:name>Live HTTP Headers</em:name>
@@ -32,16 +40,71 @@
     <em:creator>Daniel Savard</em:creator>
     <em:homepageURL>http://livehttpheaders.mozdev.org/</em:homepageURL>
     <!--em:updateURL>http://www.cosmicat.com/extensions/update.php?id=%ITEM_ID%&amp;version=%ITEM_VERSION%</em:updateURL-->
+    <em:localized>
+      <Description>
+        <em:locale>cs-CZ</em:locale>
+        <em:name>Hlavičky HTTP</em:name>
+        <em:description>View HTTP headers of a page and while browsing.</em:description>
+      </Description>
+      <Description>
+        <em:locale>da-DK</em:locale>
+        <em:name>Live HTTP headers</em:name>
+        <em:description>Se HTTP headere for en side og imens man surfer.</em:description>
+      </Description>
+      <Description>
+        <em:locale>de-AT</em:locale>
+        <em:name>Live HTTP headers</em:name>
+        <em:description>Zeigt die HTTP Header einer Seite.</em:description>
+      </Description>
+      <Description>
+        <em:locale>en-US</em:locale>
+        <em:name>Live HTTP headers</em:name>
+        <em:description>View HTTP headers of a page and while browsing.</em:description>
+      </Description>
+      <Description>
+        <em:locale>es-ES</em:locale>
+        <em:name>Live HTTP headers</em:name>
+        <em:description>View HTTP headers of a page and while browsing.</em:description>
+      </Description>
+      <Description>
+        <em:locale>fr-FR</em:locale>
+        <em:name>En-têtes HTTP en direct</em:name>
+        <em:description>Affiche les en-têtes HTTP des pages pendant votre navigation.</em:description>
+      </Description>
+      <Description>
+        <em:locale>hu-HU</em:locale>
+        <em:name>HTTP kérések fejlécei</em:name>
+        <em:description>View HTTP headers of a page and while browsing.</em:description>
+      </Description>
+      <Description>
+        <em:locale>ja-JP</em:locale>
+        <em:name>Live HTTP headers</em:name>
+        <em:description>ウェブページとブラウジング中の HTTP ヘッダを表示します。</em:description>
+      </Description>
+      <Description>
+        <em:locale>nl-NL</em:locale>
+        <em:name>Live HTTP headers</em:name>
+        <em:description>Bekijk de HTTP headers van een pagina tijdens het surfen.</em:description>
+      </Description>
+      <Description>
+        <em:locale>ru-RU</em:locale>
+        <em:name>Просмотр HTTP заголовков</em:name>
+        <em:description>Просмотр HTTP - заголовков в реальном времени.</em:description>
+      </Description>
+    </em:localized>
+    
 
     <!-- Front End Integration Hooks (used by Extension Manager)-->
     <em:iconURL>chrome://livehttpheaders/skin/img/Logo_32.png</em:iconURL>
     <em:optionsURL>chrome://livehttpheaders/content/LiveHTTPHeaders.xul</em:optionsURL>
     <em:contributor>Alex Pleiner</em:contributor>
+    <em:contributor>Balogh Tibor</em:contributor>
     <em:contributor>Bernardo A. de la Ossa Pérez</em:contributor>
     <em:contributor>Christopher Cook</em:contributor>
     <em:contributor>Daniel Brooks</em:contributor>
     <em:contributor>David Boswell</em:contributor>
     <em:contributor>Ere Maijala</em:contributor>
+    <em:contributor>FenyX at ShareStation.com</em:contributor>
     <em:contributor>François Constantineau</em:contributor>
     <em:contributor>Grégoire Lejeune</em:contributor>
     <em:contributor>Henrik Gemal</em:contributor>
@@ -61,6 +124,7 @@
     <em:contributor>Richard Mlynarik</em:contributor>
     <em:contributor>Stefan Trcek</em:contributor>
     <em:contributor>Sven Anders</em:contributor>
+    <em:contributor>Takanori Matsuura</em:contributor>
     <em:contributor>Todd Knarr</em:contributor>
     <em:contributor>Wladimir Palant</em:contributor>
     <em:contributor>Wojtek Meler</em:contributor>
@@ -79,6 +143,7 @@
         <em:locale>locale/ru-RU/livehttpheaders/</em:locale>
         <em:locale>locale/da-DK/livehttpheaders/</em:locale>
         <em:locale>locale/ja-JP/livehttpheaders/</em:locale>
+        <em:locale>locale/hu-HU/livehttpheaders/</em:locale>
         <em:skin>skin/</em:skin>
       </Description>
     </em:file>

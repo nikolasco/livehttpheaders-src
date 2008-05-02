@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+<?xml-stylesheet href="chrome://livehttpheaders/skin/livehttpheaders.css" type="text/css"?>
+<!DOCTYPE window [
+  <!ENTITY % generatorHelpDTD SYSTEM "chrome://livehttpheaders/locale/generator.dtd" >
+  %generatorHelpDTD;
+]>
+<window title="&generator.button.help;"
+  id="GeneratorHelp"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  width="500"
+  height="500"
+>
+
+<h1>A Generátor eszköz</h1>
+
+<p>
+A <b>Generátor</b> eszköz
+egy kiegészítés a <b>LiveHTTPHeaders</b> kiterjesztéshez.
+
+A generátor használható terhelési eszközök adatokkal való ellátásához,
+mint például az <a href="http://httpd.apache.org/test/flood/" target="to-browser">Apache-Flood</a> vagy egyéb más web alapú tesztelő program.
+</p>
+<p>
+Készíthet egy tesztfolyamatot a böngésző használatával, azokkal a lekérésekkel amiknek a kódját vizsgálni szeretné. Az előállított, elmentett tesztfolyamatot tudja használni a teszteléshez.
+</p>
+<p>
+<b>BUGS</b>:
+Currently redirected requests are not linked together.
+This results in filter bugs as mentioned in the text below.
+</p>
+
+
+<h2>Opciók listája</h2>
+
+<dl>
+
+  <dt>&generator.option.redirect;</dt>
+  <dd>&generator.popup.redirect;
+    <br/>
+    Általában nem kell az átirányításokat ellenőriznie.
+  </dd>
+
+  <dt>&generator.option.invalid;</dt>
+  <dd>&generator.popup.invalid;
+    <br/>
+    Ezek a kódok a kliens-szerver hibákat jelzik, lásd:
+    <a href="http://www.faqs.org/rfcs/rfc2616.html" target="to-browser">RFC 2616</a>.
+    <br/>
+    <b>BUG</b>: Nem működik megfelelően, ha átirányítás történik.
+  </dd>
+
+  <dt>&generator.option.image;</dt>
+  <dd>&generator.popup.image;
+    <br/>
+    <b>BUG</b>: Nem működik megfelelően, ha átirányítás történik.
+  </dd>
+
+  <dt>&generator.option.css;</dt>
+  <dd>&generator.popup.css;
+    <br/>
+    <b>BUG</b>: Nem működik megfelelően, ha átirányítás történik.
+  </dd>
+
+  <dt>&generator.option.skipped;</dt>
+  <dd>&generator.popup.skipped;
+    <br/>
+    Ezek a kérések jelzéssel a sor elején jelennek meg,
+    a következő formában: <b>#jelzés#</b>,
+    így később könnyen szűrhető.
+  </dd>
+
+  <dt>&generator.option.request;</dt>
+  <dd>&generator.popup.request;
+    <br/>
+    A szűrők a HTTP válaszfejlécekhez vannak kapcsolva, mivel minket
+    a HTTP válaszfejlécek érdekelnek.
+    Egyébként a Mozilla néha utánnanéz a belső gyorsítótárban a fájlnak,
+    még akkor is, ha mindegyik gyorsítótár ki van kapcsolva és üres.
+    Szóval, ebben az esetben nem jön válasz a szervertől.
+    <br/>
+    <b>Megjegyzés</b>:
+    Ez az opció nem befolyásolja a &generator.option.skipped;
+    elemek megjelenítését.
+  </dd>
+
+</dl>
+
+
+<h2>Formátum</h2>
+
+Minden kérés külön sorban jelenik meg,
+amik a következő formában tartalmazza az adatokat:
+<pre>
+[jelzés] mód url [adat]
+</pre>
+Az elemeket a soron belül szóközök választják el.
+Az elemek leírása:
+<dl>
+<dt>jelzés</dt><dd>
+A jelzés a <i>&generator.option.skipped;</i> vagy
+a <i>&generator.option.request;</i> kiírásakor jelenik meg.
+A formátuma: <code>#jelzés#</code>,
+ahol a <i>jelzés</i> a kérés kategóriáját jelöli.
+</dd>
+<dt>mód</dt><dd>
+  A HTTP mód, rendesen GET vagy POST
+</dd>
+<dt>url</dt><dd>
+  A kérés címe.
+  <br/><b>Megjegyzés</b>:
+  A kérés címe általában a <code>http://</code> jelzéssel kezdődik.
+  Ez a böngészőjétől és a proxy beállításoktól függ.
+</dd>
+<dt>adat</dt><dd>
+  A POST módszernél az adatrészek felosztásánál
+  az adatok a következő formában jelennek meg:
+   <code>ops1&amp;ops2&amp;...</code>
+</dd>
+</dl>
+
+
+<h2>Szerző</h2>
+
+Stefan Trcek, ABAS Software AG
+
+
+<h2>Licenc</h2>
+
+<p>
+  Copyright(c) 2004 <a href="http://www.abas.de" target="to-browser">ABAS Software AG</a><br/>
+  based on LiveHTTPHeaders Copyright(c) 2002-2003 Daniel Savard.
+</p>
+<p>
+  Jelen program ingyenes szoftver; újrafelhasználható és/vagy módosítható
+  a Free Software Foundation GNU General Public License alatt; a license mindkét verziója alatt, vagy - saját választása szerint - bármely jövőbeni verzió alatt  felhasználható.
+</p>
+
+</window>

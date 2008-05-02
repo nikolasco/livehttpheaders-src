@@ -98,7 +98,7 @@
       <hbox flex="1" align="right">
         <button label="&livehttpheaders.replay.replay;"
                 oncommand="play();" />
-        <button dlgtype="cancel" label="&livehttpheaders.live.close;"/>
+        <button dlgtype="cancel" icon="close" label="&livehttpheaders.live.close;"/>
       </hbox>
     </vbox>
   </vbox>

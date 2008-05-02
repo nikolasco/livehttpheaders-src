@@ -1,0 +1,21 @@
+<!ENTITY livehttpheaders.pageinfo.tab            "Fejlécek" >
+<!ENTITY livehttpheaders.pageinfo.accesskey      "f" >
+<!ENTITY livehttpheaders.pageinfo.request        "A kérés fejlécei" >
+<!ENTITY livehttpheaders.pageinfo.response       "A válasz fejlécei" >
+<!ENTITY livehttpheaders.pageinfo.name           "Név" >
+<!ENTITY livehttpheaders.pageinfo.value          "Érték" >
+<!ENTITY livehttpheaders.pageinfo.saveas         "Mentés..." >
+
+<!ENTITY livehttpheaders.pageinfo.fromcache
+	"Megjegyzés: a fejlécek a gyorsítótárból származnak." >
+<!ENTITY livehttpheaders.pageinfo.fromcache.t1
+	"A kérés fejléc nem feltétlenül valódi, mert lehet, hogy nem szerepel a gyorsítótárban." >
+<!ENTITY livehttpheaders.pageinfo.fromcache.t2
+	"A válasz fejléceknek az eredetivel kellene megegyezniük." >
+
+<!ENTITY livehttpheaders.pageinfo.fromnetwork
+	"Megjegyzés: a fejlécek a hálózatról származnak." >
+<!ENTITY livehttpheaders.pageinfo.fromnetwork.t1
+	"A kérésfejlécek amiket a böngésző elküldött a szerver felé." >
+<!ENTITY livehttpheaders.pageinfo.fromnetwork.t2
+	"A válaszfejlécek amiket a böngésző fogadott a szervertől." >

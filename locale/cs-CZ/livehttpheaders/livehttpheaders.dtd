@@ -26,7 +26,7 @@
 <!ENTITY livehttpheaders.config.addsidebar.present " již existuje v postranní liště.">
 <!ENTITY livehttpheaders.about.version "Informace o verzi">
 <!ENTITY livehttpheaders.about.versiontext "Verze LiveHTTPHeaders">
-<!ENTITY livehttpheaders.about.currentversion "0.11">
+<!ENTITY livehttpheaders.about.currentversion "0.14">
 <!ENTITY livehttpheaders.about.checkforupdate "Kontrola nové verze">
 <!ENTITY livehttpheaders.about.homepage "Domovská stránka">
 <!ENTITY livehttpheaders.about.homepageurl "http://livehttpheaders.mozdev.org">

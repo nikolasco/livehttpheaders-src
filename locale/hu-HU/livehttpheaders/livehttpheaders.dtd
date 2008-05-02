@@ -1,0 +1,67 @@
+<!ENTITY livehttpheaders.browser.sidebarkey      "L" >
+<!ENTITY livehttpheaders.menu.file		         "Fájl" >
+<!ENTITY livehttpheaders.menu.close		         "Bezárás" >
+<!ENTITY livehttpheaders.menu.saveselection      "Kijelöltek mentése..." >
+<!ENTITY livehttpheaders.menu.saveall		     "Összes mentése..." >
+<!ENTITY livehttpheaders.menu.edit		         "Szerkesztés" >
+<!ENTITY livehttpheaders.menu.copy		         "Másolás" >
+<!ENTITY livehttpheaders.menu.selectall	         "Összes kijelölése" >
+<!ENTITY livehttpheaders.menu.view		         "Megtekint" >
+<!ENTITY livehttpheaders.menu.post		         "Post adatok" >
+
+<!ENTITY livehttpheaders.tabs.headers            "Fejlécek" >
+<!ENTITY livehttpheaders.tabs.config             "Beállítások" >
+<!ENTITY livehttpheaders.tabs.about              "Névjegy" >
+
+<!ENTITY livehttpheaders.config.usetab           "A LiveHTTPHeaders megjelenítése ablak helyett külön lapon" >
+<!ENTITY livehttpheaders.config.usetab.tips      "A LiveHTTPHeaders lapon jelenik meg. Néhány funkció ablakos megjelenéskor működik." >
+<!ENTITY livehttpheaders.config.usestyle         "Stíluslap használata" >
+<!ENTITY livehttpheaders.config.usestyle.tips    "Megjegyzése: egy bug miatt ez a funkció 100 &#37;-os CPU terhelést okoz." >
+<!ENTITY livehttpheaders.config.post             "POST:" >
+<!ENTITY livehttpheaders.config.usefilter        "Szűrő a lekérések megjelenítéséhez:" >
+<!ENTITY livehttpheaders.config.usefilter.tips   "Ezzel a kifejezéssel adhatja meg azokat a lekéréseket, amiket meg szeretne tekinteni." >
+<!ENTITY livehttpheaders.config.useexclude       "Szűrő a lekérések elrejtéséhez:" >
+<!ENTITY livehttpheaders.config.useexclude.tips  "Ezzel a kifejezéssel adhatja meg azokat a lekéréseket, amiket nem akar megtekinteni." >
+<!ENTITY livehttpheaders.config.addsidebar       "Az oldalsávhoz adás" >
+<!ENTITY livehttpheaders.config.addsidebar.tips	 "A LiveHTTPHeaders hozzáadása az oldalsávhoz. Az oldalsáv megjelenítése F9 billentyűvel." >
+<!ENTITY livehttpheaders.config.addsidebar.added " kiterjesztést hozzáadta az oldalsávhoz." >
+<!ENTITY livehttpheaders.config.addsidebar.present " kiterjesztést már tartalmazza az oldalsáv." >
+
+<!ENTITY livehttpheaders.about.version           "Verzió információ" >
+<!ENTITY livehttpheaders.about.versiontext       "LiveHTTPHeaders verziója" >
+<!ENTITY livehttpheaders.about.currentversion    "0.14" >
+<!ENTITY livehttpheaders.about.checkforupdate    "Új verzió keresése" >
+<!ENTITY livehttpheaders.about.homepage          "Honlap meglátogatása" >
+<!ENTITY livehttpheaders.about.homepageurl       "http://livehttpheaders.mozdev.org" >
+<!ENTITY livehttpheaders.about.author            "Szerző" >
+<!ENTITY livehttpheaders.about.thanks            "Köszönet" >
+<!ENTITY livehttpheaders.about.suggestions       "mindenkinek, akik javaslatokkal láttak el" >
+
+<!ENTITY livehttpheaders.live.title		         "HTTP kérések fejlécei" >
+<!ENTITY livehttpheaders.live.headers			 "HTTP kérések fejlécei" >
+<!ENTITY livehttpheaders.live.clear				 "Törlés" >
+<!ENTITY livehttpheaders.live.close			     "Bezár" >
+<!ENTITY livehttpheaders.live.capture			 "Fejlécek megjelenítése" >
+<!ENTITY livehttpheaders.live.copy				 "Másolás" >
+<!ENTITY livehttpheaders.live.selectblock	     "A lekérés kijelölése" >
+<!ENTITY livehttpheaders.live.selectall		     "Az összes lekérés kijelölése" >
+<!ENTITY livehttpheaders.live.saveall		     "Mentés..." >
+<!ENTITY livehttpheaders.live.replay		     "Kérés szerkesztése..." >
+<!ENTITY livehttpheaders.live.replay.tips	     "A szerkesztéshez jelöljön ki egy lekérést." >
+
+<!ENTITY livehttpheaders.live.post.tips		     "POST adatok megjelenítésének beállítása" >
+<!ENTITY livehttpheaders.live.post.none		     "nem" >
+<!ENTITY livehttpheaders.live.post.none.tips	 "A POST adatokat nem jeleníti meg" >
+<!ENTITY livehttpheaders.live.post.fast		     "gyors" >
+<!ENTITY livehttpheaders.live.post.fast.tips	 "A POST adatok gyors megjelenítése. Nem működik fájlfeltöltéskor, lásd: #188328 bug." >
+<!ENTITY livehttpheaders.live.post.slow		     "pontos" >
+<!ENTITY livehttpheaders.live.post.slow.tips	 "Lassú, de működik fájlfeltöltéskor is." >
+<!ENTITY livehttpheaders.live.post.max1k	     "maximum 1Kb" >
+<!ENTITY livehttpheaders.live.post.max1k.tips	 "Lassú, de csak az első 1Kb látható." >
+
+<!ENTITY livehttpheaders.replay.title		     "Kérés szerkesztése" >
+<!ENTITY livehttpheaders.replay.url		         "URL" >
+<!ENTITY livehttpheaders.replay.headers		     "A kérés fejlécei:" >
+<!ENTITY livehttpheaders.replay.post		     "POST adat küldése" >
+<!ENTITY livehttpheaders.replay.replay		     "Lekérés" >
+

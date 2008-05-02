@@ -43,7 +43,7 @@
 <script type="application/x-javascript" src="chrome://livehttpheaders/content/headerinfo.js" />
 <script type="application/x-javascript" src="chrome://livehttpheaders/content/addpanel.js"/>
 
-<html:link rel="icon" href="chrome://livehttpheaders/skin/favicon.ico" />
+<!-- html:link rel="icon" href="chrome://livehttpheaders/skin/favicon.ico" /-->
 
   <popupset id="popupset">
     <popup id="headerinfo-context">
@@ -99,7 +99,7 @@
                  orient="horizontal" />
       
     <hbox align="right" valign="middle">
-      <button label="&livehttpheaders.live.saveall;" id="headerinfo-saveall"
+      <button icon="save" label="&livehttpheaders.live.saveall;" id="headerinfo-saveall"
               oncommand="oHeaderInfoLive.saveAll();" observes="datapresent" />
       <button id="headerinfo-replay" label="&livehttpheaders.live.replay;"
               oncommand="oHeaderInfoLive.replay();" observes="datapresent"
@@ -108,9 +108,9 @@
       <checkbox label="&livehttpheaders.live.capture;" checked="true" 
                 oncommand="oHeaderInfoLive.capture(this.checked)" />
       <separator class="thin" flex="1" />
-      <button label="&livehttpheaders.live.clear;" id="headerinfo-clear"
+      <button icon="clear" label="&livehttpheaders.live.clear;" id="headerinfo-clear"
               oncommand="oHeaderInfoLive.clear();" observes="datapresent" />
-      <button label="&livehttpheaders.live.close;"
+      <button icon="close" label="&livehttpheaders.live.close;"
               disabled="false" oncommand="window.close();"/>
     </hbox>
   </vbox>
@@ -178,7 +178,7 @@
     <spacer flex="1"/>
     <hbox>
       <spacer flex="1" />
-      <button label="&livehttpheaders.live.close;"
+      <button icon="close" label="&livehttpheaders.live.close;"
               disabled="false" oncommand="window.close();"/>
     </hbox>
   </vbox>
@@ -213,6 +213,7 @@
       <caption label="&livehttpheaders.about.thanks;"/>
       <label value="&livehttpheaders.about.suggestions;" />
       <label value="Alex Pleiner" />
+      <label value="Balogh Tibor" />
       <label value="Bernardo A. de la Ossa Pérez" />
       <label value="Christopher Cook" />
       <label value="Daniel Brooks" />
@@ -237,6 +238,7 @@
       <label value="Richard Mlynarik" />
       <label value="Stefan Trcek" />
       <label value="Sven Anders" />
+      <label value="Takanori Matsuura" />
       <label value="Todd Knarr" />
       <label value="Wladimir Palant" />
       <label value="Wojtek Meler" />
@@ -245,7 +247,7 @@
     <spacer flex="1"/>
     <hbox>
       <spacer flex="1" />
-      <button dlgtype="cancel" label="&livehttpheaders.live.close;"/>
+      <button dlgtype="cancel" icon="close" label="&livehttpheaders.live.close;"/>
     </hbox>
   </vbox>
   </tabpanel>

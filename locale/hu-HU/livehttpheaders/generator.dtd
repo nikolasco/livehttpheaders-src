@@ -1,0 +1,28 @@
+<!ENTITY livehttpheaders.tabs.generator         "Generátor" >
+<!ENTITY generator.title                        "Generátor lista" >
+<!ENTITY generator.capture                      "Kérések megjelenítése" >
+<!ENTITY generator.label.show                   "Megjelenít:" >
+<!ENTITY generator.label.request                "Kérések:" >
+
+<!ENTITY generator.option.redirect              "átirányítás" >
+<!ENTITY generator.option.invalid               "érvénytelen" >
+<!ENTITY generator.option.image                 "képek" >
+<!ENTITY generator.option.css                   "stíluslap" >
+<!ENTITY generator.option.skipped               "kihagyott" >
+<!ENTITY generator.option.request               "minden kérés" >
+
+<!ENTITY generator.popup.redirect
+		 "Az átirányított oldallekérések megjelenítése." >
+<!ENTITY generator.popup.invalid
+		 "Az érvénytelen lekérések megjelenítése (Válaszkód: 4xx, 5xx)." >
+<!ENTITY generator.popup.image
+		 "A képlekérések megjelenítése." >
+<!ENTITY generator.popup.css
+		 "A stíluslapok lekérésének megjelenítése." >
+<!ENTITY generator.popup.skipped
+		 "A beállítások miatt kihagyott kérés megjelenítése." >
+<!ENTITY generator.popup.request
+		 "A kérések megjelenítése akkor is, ha a válasz a gyorsítótárból érkezik.">
+
+<!ENTITY generator.button.help                  "Súgó" >
+<!ENTITY generator.help.title                   "Generátor súgó" >

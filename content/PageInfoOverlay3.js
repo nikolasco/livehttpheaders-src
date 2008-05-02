@@ -24,8 +24,8 @@ function getHeaderInfo() {
   var headers = null;
 
   // Look to see if the minimum requirement is there
-  if (theDocument && 'defaultView' in theDocument && 'controllers' in theDocument.defaultView) {
-    var controllers = theDocument.defaultView.controllers
+  if (gDocument && 'defaultView' in gDocument && 'controllers' in gDocument.defaultView) {
+    var controllers = gDocument.defaultView.controllers
     while (controllers.wrappedJSObject)
       controllers = controllers.wrappedJSObject
     var controller = controllers.getControllerForCommand('livehttpheaders');
@@ -35,7 +35,7 @@ function getHeaderInfo() {
     while (controller && !('headers' in controller))
       controller = controller.wrappedJSObject;
 
-    if (controller && controller.url == theDocument.defaultView.location.href)
+    if (controller && controller.url == gDocument.defaultView.location.href)
       headers = controller.headers;
   }
   return headers;
@@ -46,11 +46,11 @@ function makeHeaderInfoTab() {
   // Only call this function once
   if (flag) return;
   flag = 1;
-  var loc = theDocument.location.protocol;
+  var loc = gDocument.location.protocol;
   const headers = getHeaderInfo();
   if (headers) {
     //dumpall("theWindow",theWindow,2);
-    //dumpall("theDocument",theDocument,2);
+    //dumpall("gDocument",gDocument,2);
     //dumpall("opener",window.opener,2);
 
     // Get references to the trees to populate
@@ -103,7 +103,7 @@ function saveHeaderInfoTab(title) {
   const headers = getHeaderInfo();
 
   // First, the URL
-  var txt = theDocument.location + "\n";
+  var txt = gDocument.location + "\n";
 
   // Now, the request and the request headers
   txt += "\n" + headers.request + "\n";

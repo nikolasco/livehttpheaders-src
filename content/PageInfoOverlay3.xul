@@ -27,17 +27,17 @@
 <overlay id="headerinfoPageInfoOverlayID" 
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
   <script type="application/x-javascript" src="chrome://livehttpheaders/content/headerinfo.js"/>
-  <script type="application/x-javascript" src="chrome://livehttpheaders/content/PageInfoOverlay.js"/>
-  <tabs id="tabs">
-    <tab id="headerinfoTab" label="&livehttpheaders.pageinfo.tab;"
-         accesskey="&livehttpheaders.pageinfo.accesskey;"
-	 oncommand="makeHeaderInfoTab()"
-	 onfocus="makeHeaderInfoTab()"/>
-  </tabs>
+  <script type="application/x-javascript" src="chrome://livehttpheaders/content/PageInfoOverlay3.js"/>
 
-  <tabpanels id="tabpanels">
-  <deck id="headerinfoDeck" selectedIndex="0">
-    <vbox id="headerinfoPanel" flex="1">
+  <stack id="topStackBar">
+    <radiogroup id="viewGroup">
+      <radio id="headerInfoTab"  label="&livehttpheaders.pageinfo.tab;" accesskey="&livehttpheaders.pageinfo.accesskey;"
+           oncommand="makeHeaderInfoTab();"/>
+    </radiogroup>
+  </stack>
+
+  <deck id="mainDeck">
+    <vbox id="headerInfoPanel" flex="1">
       <text id="headerinfo-request" class="header" 
             value="&livehttpheaders.pageinfo.request;"/>
       <tree id="headerinfo-request-tree" flex="1" class="inset">
@@ -101,5 +101,4 @@
     </vbox>
   </deck>
 
-  </tabpanels>
 </overlay>
