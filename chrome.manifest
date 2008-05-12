@@ -2,7 +2,7 @@
 overlay	chrome://navigator/content/pageInfo.xul	chrome://livehttpheaders/content/PageInfoOverlay.xul
 overlay	chrome://communicator/content/tasksOverlay.xul	chrome://livehttpheaders/content/TasksOverlay.xul
 overlay	chrome://browser/content/pageInfo.xul	chrome://livehttpheaders/content/PageInfoOverlay.xul
-overlay chrome://browser/content/pageinfo/pageInfo.xul chrome://livehttpheaders/content/PageInfoOverlay3.xul 
+overlay chrome://browser/content/pageinfo/pageInfo.xul chrome://livehttpheaders/content/PageInfoOverlay.xul 
 overlay	chrome://browser/content/browser.xul	chrome://livehttpheaders/content/TasksOverlay.xul
 
 content	livehttpheaders	jar:chrome/livehttpheaders.jar!/content/

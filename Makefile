@@ -15,10 +15,8 @@ jar:
         ${CONTENT}/LiveHTTPReplay.js \
         ${CONTENT}/TasksOverlay.xul \
         ${CONTENT}/PageInfoOverlay.xul \
-        ${CONTENT}/PageInfoOverlay3.xul \
         ${CONTENT}/PageInfoOverlay.js \
-        ${CONTENT}/PageInfoOverlay3.js \
-		${CONTENT}/LiveHTTPSideBar.xul \
+        ${CONTENT}/LiveHTTPSideBar.xul \
         ${CONTENT}/addpanel.js \
         ${CONTENT}/Generator.js \
         ${CONTENT}/Generator.xul \
@@ -33,14 +31,13 @@ jar:
         ${SKIN}/contents.rdf \
         ${SKIN}/livehttpheaders.css \
         ${SKIN}/img/Logo_32.png \
+        ${SKIN}/img/Logo_24.png \
+        ${SKIN}/img/Logo_16.png \
         ${SKIN}/favicon.ico \
-        ${SKIN}/toolbar-button-16.png \
-        ${SKIN}/toolbar-button.png \
         ${SKIN}/img/*
 
 xpi:
-	cp install.js tmp
-	cp install.rdf tmp
+	cp install.rdf install.js tmp
 	cp chrome.manifest tmp
 	cp ${CONTENT}/nsHeaderInfo.js tmp/components
 	cp prefs.js tmp/defaults/preferences/
@@ -51,7 +48,7 @@ xpi:
 	cd tmp ; zip -r livehttpheaders.xpi *
 
 xpi2:
-	cp install.js install.rdf tmp
+	cp install.rdf install.js tmp
 	cp ${CONTENT}/nsHeaderInfo.js tmp/components
 	cd tmp
 	zip -j livehttpheaders.xpi tmp
@@ -59,7 +56,6 @@ xpi2:
 	${CONTENT}/nsHeaderInfo.js \
         ${SKIN}/LiveHTTPHeaders.ico \
         ${SKIN}/LiveHTTPHeaders.xpm \
-	install.js \
 	TODO.txt
 
 download:

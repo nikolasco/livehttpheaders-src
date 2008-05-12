@@ -191,16 +191,18 @@
     <vbox flex="1">
     <groupbox>
       <caption label="&livehttpheaders.about.version;"/>
+        <vbox>
         <hbox align="center">
           <label value="&livehttpheaders.about.versiontext;"/>
           <label value="&livehttpheaders.about.currentversion;"/>
-          <spacer flex="1"/>
+        </hbox>
+        <hbox align="center">
           <button label="&livehttpheaders.about.homepage;" 
                   onclick="checkForUpdate();"/>
-          <spacer flex="1"/>
           <button label="&livehttpheaders.about.checkforupdate;" 
                   onclick="checkForUpdate('&livehttpheaders.about.currentversion;');"/>
         </hbox>
+        </vbox>
     </groupbox>
     <groupbox>
       <caption label="&livehttpheaders.about.author;"/>

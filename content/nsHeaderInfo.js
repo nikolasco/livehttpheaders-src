@@ -48,9 +48,11 @@ function dth(v,d) {
  * Class definitions
  */
 
+var flag = 1;
 var nsHeaderInfo = {
   onStateChange: function(aProg, aRequest, aFlags, aStatus)
   {
+    //dump("onStateChange\n");
     // As we want all headers, we must wait for the 'STOP' state
     if (aFlags & Components.interfaces.nsIWebProgressListener.STATE_STOP &&
         aFlags & Components.interfaces.nsIWebProgressListener.STATE_IS_DOCUMENT) {
@@ -67,8 +69,15 @@ var nsHeaderInfo = {
           aRequest = aRequest.baseChannel.QueryInterface(Components.interfaces.nsIHttpChannel);
         }
 
-        var controller = new FakeController(new HeaderInfoVisitor(aRequest).getHeaders());
-        controller.install(aProg.DOMWindow);
+        aProg.DOMWindow._liveHttpHeaders = new HeaderInfoVisitor(aRequest).getHeaders();
+        if (flag) {
+          try {
+            var controller = new FakeController(new HeaderInfoVisitor(aRequest).getHeaders());
+            controller.install(aProg.DOMWindow);
+          } catch (ex) {
+            flag = 0;
+          }
+        }
 
         // We are done with the listener, release it
         aProg.removeProgressListener(this);
@@ -82,6 +91,7 @@ var nsHeaderInfo = {
 
   onModifyRequest : function (oHttp)
   { 
+    //dump("onModifyRequest\n");
     try {
       oHttp.QueryInterface(Components.interfaces.nsIRequest);
       //dump("OMR: loadFlags: " + this.dtb(oHttp.loadFlags,32) + "\n");
@@ -92,9 +102,12 @@ var nsHeaderInfo = {
           oHttp.loadGroup && oHttp.loadGroup.groupObserver) {
         var go = oHttp.loadGroup.groupObserver;
         go.QueryInterface(Components.interfaces.nsIWebProgress);
-        go.addProgressListener(this, 0x0b); // 0x2 or 0xff
+        //go.addProgressListener(this, 0x0b); // 0x2 or 0xff
+        go.addProgressListener(this, Components.interfaces.nsIWebProgress.NOTIFY_STATE_DOCUMENT); // 0x2 or 0xff
       }
-    } catch (ex) {}
+    } catch (ex) {
+      //dump("nsHeaderInfo: onModifyRequest-ex\n"+ex+"\n");
+    }
   },
   onExamineResponse : function (oHttp) {},
 
@@ -108,7 +121,8 @@ var nsHeaderInfo = {
     delete this.observers[observer];
   },
 
-    observe: function(aSubject, aTopic, aData) {
+  observe: function(aSubject, aTopic, aData) {
+    //dump("Observe\n");
       if (aTopic == 'http-on-modify-request') {
         aSubject.QueryInterface(Components.interfaces.nsIHttpChannel);
         this.onModifyRequest(aSubject);
@@ -117,12 +131,12 @@ var nsHeaderInfo = {
       //  this.onExamineResponse(aSubject);
       } else if (aTopic == 'app-startup') {
         if ('nsINetModuleMgr' in Components.interfaces) {
-	  // Should be an old version of Mozilla (before september 15, 2003
+	    // Should be an old version of Mozilla (before september 15, 2003
           var netModuleMgr = Components.classes["@mozilla.org/network/net-extern-mod;1"].getService(Components.interfaces.nsINetModuleMgr);
           netModuleMgr.registerModule("@mozilla.org/network/moduleMgr/http/request;1", nsHeaderInfo);
           //netModuleMgr.registerModule("@mozilla.org/network/moduleMgr/http/response;1", nsHeaderInfo);
-	} else {
-	  // Should be a new version of  Mozilla (after september 15, 2003)
+	    } else {
+	      // Should be a new version of  Mozilla (after september 15, 2003)
           var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
           observerService.addObserver(nsHeaderInfo, "http-on-modify-request", false);
           //observerService.addObserver(nsHeaderInfo, "http-on-examine-response", false);
@@ -144,6 +158,8 @@ var nsHeaderInfo = {
         if (!iid.equals(Components.interfaces.nsISupports) &&
             !iid.equals(Components.interfaces.nsISupportsWeakReference) &&
             //!iid.equals(Components.interfaces.nsIWeakReference) &&
+            //!iid.equals("db242e01-e4d9-11d2-9dde-000064657374") &&
+            !iid.equals(Components.interfaces.nsIObserver) &&
             !iid.equals(Components.interfaces.nsIWebProgressListener) &&
             !iid.equals(Components.interfaces.nsIHttpNotify)) {
             //dump("nsHeaderInfo: QI unknown interface: " + iid + "\n");
@@ -349,7 +365,6 @@ HeaderInfoVisitor.prototype =
   }
 }
 
-
 function FakeController(oHeaders)
 {
   this.headers = oHeaders;
@@ -390,7 +405,7 @@ FakeController.prototype = {
 var nsHeaderInfoModule = {
     firstTime : true,
     registerSelf: function(compMgr, fileSpec, location, type) {
-      //dump("nsHeaderInfo: registerSelf called!\n");
+      dump("nsHeaderInfo: registerSelf called!\n");
       if (this.firstTime) {
         this.firstTime = false;
         throw Components.results.NS_ERROR_FACTORY_REGISTER_AGAIN;

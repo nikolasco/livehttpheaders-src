@@ -68,15 +68,13 @@
   <!-- Mozilla XUL -->
   <menupopup id="toolsPopup">
     <menuitem id="livehttpheaders_title" label="&livehttpheaders.live.title;" 
-              oncommand="window.openDialog('chrome://livehttpheaders/content/LiveHTTPHeaders.xul',
-                        'LiveHTTPHeaders','centerscreen,chrome,dialog,resizable');" />
+              oncommand="openLiveHTTPHeaders();" />
   </menupopup>
   <toolbarpalette id="BrowserToolbarPalette">
   <toolbarbutton id="livehttpheaders-toolbar-button"
     label="&livehttpheaders.live.title;"
     tooltiptext="&livehttpheaders.live.title;"
-    oncommand="window.openDialog('chrome://livehttpheaders/content/LiveHTTPHeaders.xul','LiveHTTPHeaders',
-                                   'centerscreen,chrome,dialog,resizable');"
+     oncommand="openLiveHTTPHeaders();"
 	class="toolbarbutton-1 chromeclass-toolbar-additional"/>
   </toolbarpalette>
     <!-- Phoenix XUL -->

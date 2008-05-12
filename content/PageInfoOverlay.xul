@@ -31,13 +31,26 @@
   <tabs id="tabs">
     <tab id="headerinfoTab" label="&livehttpheaders.pageinfo.tab;"
          accesskey="&livehttpheaders.pageinfo.accesskey;"
-	 oncommand="makeHeaderInfoTab()"
-	 onfocus="makeHeaderInfoTab()"/>
+	 oncommand="makeHeaderInfoTab2()"
+	 onfocus="makeHeaderInfoTab2()"/>
   </tabs>
 
   <tabpanels id="tabpanels">
-  <deck id="headerinfoDeck" selectedIndex="0">
-    <vbox id="headerinfoPanel" flex="1">
+    <vbox id="headerinfoPanel"/>
+  </tabpanels>
+
+  <stack id="topStackBar">
+    <radiogroup id="viewGroup">
+      <radio id="headerInfoTab" label="&livehttpheaders.pageinfo.tab;" accesskey="&livehttpheaders.pageinfo.accesskey;"
+        oncommand="makeHeaderInfoTab3();"/>
+    </radiogroup>
+  </stack>
+
+  <deck id="mainDeck">
+    <vbox id="headerinfoPanel"/>
+  </deck>
+
+  <vbox id="headerinfoPanel" flex="1">
       <text id="headerinfo-request" class="header" 
             value="&livehttpheaders.pageinfo.request;"/>
       <tree id="headerinfo-request-tree" flex="1" class="inset">
@@ -72,7 +85,7 @@
       <scrollbar id="headerinfo-response-scroll" curpos="0" maxpos="0" pageincrement="0" 
                  orient="horizontal" />
       <hbox align="center">
-        <button label="&livehttpheaders.pageinfo.saveas;" oncommand="saveHeaderInfoTab();" />
+        <button icon="save" label="&livehttpheaders.pageinfo.saveas;" oncommand="saveHeaderInfoTab();" />
         <separator class="thin" />
         <text id="headerinfo-request-fromcache" hidden="true"
               value="&livehttpheaders.pageinfo.fromcache;" 
@@ -96,10 +109,5 @@
 
       </hbox>
     </vbox>
-    <vbox id="headerinfoCNR" hidden="true">
-      <iframe flex="1" src="chrome://livehttpheaders/locale/registerComponent.html" />
-    </vbox>
-  </deck>
 
-  </tabpanels>
 </overlay>

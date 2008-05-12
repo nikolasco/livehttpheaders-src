@@ -20,34 +20,38 @@
 //  Place, Suite 330, Boston, MA 02111-1307 USA
 //  **** END LICENSE BLOCK ****
 
-function getHeaderInfo() {
+function getHeaderInfo(theDocument) {
   var headers = null;
 
   // Look to see if the minimum requirement is there
   if (theDocument && 'defaultView' in theDocument && 'controllers' in theDocument.defaultView) {
-    var controllers = theDocument.defaultView.controllers
-    while (controllers.wrappedJSObject)
-      controllers = controllers.wrappedJSObject
-    var controller = controllers.getControllerForCommand('livehttpheaders');
-    if (!controller) return false;
+    if ("_liveHttpHeaders" in theDocument.defaultView) {
+      headers = theDocument.defaultView._liveHttpHeaders;
+    } else {
+      var controllers = theDocument.defaultView.controllers
+      while (controllers.wrappedJSObject)
+        controllers = controllers.wrappedJSObject
+      var controller = controllers.getControllerForCommand('livehttpheaders');
+      if (!controller) return false;
 
-    // The controller might be wrapped multiple times
-    while (controller && !('headers' in controller))
-      controller = controller.wrappedJSObject;
-
-    if (controller && controller.url == theDocument.defaultView.location.href)
-      headers = controller.headers;
+      // The controller might be wrapped multiple times
+      while (controller && !('headers' in controller))
+        controller = controller.wrappedJSObject;
+      if (controller && controller.url == theDocument.defaultView.location.href)
+        headers = controller.headers;
+    } 
   }
+
   return headers;
 }
 
 var flag = 0;
-function makeHeaderInfoTab() {
+function makeHeaderInfoTab(theDocument) {
   // Only call this function once
   if (flag) return;
   flag = 1;
   var loc = theDocument.location.protocol;
-  const headers = getHeaderInfo();
+  const headers = getHeaderInfo(theDocument);
   if (headers) {
     //dumpall("theWindow",theWindow,2);
     //dumpall("theDocument",theDocument,2);
@@ -87,43 +91,53 @@ function makeHeaderInfoTab() {
     }
     responseheaders.rowCountChanged(0, length);
     responseheaders.enablehScroll("headerinfo-response-scroll","headerinfo-response-value");
+    return true;
   } else if (loc=='http:' || loc=='https:') {
-    // If we are here, it must be because the nsHeaderInfo component wasn't registered
-    document.getElementById("headerinfoCNR").hidden = false;
-    document.getElementById("headerinfoDeck").selectedIndex = 1;
+    return false;
   }
 }
+function makeHeaderInfoTab2() {
+  makeHeaderInfoTab(theDocument);
+}
 function makeHeaderInfoTab3() {
-  makeHeaderInfoTab();
-  showTab('headerInfo');
+  makeHeaderInfoTab(gDocument);
+  showTab('headerinfo');
 }
 
 function saveHeaderInfoTab(title) {
-  
-  const headers = getHeaderInfo();
 
-  // First, the URL
-  var txt = theDocument.location + "\n";
+  var txt = null
+  var headers = null
+  // First, get the URL and headers
+  try {
+    txt = theDocument.location + "\n";
+    headers = getHeaderInfo(theDocument);
+  } catch (ex) {
+    txt = gDocument.location + "\n";
+    headers = getHeaderInfo(gDocument);
+  }
 
   // Now, the request and the request headers
-  txt += "\n" + headers.request + "\n";
-  for (i in headers.requestHeaders) {
-    txt += i + ": " + headers.requestHeaders[i] + "\n";
-  }
- 
-  // Finaly, the response and its headers
-  txt += "\n" + headers.response + "\n";
-  for (i in headers.responseHeaders) {
-    // Server can send some headers multiple times...  
-    // Try to detect this and present them in the 'good' way.
-    var multi = headers.responseHeaders[i].split('\n');
-    for (var o in multi) {
-      txt += i + ": " + multi[o] + "\n";
+  if (headers) {
+    txt += "\n" + headers.request + "\n";
+    for (i in headers.requestHeaders) {
+      txt += i + ": " + headers.requestHeaders[i] + "\n";
     }
-  }
+ 
+    // Finaly, the response and its headers
+    txt += "\n" + headers.response + "\n";
+    for (i in headers.responseHeaders) {
+      // Server can send some headers multiple times...  
+      // Try to detect this and present them in the 'good' way.
+      var multi = headers.responseHeaders[i].split('\n');
+      for (var o in multi) {
+        txt += i + ": " + multi[o] + "\n";
+      }
+    }
 
-  // Now save the generated headers to a file
-  saveAs(txt,title);
+    // Now save the generated headers to a file
+    saveAs(txt,title);
+  }
 }
 
 // Add an link to a horizontal scrollbar on a TreeView class

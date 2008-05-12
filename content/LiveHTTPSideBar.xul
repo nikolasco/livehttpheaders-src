@@ -95,9 +95,11 @@
       
     <hbox align="right" valign="middle">
       <button label="&livehttpheaders.live.saveall;" id="headerinfo-saveall"
+              icon="save"
               oncommand="oHeaderInfoLive.saveAll();" observes="datapresent" />
       <separator class="thin" flex="1" />
       <button label="&livehttpheaders.live.clear;" id="headerinfo-clear"
+              icon="clear"
               oncommand="oHeaderInfoLive.clear();" observes="datapresent" />
     </hbox>
   </vbox>
