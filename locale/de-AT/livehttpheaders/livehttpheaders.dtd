@@ -26,7 +26,7 @@
 <!ENTITY livehttpheaders.config.addsidebar.present "wurde bereits der Sidebar hinzugefügt.">
 <!ENTITY livehttpheaders.about.version "Versions Information">
 <!ENTITY livehttpheaders.about.versiontext "LiveHTTPHeaders Version">
-<!ENTITY livehttpheaders.about.currentversion "0.14">
+<!ENTITY livehttpheaders.about.currentversion "0.15">
 <!ENTITY livehttpheaders.about.checkforupdate "Auf Update abfragen">
 <!ENTITY livehttpheaders.about.homepage "Homepage">
 <!ENTITY livehttpheaders.about.homepageurl "http://livehttpheaders.mozdev.org">

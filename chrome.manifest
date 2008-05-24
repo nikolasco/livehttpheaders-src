@@ -1,5 +1,6 @@
 
 overlay	chrome://navigator/content/pageInfo.xul	chrome://livehttpheaders/content/PageInfoOverlay.xul
+overlay	chrome://navigator/content/pageinfo/pageInfo.xul	chrome://livehttpheaders/content/PageInfoOverlay.xul
 overlay	chrome://communicator/content/tasksOverlay.xul	chrome://livehttpheaders/content/TasksOverlay.xul
 overlay	chrome://browser/content/pageInfo.xul	chrome://livehttpheaders/content/PageInfoOverlay.xul
 overlay chrome://browser/content/pageinfo/pageInfo.xul chrome://livehttpheaders/content/PageInfoOverlay.xul 

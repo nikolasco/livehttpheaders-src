@@ -29,7 +29,7 @@
 
 <!ENTITY livehttpheaders.about.version           "Verzió információ" >
 <!ENTITY livehttpheaders.about.versiontext       "LiveHTTPHeaders verziója" >
-<!ENTITY livehttpheaders.about.currentversion    "0.14" >
+<!ENTITY livehttpheaders.about.currentversion    "0.15" >
 <!ENTITY livehttpheaders.about.checkforupdate    "Új verzió keresése" >
 <!ENTITY livehttpheaders.about.homepage          "Honlap meglátogatása" >
 <!ENTITY livehttpheaders.about.homepageurl       "http://livehttpheaders.mozdev.org" >

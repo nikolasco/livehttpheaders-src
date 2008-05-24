@@ -317,7 +317,7 @@ HeaderInfoVisitor.prototype =
 
   visitHeader : function (name, value)
   {
-    this.theaders[name] = value;
+    this.theaders[name] = value + "\u65E5\u672C\u8A9E";
   },
   visitRequest : function ()
   {

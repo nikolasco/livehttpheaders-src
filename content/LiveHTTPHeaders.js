@@ -522,7 +522,7 @@ HeaderInfoLive.prototype =
         var header = tmp[i].match(/^([^:]+)\s*:\s*(.*)$/);
         if (header) {
           //dump("Found: " + header[1] +"="+header[2]+"\n");
-          req[header[1]]=header[2];
+          if (!header[1].match(/^(Content-Length)$/)) req[header[1]]=header[2];
           if (header[1].match(/^(If-Modified-Since|If-None-Match)$/)) mustValidate=true; 
         }
       }
@@ -552,8 +552,8 @@ HeaderInfoLive.prototype =
         post = mis.createInstance(nsIMIMEInputStream);
         post.setData(tmp);
         post.addContentLength = true;
-        if ('Content-Type' in req)
-          post.addHeader('Content-Type', req['Content-Type']);
+        //if ('Content-Type' in req)
+        //  post.addHeader('Content-Type', req['Content-Type']);
 
         //post.QueryInterface(Components.interfaces.nsIInputStream);
         //dumpall("POST",post,2);

@@ -39,6 +39,10 @@
     <vbox id="headerinfoPanel"/>
   </tabpanels>
 
+  <tabpanels id="mainDeck">
+    <vbox id="headerinfoPanel"/>
+  </tabpanels>
+
   <stack id="topStackBar">
     <radiogroup id="viewGroup">
       <radio id="headerInfoTab" label="&livehttpheaders.pageinfo.tab;" accesskey="&livehttpheaders.pageinfo.accesskey;"

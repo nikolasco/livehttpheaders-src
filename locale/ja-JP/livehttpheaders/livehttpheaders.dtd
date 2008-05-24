@@ -26,7 +26,7 @@
 <!ENTITY livehttpheaders.config.addsidebar.present " すでにサイドバーに追加されています">
 <!ENTITY livehttpheaders.about.version "バージョン情報">
 <!ENTITY livehttpheaders.about.versiontext "LiveHTTPHeaders バージョン">
-<!ENTITY livehttpheaders.about.currentversion "0.14">
+<!ENTITY livehttpheaders.about.currentversion "0.15">
 <!ENTITY livehttpheaders.about.checkforupdate "更新を確認">
 <!ENTITY livehttpheaders.about.homepage "サイトを表示">
 <!ENTITY livehttpheaders.about.homepageurl "http://livehttpheaders.mozdev.org">
